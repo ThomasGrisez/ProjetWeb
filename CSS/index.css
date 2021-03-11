@@ -40,7 +40,7 @@ body{
 
 
 /*for change color and underline on <a> in Header*/
-.selectionType1, .selectionType2{
+.selectionType1, .selectionType2, .selectionType3{
 	color: #393939; 
 	text-decoration: none;
 	font-weight: bold; 
@@ -67,8 +67,14 @@ body{
 /*=============================Footer==============================*/
 
 .footer{
-	border-top: 1px black solid; 
+	border-top: 1px #B7B7B7 solid; 
 	display: flex;
 	justify-content: space-around;
 	background-color: #F7F7F7; 
 }
+
+.different_socialMedia{
+	padding-right: 20px; 
+	padding-bottom: 5px; 
+}
+
