@@ -58,13 +58,113 @@ button{
 
 /*========================Main Section=========================*/
 
+
+
 .caroussel_view{
-	display: flex;
-	justify-content: center;
+	position: relative;
+ 	overflow: hidden;
+ 	margin: 20px auto 0 auto;
+ 	border-radius: 4px;
 	padding-bottom: 15px; 
 }
 
+.slider_ul{
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
+.slider_li{
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 300px;
+}
+
+
+
+a.control_prev, a.control_next {
+  position: absolute;
+  top: 40%;
+  z-index: 999;
+  display: block;
+  padding: 4% 3%;
+  width: auto;
+  height: auto;
+  background: #2a2a2a;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+a.control_prev:hover, a.control_next:hover {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+}
+
+a.control_prev {
+  border-radius: 0 2px 2px 0;
+}
+
+a.control_next {
+  right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+
+.carroussel_fitness{
+	display: flex;
+	align-items: center;
+}
+
+.button_discover{
+	font-size: 16px;
+	 background-color: white;
+	 border-radius: 5px; 
+}
+
+.button_discover:hover {
+	border-color: #D86B27;
+	 background-color: #D86B27;
+	 color : white ;
+}
+
+.caroussel_items{
+	list-style-type: none; 
+	display: flex;
+    overflow-x: scroll;
+    padding: 1rem 0; 
+    padding-left: 10px; 
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+    flex: 1 0 450px;/*Here we add flex-grow : 1, flex shrink : 0 and flex-basis : 450px (rapport 1, réduction de 0, reserve 450px minimum)*/
+    margin-left: 1rem;
+    scroll-snap-align: start;
+}
+
+/*Change scroll bar aspect*/ 
+::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #3d4852;
+    border-radius: 3px;
+}
 
 
 
@@ -75,6 +175,14 @@ button{
 	display: flex;
 	justify-content: space-around;
 	background-color: #F7F7F7; 
+}
+
+.first_footerpart{
+	padding-left: 20px; 
+}
+
+.third_footerpart{
+	padding-right : 40px;
 }
 
 .title_footer1 ,.title_footer2, .title_footer3{
@@ -112,6 +220,13 @@ button{
 	padding: 10px 20px 10px 20px; 
 	font-family: lato; 
 	text-align: center;
+	border-radius: 4px; 
+	color : white;
+	border-color: #D86B27;
+}
+
+#button_email_marketing:hover{
+	background-color: #B44500; 
 }
 
 #help_center{
