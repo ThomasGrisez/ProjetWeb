@@ -5,6 +5,7 @@ body{
 }
 
 button{
+	font-family: lato; 
 	background-color: #D86B27;
 }
 
@@ -73,6 +74,7 @@ button{
   margin: 0;
   padding: 0;
   list-style: none;
+
 }
 
 .slider_li{
@@ -81,11 +83,10 @@ button{
   float: left;
   margin: 0;
   padding: 0;
-  text-align: center;
-  line-height: 300px;
+  width: auto;
+  height: auto;
+  text-align : center;
 }
-
-
 
 a.control_prev, a.control_next {
   position: absolute;
@@ -100,7 +101,7 @@ a.control_prev, a.control_next {
   text-decoration: none;
   font-weight: 600;
   font-size: 18px;
-  opacity: 0.8;
+  opacity: 0.6;
   cursor: pointer;
 }
 
@@ -126,8 +127,9 @@ a.control_next {
 
 .button_discover{
 	font-size: 16px;
-	 background-color: white;
-	 border-radius: 5px; 
+    background-color: white;
+    border-radius: 5px; 
+    padding-bottom: 4px; 
 }
 
 .button_discover:hover {
