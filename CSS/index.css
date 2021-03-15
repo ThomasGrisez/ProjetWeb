@@ -189,6 +189,32 @@ a.control_next {
 }
 
 
+/*Last part of Home Page*/
+
+.button_discover2{
+	font-size: 18px;
+    background-color: #C2E4F8;
+    border-radius: 5px; 
+    padding: 5px 20px 5px 20px;  
+    color: #26428D;
+    border-color: #26428D; 
+}
+
+.button_discover2:hover {
+	border-color: #26428D;
+	 background-color: #26428D;
+	 color: #C2E4F8;
+}
+
+.lastpart_text{
+	padding: 5px 10px 20px 20px; 
+}
+
+.last_part{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
 
 /*=============================Footer==============================*/
 
