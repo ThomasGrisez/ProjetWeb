@@ -60,7 +60,7 @@ button{
 /*========================Main Section=========================*/
 
 
-
+/*First Slider Part (With Ad Pictures)*/
 .caroussel_view{
 	position: relative;
  	overflow: hidden;
@@ -119,7 +119,21 @@ a.control_next {
   border-radius: 2px 0 0 2px;
 }
 
+/*Trust Icons part */
 
+.trust_icons{
+	display: flex;
+	justify-content: space-around;
+}
+
+.text_trust_icons{
+	text-align: center;
+	font-weight: bold;
+}
+
+
+
+/*Second Slider with Main Items */
 .carroussel_fitness{
 	display: flex;
 	align-items: center;
@@ -152,6 +166,12 @@ a.control_next {
     margin-left: 1rem;
     scroll-snap-align: start;
 }
+
+.text_caroussel_item{
+	text-align: center;
+}
+
+
 
 /*Change scroll bar aspect*/ 
 ::-webkit-scrollbar-track {
