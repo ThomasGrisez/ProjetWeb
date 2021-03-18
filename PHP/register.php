@@ -59,8 +59,8 @@
                 <h1 id="register-title">Register</h1>
                 <input type="text" name="lname" id="lname" placeholder="Last name">
                 <input type="text" name="fname" id="fname" placeholder="First name">
-                <input type="text" name="email" id="email" placeholder="Email">
-                <input type="text" name="email2" id="email2" placeholder="Confirm your Email">
+                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="email" name="email2" id="email2" placeholder="Confirm your Email">
                 <input type="password" name="password" id="password" placeholder="Password">
                 <input type="password" name="password2" id="password2" placeholder="Confirm your Password">
 
