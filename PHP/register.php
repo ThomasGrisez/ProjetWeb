@@ -33,9 +33,9 @@
                         if($result1->num_rows == 0 && $result2->num_rows == 0 && $result3->num_rows == 0){
                             if($pw == $pw2){
                                 if($type == "buyer")
-                                    {$mysqli->query("INSERT INTO `buyer` (`id`, `last_name`, `first_name`, `address`, `email`, `password`, `shopping_cart`) VALUES(NULL,'$lastName','$firstName', '','$mail','$pw','')");}
+                                    {$mysqli->query("INSERT INTO `buyer` (`id`, `last_name`, `first_name`, `address`, `email`, `password`) VALUES(NULL,'$lastName','$firstName', '','$mail','$pw')");}
                                 if($type == "seller")
-                                    {$mysqli->query("INSERT INTO `seller`(`id`, `last_name`, `first_name`, `email`, `password`, `photo`, `favorite_background`, `list_items`) VALUES(NULL,'$lastName','$firstName','$mail','$pw','','','')");}
+                                    {$mysqli->query("INSERT INTO `seller`(`id`, `last_name`, `first_name`, `email`, `password`, `photo`, `favorite_background`) VALUES(NULL,'$lastName','$firstName','$mail','$pw','default.jpg','')");}
                                 $msg = "Account created ! <a href=\"login.php\">Log in</a>";
                             }else{
                                 $msg = "The passwords are different !";

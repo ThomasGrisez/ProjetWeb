@@ -24,7 +24,7 @@
         <br>
         Address = <?php echo $_SESSION['address']; ?>
         <br>
-        <a href="editprofile.php">Edit my profile</a>
+        <a href="editBuyer.php">Edit my profile</a>
         <a href="logout.php">Log out</a>
     </div>
     <?php include 'footer.php'?>

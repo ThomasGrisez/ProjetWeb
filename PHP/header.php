@@ -10,6 +10,20 @@
 	<link rel="stylesheet" type="text/css" href="../CSS/index.css">
 </head>
 <body>
+
+	<?php
+        if(session_status() == PHP_SESSION_NONE){session_start();}
+    
+        $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
+
+		if(isset($_SESSION['photo'])){
+			$photo = "../profilepictures/".$_SESSION['photo'];
+		}else{
+			$photo = "../Images/account_icon.png";
+		}
+
+    ?>
+
     <header>
     	<ul id="selectionMode">
     		<a href="" class="selectionType1"><li>Categories</li></a>
@@ -19,7 +33,7 @@
     	<div id="logoHeader">
     		<img src="../Images/Fit.net.png" alt="logo">
     		<div>
-    			<a href="login.php" class="customerIcons"><img src="../Images/account_icon.png" alt="account"></a>
+    			<a href="login.php" class="customerIcons"><img src="<?= $photo?>" alt="account" width=35 height=35></a>
     			<a href="" class="customerIcons"><img src="../Images/cart_icon.png" alt="cart"></a>
     		</div>
     	</div>

@@ -42,7 +42,7 @@
             }
         ?>
         <br>
-        <a href="editprofile.php">Edit my profile</a>
+        <a href="editAdmin.php">Edit my profile</a>
         <a href="logout.php">Log out</a>
     </div>
     <?php include 'footer.php'?>

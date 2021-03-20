@@ -23,7 +23,7 @@
         <br>
         Password = <?php echo $_SESSION['password']; ?>
         <br>
-        <a href="editprofile.php">Edit my profile</a>
+        <a href="editSeller.php">Edit my profile</a>
         <a href="logout.php">Log out</a>
     </div>
     <?php include 'footer.php'?>

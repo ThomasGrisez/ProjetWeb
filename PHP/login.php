@@ -11,7 +11,7 @@
     <?php include 'header.php'?>
 
     <?php
-        session_start();
+        if(session_status() == PHP_SESSION_NONE){session_start();}
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
         if(isset($_POST['formlogin'])){
@@ -43,7 +43,6 @@
                     $_SESSION['password'] = $userinfos['password'];
                     $_SESSION['photo'] = $userinfos['photo'];
                     $_SESSION['background'] = $userinfos['favorite_background'];
-                    $_SESSION['itemslist'] = $userinfos['list_items'];
                     $_SESSION['status'] = "seller";
                     header("Location: sellerProfile.php");
 
@@ -70,7 +69,7 @@
             <form class="login" action="" method="post">
                 <h1 id="login-title">Log In</h1>
                 <input type="email" name="email" id="email" placeholder="Email">
-                <input type="text" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password">
                 <div id="button-login">
                     <input type="submit" name="formlogin" value="Log in">
                     <button id="button-fpw"><a href="#">Forgot password</a></button>
