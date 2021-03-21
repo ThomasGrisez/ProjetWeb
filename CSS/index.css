@@ -271,7 +271,9 @@ a.control_next {
 	border-radius: 4px; 
 	color : white;
 	border-color: #D86B27;
+	background-color: #D86B27; 
 }
+
 
 #button_email_marketing:hover{
 	background-color: #B44500; 

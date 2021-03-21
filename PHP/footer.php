@@ -47,7 +47,7 @@
     					<h4 class="title_footer2">Subscribe to the newletter</h4>
                         <form method="post">
                             <input type="text" name="email_marketing" id="textLabel_email_marketing" size="50">
-							<input type="submit" name="newsletter" value="Subscribe">
+							<input type="submit" name="newsletter"  id="button_email_marketing" value="Subscribe">
                         </form>
 						<?php
 							if(isset($_POST['newsletter']) && !empty($_POST['email_marketing'])){
