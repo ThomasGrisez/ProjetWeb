@@ -102,6 +102,7 @@ a.control_next {
 	border-color: #D86B27;
 	 background-color: #D86B27;
 	 color : white ;
+   cursor: pointer; 
 }
 
 .caroussel_items{
@@ -156,6 +157,7 @@ a.control_next {
 	border-color: #26428D;
 	 background-color: #26428D;
 	 color: #C2E4F8;
+   cursor: pointer; 
 }
 
 .lastpart_text{

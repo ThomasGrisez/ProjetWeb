@@ -16,10 +16,10 @@
 
     <div>
     <ul id="categoryMode">
-            <a href="" class="selectionType2"><li>Home Page</li></a>
-            <a href="" class="selectionType2"><li>Equipments</li></a>
-            <a href="" class="selectionType2"><li>Complements</li></a>
-            <a href="" class="selectionType2"><li>Closes</li></a>
+            <a href="../PHP/index.php" class="selectionType2"><li>Home Page</li></a>
+            <a href="../PHP/categories_template.php" class="selectionType2"><li>Equipments</li></a>
+            <a href="../PHP/categories_template.php" class="selectionType2"><li>Complements</li></a>
+            <a href="../PHP/categories_template.php" class="selectionType2"><li>Closes</li></a>
         </ul>
      </div>
     <div class="caroussel_view">
@@ -118,9 +118,9 @@
         <section class="last_part" style="background-color:  #C2E4F8; padding : 10px 0px 20px 0px; ">
 
           <div class="lastpart_text">
-             <a href="" style="text-decoration : none; "><h3 style="font-size: 35px; color: #26428D;">The month of the women <br>retailers on Fit.net</h3></a>
+             <a href="../PHP/saleswomen.php" style="text-decoration : none; "><h3 style="font-size: 35px; color: #26428D;">The month of the women <br>retailers on Fit.net</h3></a>
              <p style="font-size: 20px; color: #26428D;">Find our saleswomen in the spotlight in April.</p><br><br>
-             <button class="button_discover2">I discover ></button>
+             <a href="../PHP/saleswomen.php"><button class="button_discover2">I discover ></button></a>
           </div>
 
           <div>
