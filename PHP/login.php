@@ -71,7 +71,7 @@
                 <input type="email" name="email" id="email" placeholder="Email">
                 <input type="password" name="password" id="password" placeholder="Password">
                 <div id="button-login">
-                    <input type="submit" name="formlogin" value="Log in">
+                    <input class="register_submit" type="submit" name="formlogin" value="Log in">
                     <button id="button-fpw"><a href="#">Forgot password</a></button>
                     
                 </div>

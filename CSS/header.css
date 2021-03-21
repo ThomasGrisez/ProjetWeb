@@ -1,0 +1,55 @@
+/*========================HEADER CSS=====================*/
+body{
+	font-family: lato; 
+	padding-right: 10%;
+	padding-left: 10%; 
+}
+
+button{
+	font-family: lato; 
+	background-color: #D86B27;
+}
+
+/*Part with Categorie/ Buying/ Sell part*/
+#selectionMode{
+	display : flex;
+	justify-content: space-between;
+	list-style-type: none; 
+	align-items: center; 
+	padding-bottom: 10px; 
+	border-bottom: 1px #B7B7B7 solid; 
+}
+
+/*Part With Logo and cart/account icons*/
+#logoHeader{
+	display : flex;
+	justify-content: space-between;
+	align-items: center; 
+	padding-bottom: 15px; 
+	border-bottom: 1px #B7B7B7 solid; 
+}
+
+/*part with only cart/acoount incons*/
+.customerIcons{
+	padding-left: 30px; 
+}
+
+/*Part to choose categories if we have select "Category"*/
+#categoryMode{
+	display : flex;
+	list-style-type: none; 
+	align-items: center; 
+}
+
+
+/*for change color and underline on <a> in Header*/
+.selectionType1, .selectionType2, .selectionType3{
+	color: #393939; 
+	text-decoration: none;
+	font-weight: bold; 
+}
+
+.selectionType2{
+	color: #D86B27; 
+	padding-right: 50px; 
+}

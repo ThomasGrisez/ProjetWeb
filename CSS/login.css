@@ -1,3 +1,9 @@
+body{
+    font-family: lato; 
+    padding-right: 10%;
+    padding-left: 10%; 
+}
+
 .main{
     display: flex;
     flex-direction: row;
@@ -31,7 +37,7 @@
     color: white;
 }
 
-input[type=submit], #button-register{
+.register_submit, #button-register{
     color: #fff;
     font-size: 16px;
     width: 80px;

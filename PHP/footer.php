@@ -7,7 +7,7 @@
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="../JS/index.js"></script>
 	<link rel="icon" type="image/png" href="../Images/Sans_titre_5.png" />
-	<link rel="stylesheet" type="text/css" href="../CSS/index.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/footer.css">
 </head>
 <body>
 <footer class="footer">
@@ -47,7 +47,7 @@
     					<h4 class="title_footer2">Subscribe to the newletter</h4>
                         <form method="post">
                             <input type="text" name="email_marketing" id="textLabel_email_marketing" size="50">
-							<input type="submit" name="newsletter"  id="button_email_marketing" value="Subscribe">
+							<input  id="button_email_marketing" type="submit" name="newsletter" value="Subscribe">
                         </form>
 						<?php
 							if(isset($_POST['newsletter']) && !empty($_POST['email_marketing'])){
@@ -64,10 +64,10 @@
     				<td class="third_footerpart">
     					<h5 class="title_footer3" >Help Center</h5>
                         <ul id="help_center">
-                          <a href="" class="selectionType1"> <li>A Problem ?</li></a>
-                          <a href="" class="selectionType1"> <li>General terms of sale and use</li></a>
-                          <a href="" class="selectionType1"><li></li>Privacy Policy</a>
-                          <a href="" class="selectionType1"><li></li>Refund policy</a>
+                          <a href="../PHP/contact_us.php" class="selectionType1"> <li>A Problem ?</li></a>
+                          <a href="../PHP/general_terms_of_sale_and_use.php" class="selectionType1"> <li>General terms of sale and use</li></a>
+                          <a href="../PHP/privacy_policy.php" class="selectionType1"><li></li>Privacy Policy</a>
+                          <a href="../PHP/refund_policy.php" class="selectionType1"><li></li>Refund Policy</a>
                         </ul>
     				</td>
     			</tr>

@@ -8,12 +8,20 @@
     <title>Fit.net | Home Page</title>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="../JS/index.js"></script>
-	<link rel="icon" type="image/png" href="../Images/Sans_titre_5.png" />
+    <link rel="icon" type="image/png" href="../Images/favicon.png" />
 	<link rel="stylesheet" type="text/css" href="../CSS/index.css">
 </head>
 <body>
     <?php include 'header.php'?>
 
+    <div>
+    <ul id="categoryMode">
+            <a href="" class="selectionType2"><li>Home Page</li></a>
+            <a href="" class="selectionType2"><li>Equipments</li></a>
+            <a href="" class="selectionType2"><li>Complements</li></a>
+            <a href="" class="selectionType2"><li>Closes</li></a>
+        </ul>
+     </div>
     <div class="caroussel_view">
          <a href="#" class="control_next">></a>
          <a href="#" class="control_prev"><</a>
