@@ -38,11 +38,6 @@ body{
     color: white;
 }
 
-#button-register:hover{
-
- background-color: #B44500; 
-    cursor: pointer; 
-}
 
 .register_button{
     color: #fff;
@@ -54,6 +49,13 @@ body{
     margin-left: -5px;
     border-radius: 5px;
     background-color: #D86B27;
+}
+
+.register_button : hover{
+
+    background-color: #B44500;
+    cursor: pointer;
+
 }
 
 .radios{

@@ -75,7 +75,7 @@
                     <button id="button-fpw"><a href="#">Forgot password</a></button>
                     
                 </div>
-                <button id="button-register"><a href="register.php">Register</a></button>
+                <button id="button_go_to_register"><a href="../PHP/register.php">Register</a></button>
                 
             </form>
             <?php

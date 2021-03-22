@@ -4,10 +4,6 @@ body{
 	padding-left: 10%; 
 }
 
-button{
-	font-family: lato; 
-	background-color: #D86B27;
-}
 
 /*========================Main Section=========================*/
 
@@ -169,3 +165,4 @@ a.control_next {
 	justify-content: space-around;
 	align-items: center;
 }
+

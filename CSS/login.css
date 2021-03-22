@@ -37,7 +37,7 @@ body{
     color: white;
 }
 
-.log_in_button, #button-register{
+.log_in_button, #button_go_to_register{
     color: #fff;
     font-size: 16px;
     width: 80px;
@@ -47,11 +47,22 @@ body{
     margin-left: -5px;
     border-radius: 5px;
     background-color: #D86B27;
+    border-radius: 5px; 
+}
+
+#button_go_to_register:hover{
+    background-color: #B44500;
+    cursor: pointer;
+}
+.register_button : hover{
+
+    background-color: #B44500;
+    cursor: pointer;
+
 }
 
 .log_in_button:hover{
-    background-color: #B44500; 
-    cursor: pointer; 
+    background-color: #B44500;  
 }
 
 #button-fpw{
@@ -77,6 +88,6 @@ body{
     justify-content: space-around;
 }
 
-#button-register {
+#button_go_to_register {
     margin-left:30%;
 }

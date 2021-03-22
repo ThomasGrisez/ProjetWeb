@@ -31,7 +31,7 @@
     		<a href="" class="selectionType1"><li>Sell</li></a>
     	</ul>
     	<div id="logoHeader">
-    		<img src="../Images/Fit.net.png" alt="logo">
+    		<a hrf="../PHP/index.php"><img src="../Images/Fit.net.png" alt="logo"></a>
     		<div>
     			<a href="login.php" class="customerIcons"><img src="<?= $photo?>" alt="account" width=35 height=35></a>
     			<a href="" class="customerIcons"><img src="../Images/cart_icon.png" alt="cart"></a>

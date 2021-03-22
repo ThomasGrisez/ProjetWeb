@@ -1,0 +1,24 @@
+/*======================PART FOR THE LADIES OF THE MONTH==================*/
+h1{
+	text-align: center;
+	padding-bottom: 50px; 
+	font-size: 50px; 
+}
+
+
+.women_of_the_month{
+  display: flex;
+  flex-direction: column;
+}
+
+.pictures_of_women{
+  padding: 20px; 
+}
+
+.image_woman{
+	display: flex;
+}
+
+.texte_woman{
+	padding-right: 400px; 
+}
