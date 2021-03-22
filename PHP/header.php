@@ -22,6 +22,16 @@
 			$photo = "../Images/account_icon.png";
 		}
 
+		if(isset($_SESSION['status'])){
+			if($_SESSION['status']=="seller")
+				$link = "sellerProfile.php";
+			if($_SESSION['status']=="buyer")
+				$link = "buyerProfile.php";
+			if($_SESSION['status']=="administrator")
+				$link = "adminProfile.php";
+		}else $link = "login.php";
+			
+
     ?>
 
     <header>
@@ -33,7 +43,7 @@
     	<div id="logoHeader">
     		<a href="../PHP/index.php"><img src="../Images/Fit.net.png" alt="logo"></a>
     		<div>
-    			<a href="login.php" class="customerIcons"><img src="<?= $photo?>" alt="account" width=35 height=35></a>
+    			<a href="<?= $link?>" class="customerIcons"><img src="<?= $photo ?>" alt="account" width=35 height=35></a>
     			<a href="" class="customerIcons"><img src="../Images/cart_icon.png" alt="cart"></a>
     		</div>
     	</div>

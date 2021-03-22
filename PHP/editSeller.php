@@ -62,7 +62,6 @@
             $msg = "Please confirm your new password !";
         }  
     }
-
     if(isset($_FILES['photo']) && !empty($_FILES['photo']['name'])) {
         $validextensions = array('jpg', 'jpeg', 'gif', 'png');
         $extension = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));
@@ -71,8 +70,8 @@
             $result = move_uploaded_file($_FILES['photo']['tmp_name'], $path);
             if($result) {
                 $newphoto = $_SESSION['id'].".".$extension;
-                $_SESSION['photo'] = $newphoto;
                 $mysqli->query("UPDATE seller SET photo='$newphoto' WHERE id='$idseller'");
+                $_SESSION['photo'] = $newphoto;
             }else {
             $msg = "Error while importing your photo";
             }
@@ -82,6 +81,30 @@
         
      }
 
+    if(isset($_POST['itemtodelete'])){
+        $id = htmlspecialchars($_POST['todelete']);
+        $mysqli->query("DELETE FROM items WHERE id='$id'");
+        array_map('unlink', glob("some/dir/*.txt"));
+    }
+    
+     //  SELECT id,name FROM `items` WHERE photo1 LIKE '1-%'
+     $idseller = $_SESSION['id']."-%";
+     $allProducts = array();
+     //Select all products from the seller
+     $result = $mysqli->query("SELECT `id`,`name`,`photo1`,`photo2`,`photo3`, FROM `items` WHERE `photo1` LIKE '$idseller'");
+     if($result->num_rows > 0){
+         while($row = $result->fetch_assoc()) {
+             $product=array($row["id"],$row["name"],$row["photo1"],$row["photo2"],$row["photo3"]);
+             $allProducts[]=$product;
+         }
+     }
+    
+    
+    
+    
+    
+    
+    
     ?>
     
     <div class="profile" align="center">
@@ -106,12 +129,27 @@
             <input type="password" name="newpw2" id="newpw2" placeholder="Confirm new password">
             <br>
             <label for="photo">Photo :</label>
-            <!-- <button class="styleClass" onclick="document.getElementById('photo').click()">Import a photo</button> -->
-            <!-- <input type='file' name="photo" id="photo" style="display:none"> -->
             <input type='file' name="photo" id="photo">
 
             <br>
             <input type="submit" value="confirm">
+        </form>
+        <?php
+            if($result->num_rows > 0){
+                echo "<h3>List of your items</h3>";
+                for ($row = 0; $row < $result->num_rows ; $row++) {
+                    $photo = "../itemImages/".$allProducts[$row][2];
+                    echo "Name : ".$allProducts[$row][1].", Id : ".$allProducts[$row][0]."<br>";
+                    
+                  }
+            }else{
+                echo "You have no items for sale <br>";
+            }
+        ?>
+        <form action="" method="post">
+            <label for="todelete">Id of the item you want to remove :</label>
+            <input type="text" name="todelete" id="todelete" placeholder="Id to remove">
+            <input type="submit" name="itemtodelete"value="Remove">
         </form>
         <a href="sellerProfile.php">Go back to my profile</a>
         <?php if(isset($msg)) echo $msg;?>
