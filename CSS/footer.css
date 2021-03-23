@@ -1,13 +1,5 @@
 /*CSS FOR FOOTER MENU */
-body{
-	font-family: lato; 
-	padding-right: 10%;
-	padding-left: 10%; 
-}
-button{
-	font-family: lato; 
-	background-color: #D86B27;
-}
+
 
 .footer{
 	border-top: 1px #B7B7B7 solid; 

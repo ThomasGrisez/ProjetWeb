@@ -74,7 +74,7 @@
                 </div>
 
                 <div id="button-register">
-                    <input class="register_button" type="submit" name="inscription" value="Confirm">
+                    <input id="register_button" type="submit" name="inscription" value="Confirm">
                 </div>
                 
                 <?php

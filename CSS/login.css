@@ -37,44 +37,51 @@ body{
     color: white;
 }
 
-.log_in_button, #button_go_to_register{
-    color: #fff;
-    font-size: 16px;
-    width: 80px;
-    border: 0;
-    padding: 10px 0;
-    margin-top: 10px;
-    margin-left: -5px;
-    border-radius: 5px;
-    background-color: #D86B27;
-    border-radius: 5px; 
+#button_go_to_register{
+    padding: 10px 20px 10px 20px; 
+    font-family: lato; 
+    text-align: center;
+    border-radius: 4px; 
+    color : white;
+    border-color: #D86B27;
+    background-color: #D86B27; 
+}
+
+#log_in_button{
+    padding: 10px; 
+    font-family: lato; 
+    text-align: center;
+    border-radius: 4px; 
+    color : white;
+    border-color: #D86B27;
+    background-color: #D86B27; 
 }
 
 #button_go_to_register:hover{
     background-color: #B44500;
     cursor: pointer;
 }
-.register_button : hover{
 
-    background-color: #B44500;
-    cursor: pointer;
 
-}
-
-.log_in_button:hover{
+#log_in_button:hover{
     background-color: #B44500;  
+    cursor: pointer;
 }
 
 #button-fpw{
-    font-size: 14px;
-    width: 80px;
-    height: fit-content;
-    border: 0;
-    padding: 3px 0;
-    margin-top: 10px;
-    margin-left: -5px;
-    border-radius: 5px;
-    background-color: #d86b27b4;
+    
+    font-family: lato; 
+    text-align: center;
+    border-radius: 4px; 
+    color : white;
+    border-color: transparent;
+    background-color: transparent; 
+ 
+}
+
+#button-fpw:hover{
+    color : #B44500;
+    cursor: pointer;
 }
 
 #login-title{
@@ -84,7 +91,6 @@ body{
 
 #button-login{
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
 }
 

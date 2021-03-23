@@ -12,7 +12,7 @@
 
 	<h1>Equipments</h1>
 	<div>
-		<form class="filter_form">
+		<form class="filter_form" name="form" action="" method="get">
 			<div class="title_filter">
 				<img src="../Images/logo_filtre.png" width="18" height="auto">
 				<label for="filter"><u>Filters by: </u></label>	
@@ -20,20 +20,24 @@
 			<table>
 				<tr>
 					<td>
-						<label class="label_filter">All</label>
+						<input class="radio_button_filter" type="radio" name="filter" value="All">
 					</td>
 					<td>
-						<input class="radio_button_filter" type="radio" name="filter" value="All">
+						<label class="label_filter">All</label>
 					</td>				
 				</tr>
 				<tr>
-					<td><label class="label_filter" for="max_price_value">Max Price : <?php $p1=$_GET["max_price_value"]; if($p1=="")$p1=0; echo "$p1"; ?></label></td>
-					<td><input class="radio_button_filter" type="radio" name="filter" value="Max Price">	
-						<input class="max_price_range" type="range" name="max_price_value" value="0" min="0" max="250" ></td>
+					<td><input class="radio_button_filter" type="radio" name="filter" value="Max Price"></td>
+					<td><label class="label_filter" for="max_price_value">Max Price : </label>
+					<input class="max_price_value" type="range" name="max_price_value" id="max_price_value" value="0" step="5" min="0" max="250"></td>
+						<?php 
+						echo $_GET["max_price_value"]; 
+						?>
+						
 				</tr>
 				<tr>
-					<td><label class="label_filter">Name</label></td>
 					<td><input class="radio_button_filter" type="radio" name="filter" value="Name"></td>
+					<td><label class="label_filter">Name</label></td>
 				</tr>
 			</table>
 	    </form>
