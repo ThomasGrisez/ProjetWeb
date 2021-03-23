@@ -11,41 +11,68 @@
 	<?php include 'categories_header.php'?>
 
 	<h1>Equipments</h1>
-	<div>
-		<form class="filter_form" name="form" action="" method="get">
+	<div class="filter_form_block">
+		<form class="filter_form" name="form" action="" method="post">
 			<div class="title_filter">
 				<img src="../Images/logo_filtre.png" width="18" height="auto">
-				<label for="filter"><u>Filters by: </u></label>	
+				<label for="radio_button_filter"><u>Filters by: </u></label>	
 			</div>
 			<table>
-				<tr>
+				<tr class="filter_table_row_line">
 					<td>
-						<input class="radio_button_filter" type="radio" name="filter" value="All">
+						<input checked="checked" class="radio_button_filter" type="radio" name="filter" value="All" onclick="cacher()" >
 					</td>
 					<td>
 						<label class="label_filter">All</label>
 					</td>				
 				</tr>
-				<tr>
-					<td><input class="radio_button_filter" type="radio" name="filter" value="Max Price"></td>
-					<td><label class="label_filter" for="max_price_value">Max Price : </label>
-					<input class="max_price_value" type="range" name="max_price_value" id="max_price_value" value="0" step="5" min="0" max="250"></td>
-						<?php 
-						echo $_GET["max_price_value"]; 
-						?>
-						
+				<tr class="filter_table_row_line">
+					<td><input class="radio_button_filter" type="radio" name="filter" value="Max Price" onclick="afficherPrice()"></td>
+					<td><label class="label_filter" for="max_price_value">Max Price</label>
+					<div id="selecteur_of_price_block" hidden><input class="range" type="range" name="max_price_value" id="max_price_value" value="0" step="5" min="0" max="250"><output></output>$</div></td>
 				</tr>
-				<tr>
-					<td><input class="radio_button_filter" type="radio" name="filter" value="Name"></td>
-					<td><label class="label_filter">Name</label></td>
+				<tr class="filter_table_row_line">
+					<td><input class="radio_button_filter" type="radio" name="filter" value="Name" onclick="afficherType()"></td>
+					<td><label class="label_filter" for="type_of_selling">Type of Selling</label>
+					<div id="selecteur_of_type_block" hidden><select class="select_type_of_sell" name="type_of_selling">
+						<option value="buy_it_now" selected>Buy it Now</option>
+						<option value="auction">Auction</option>
+						<option value="best_offer">Best Offer</option>
+					</select></div>
+
+
+					</td>
 				</tr>
 			</table>
-	    </form>
-		<div>
-				
-		</div>			
+			<script>
+				$(function() {
+				$('.range').next().text('--'); // Valeur par défaut
+				$('.range').on('input', function() {
+					var $set = $(this).val();
+					$(this).next().text($set);
+				});
+			});		
+					function afficherType(){
+						document.getElementById("selecteur_of_price_block").hidden = true;
+						document.getElementById("selecteur_of_type_block").hidden =false;
+					}
 
+					function afficherPrice()
+					{
+						document.getElementById("selecteur_of_price_block").hidden = false;
+						document.getElementById("selecteur_of_type_block").hidden =true;
+					}
+					function cacher()
+					{
+						document.getElementById("selecteur_of_type_block").hidden =true;
+						document.getElementById("selecteur_of_price_block").hidden = true;
+					}
 
+			</script>
+			<div class="filter_select_button_block">
+				<input type="submit" value="Filter"	class="filter_select_button">
+			</div>
+	  	</form>
 	</div>
     <?php include 'footer.php'?>
 </body>
