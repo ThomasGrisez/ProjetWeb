@@ -79,32 +79,41 @@
             $msg = "Your photo format must be jpg, jpeg, gif or png";
         }
         
-     }
-
+    }
     if(isset($_POST['itemtodelete'])){
         $id = htmlspecialchars($_POST['todelete']);
+        $resultItemtoDelete = $mysqli->query("SELECT `photo1`,`photo2`,`photo3` FROM `items` WHERE `id` LIKE '$id'");
+        if($resultItemtoDelete->num_rows > 0){
+            while($row = $resultItemtoDelete->fetch_assoc()) {
+                $product=array($row["photo1"],$row["photo2"],$row["photo3"]);
+            }
+        }
+        if($product[0]!=""){
+            $path = "../itemImages/".$product[0];
+            unlink($path);
+        }
+        if($product[1]!=""){
+            $path = "../itemImages/".$product[1];
+            unlink($path);
+        }
+        if($product[2]!=""){
+            $path = "../itemImages/".$product[2];
+            unlink($path);
+        }
         $mysqli->query("DELETE FROM items WHERE id='$id'");
-        array_map('unlink', glob("some/dir/*.txt"));
     }
     
-     //  SELECT id,name FROM `items` WHERE photo1 LIKE '1-%'
-     $idseller = $_SESSION['id']."-%";
-     $allProducts = array();
-     //Select all products from the seller
-     $result = $mysqli->query("SELECT `id`,`name`,`photo1`,`photo2`,`photo3`, FROM `items` WHERE `photo1` LIKE '$idseller'");
-     if($result->num_rows > 0){
-         while($row = $result->fetch_assoc()) {
-             $product=array($row["id"],$row["name"],$row["photo1"],$row["photo2"],$row["photo3"]);
-             $allProducts[]=$product;
-         }
-     }
-    
-    
-    
-    
-    
-    
-    
+    $idseller = $_SESSION['id']."-%";
+    $allProducts = array();
+    //Select all products from the seller
+    $resultProducts = $mysqli->query("SELECT `id`,`name`,`photo1`,`photo2`,`photo3` FROM `items` WHERE `photo1` LIKE '$idseller'");
+    if($resultProducts->num_rows > 0){
+        while($row = $resultProducts->fetch_assoc()) {
+            $product=array($row["id"],$row["name"],$row["photo1"],$row["photo2"],$row["photo3"]);
+            $allProducts[]=$product;
+        }
+    }
+     
     ?>
     
     <div class="profile" align="center">
@@ -134,10 +143,11 @@
             <br>
             <input type="submit" value="confirm">
         </form>
+
         <?php
-            if($result->num_rows > 0){
+            if($resultProducts->num_rows > 0){
                 echo "<h3>List of your items</h3>";
-                for ($row = 0; $row < $result->num_rows ; $row++) {
+                for ($row = 0; $row < $resultProducts->num_rows ; $row++) {
                     $photo = "../itemImages/".$allProducts[$row][2];
                     echo "Name : ".$allProducts[$row][1].", Id : ".$allProducts[$row][0]."<br>";
                     
