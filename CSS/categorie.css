@@ -6,12 +6,14 @@
 
 .label_filter{
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 .filter_form{
 	background-color: #EFEFEF;
-	padding: 5px; 
+  max-width: 100px; 
+  height: 290px; 
+	padding: 5px 100px 5px 5px; 
 	border : 1px black solid;
   width: 12.5%; 
 }
@@ -20,8 +22,10 @@
 }
 
 .filter_form_block{
+
   padding-right: 20px; 
-  padding-bottom: 40px;  
+  padding-bottom: 40px;
+  position: sticky;
 }
 
 .filter_table_row_line{
@@ -132,7 +136,13 @@
 }
 
 .filter_select_button_block{
-  padding-top: 10px; 
+  padding-top:  20px;
+
 }
 
 
+/*Bloc that regroup filter part and item list*/
+.filter_item_categories_bloc{
+  display: flex; 
+ 
+}
