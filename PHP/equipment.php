@@ -75,7 +75,7 @@
                 </div>
             </form>
         </div>
-        <div>
+        <div  class="item_table_block">
              <?php
                  if(session_status() == PHP_SESSION_NONE){session_start();}
                  
@@ -96,15 +96,15 @@
                      for ($row = 0; $row < $result->num_rows ; $row++) {
                          $photo = "../itemImages/".$allProducts[$row][2];
                          $linkproduct = "productPage.php?idproduct=".$allProducts[$row][0];
-                         echo "<a href='$linkproduct'>";
-                         echo "<table border=1>";
+                         echo "<a  class='link_for_article' href='$linkproduct'>";
+                         echo "<table  class='table_of_items' border=1>";
                          echo "<tr>";
-                         echo "<td rowspan=5><img src=$photo width=120></td>";
-                         echo "<td>".$allProducts[$row][1]."</td></tr>";
-                         echo "<tr><td>Price : ".$allProducts[$row][3]."</td></tr>";
-                         echo "<tr><td>Quantity : ".$allProducts[$row][5]."</td></tr>";
-                         echo "<tr><td>Type : ".$allProducts[$row][6]."</td></tr>";
-                         echo "<tr><td>".$allProducts[$row][4]."</td></tr>";
+                         echo "<td rowspan=5><img src=$photo width=300></td>";
+                         echo "<td class='raw_table_items_list' id='title_item'>".$allProducts[$row][1]."</td></tr>";
+                         echo "<tr><td class='raw_table_items_list'  id='prix_item'><b>Price : </b>$".$allProducts[$row][3]."</td></tr>";
+                         echo "<tr><td class='raw_table_items_list' id='type_item'>Type : ".$allProducts[$row][6]."</td></tr>";
+                         echo "<tr><td class='raw_table_items_list' id='quantity_item'>Quantity  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp".$allProducts[$row][5]."</td></tr>";
+                         echo "<tr><td class='raw_table_items_list'>".$allProducts[$row][4]."</td></tr>";
                          echo "</table>";
                          echo "</a>";
                          
