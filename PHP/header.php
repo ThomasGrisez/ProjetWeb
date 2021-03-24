@@ -23,13 +23,20 @@
 		}
 
 		if(isset($_SESSION['status'])){
-			if($_SESSION['status']=="seller")
-				$link = "sellerProfile.php";
-			if($_SESSION['status']=="buyer")
-				$link = "buyerProfile.php";
+			if($_SESSION['status']=="seller"){
+				$linkProfile = "sellerProfile.php";
+				$linkSell = "addItem.php";
+			}
+			if($_SESSION['status']=="buyer"){
+				$linkProfile = "buyerProfile.php";
+				// $linkSell = "";
+			}
 			if($_SESSION['status']=="administrator")
-				$link = "adminProfile.php";
-		}else $link = "login.php";
+				$linkProfile = "adminProfile.php";
+		}else{
+			$linkProfile = "login.php";
+			$linkSell = "login.php";
+		}
 			
 
     ?>
@@ -38,12 +45,12 @@
     	<ul id="selectionMode">
     		<a href="../PHP/" class="selectionType1"><li>Categories</li></a>
     		<a href="" class="selectionType1"><li>Buying</li></a>
-    		<a href="" class="selectionType1"><li>Sell</li></a>
+    		<a href="<?= $linkSell?>" class="selectionType1"><li>Sell</li></a>
     	</ul>
     	<div id="logoHeader">
     		<a href="../PHP/index.php"><img src="../Images/Fit.net.png" alt="logo"></a>
     		<div>
-    			<a href="<?= $link?>" class="customerIcons"><img src="<?= $photo ?>" alt="account" width=35 height=35></a>
+    			<a href="<?= $linkProfile?>" class="customerIcons"><img src="<?= $photo ?>" alt="account" width=35 height=35></a>
     			<a href="" class="customerIcons"><img src="../Images/cart_icon.png" alt="cart"></a>
     		</div>
     	</div>

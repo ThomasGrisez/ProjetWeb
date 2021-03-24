@@ -23,13 +23,20 @@
 		}
 
 		if(isset($_SESSION['status'])){
-			if($_SESSION['status']=="seller")
-				$link = "sellerProfile.php";
-			if($_SESSION['status']=="buyer")
-				$link = "buyerProfile.php";
+			if($_SESSION['status']=="seller"){
+				$linkProfile = "sellerProfile.php";
+				$linkSell = "addItem.php";
+			}
+			if($_SESSION['status']=="buyer"){
+				$linkProfile = "buyerProfile.php";
+				// $linkSell = "";
+			}
 			if($_SESSION['status']=="administrator")
-				$link = "adminProfile.php";
-		}else $link = "login.php";
+				$linkProfile = "adminProfile.php";
+		}else{
+			$linkProfile = "login.php";
+			$linkSell = "login.php";
+		}
 
     ?>
 
@@ -42,7 +49,7 @@
     	<div id="logoHeader">
     		<a hrf="../PHP/index.php"><img src="../Images/Fit.net.png" alt="logo"></a>
     		<div>
-    			<a href="<?= $link?>" class="customerIcons"><img src="<?= $photo?>" alt="account" width=35 height=35></a>
+    			<a href="<?= $linkProfile?>" class="customerIcons"><img src="<?= $photo?>" alt="account" width=35 height=35></a>
     			<a href="" class="customerIcons"><img src="../Images/cart_icon.png" alt="cart"></a>
     		</div>
     	</div>

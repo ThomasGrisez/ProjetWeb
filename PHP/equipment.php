@@ -47,28 +47,26 @@
                 </table>
                 <script>
                     $(function() {
-                    $('.range').next().text('--'); // Valeur par défaut
-                    $('.range').on('input', function() {
-                        var $set = $(this).val();
-                        $(this).next().text($set);
-                    });
-                });     
-                        function afficherType(){
-                            document.getElementById("selecteur_of_price_block").hidden = true;
-                            document.getElementById("selecteur_of_type_block").hidden =false;
-                        }
-    
-                        function afficherPrice()
-                        {
-                            document.getElementById("selecteur_of_price_block").hidden = false;
-                            document.getElementById("selecteur_of_type_block").hidden =true;
-                        }
-                        function cacher()
-                        {
-                            document.getElementById("selecteur_of_type_block").hidden =true;
-                            document.getElementById("selecteur_of_price_block").hidden = true;
-                        }
-    
+                        $('.range').next().text('--'); // Valeur par défaut
+                        $('.range').on('input', function() {
+                            var $set = $(this).val();
+                            $(this).next().text($set);
+                        });
+                    });     
+                    function afficherType(){
+                        document.getElementById("selecteur_of_price_block").hidden = true;
+                        document.getElementById("selecteur_of_type_block").hidden =false;
+                    }
+                    function afficherPrice()
+                    {
+                        document.getElementById("selecteur_of_price_block").hidden = false;
+                        document.getElementById("selecteur_of_type_block").hidden =true;
+                    }
+                    function cacher()
+                    {
+                        document.getElementById("selecteur_of_type_block").hidden =true;
+                        document.getElementById("selecteur_of_price_block").hidden = true;
+                    }
                 </script>
                 <div class="filter_select_button_block">
                     <input type="submit" value="Filter" class="filter_select_button">
