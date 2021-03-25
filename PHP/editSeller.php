@@ -63,22 +63,29 @@
         }  
     }
     if(isset($_FILES['photo']) && !empty($_FILES['photo']['name'])) {
+        $photoname = $_FILES['photo']['name'];
+        $photoExt = explode('.',$photoname);
+        $photoActualExt = strtolower(end($photoExt));
         $validextensions = array('jpg', 'jpeg', 'gif', 'png');
-        $extension = strtolower(substr(strrchr($_FILES['photo']['name'], '.'), 1));
-        if(in_array($extension, $validextensions)) {
-            $path = "../profilepictures/".$_SESSION['id'].".".$extension;
-            $result = move_uploaded_file($_FILES['photo']['tmp_name'], $path);
-            if($result) {
-                $newphoto = $_SESSION['id'].".".$extension;
+
+        if(in_array($photoActualExt, $validextensions)) {
+            $namephoto = "ID=".$_SESSION['id']."_".uniqid('',true);
+            $path = "../profilepictures/".$namephoto.".".$photoActualExt;
+            $upload = move_uploaded_file($_FILES['photo']['tmp_name'], $path);
+            if($upload) {
+                $prevPhoto = "../profilepictures/".$_SESSION['photo'];
+                if(file_exists($prevPhoto))
+                    unlink($prevPhoto);
+                $newphoto = $namephoto.".".$photoActualExt;
                 $mysqli->query("UPDATE seller SET photo='$newphoto' WHERE id='$idseller'");
+                unset($_SESSION['photo']);
                 $_SESSION['photo'] = $newphoto;
             }else {
             $msg = "Error while importing your photo";
             }
         }else {
-            $msg = "Your photo format must be jpg, jpeg, gif or png";
+            $msg = "Must be jpg, jpeg, gif or png";
         }
-        
     }
     if(isset($_POST['itemtodelete'])){
         $id = htmlspecialchars($_POST['todelete']);

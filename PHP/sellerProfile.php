@@ -35,7 +35,7 @@
     
     <div class="profile" align="center">
         <h2>Profil de <?php echo $_SESSION['lname']." ".$_SESSION['fname']; ?></h2>
-        <img src="../profilepictures/<?=$_SESSION['photo'];?>" width="50"alt="photoprofile">
+        <img src="../profilepictures/<?= $_SESSION['photo']?>" width="50"alt="photoprofile">
         <br>
         Mail : <?php echo $_SESSION['email']; ?>
         <br>
