@@ -22,6 +22,8 @@
 			$photo = "../Images/account_icon.png";
 		}
 
+		$linkSell = "";
+		$linkCart = "";
 		if(isset($_SESSION['status'])){
 			if($_SESSION['status']=="seller"){
 				$linkProfile = "sellerProfile.php";
@@ -29,7 +31,7 @@
 			}
 			if($_SESSION['status']=="buyer"){
 				$linkProfile = "buyerProfile.php";
-				// $linkSell = "";
+				$linkCart = "shoppingCart.php";
 			}
 			if($_SESSION['status']=="administrator")
 				$linkProfile = "adminProfile.php";
@@ -51,7 +53,7 @@
     		<a href="../PHP/index.php"><img src="../Images/Fit.net.png" alt="logo"></a>
     		<div>
     			<a href="<?= $linkProfile?>" class="customerIcons"><img src="<?= $photo ?>" alt="account" width=35 height=35></a>
-    			<a href="" class="customerIcons"><img src="../Images/cart_icon.png" alt="cart"></a>
+    			<a href="<?= $linkCart?>" class="customerIcons"><img src="../Images/cart_icon.png" alt="cart"></a>
     		</div>
     	</div>
     </header>

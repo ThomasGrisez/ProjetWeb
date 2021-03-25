@@ -30,7 +30,6 @@
                     $_SESSION['fname'] = $userinfos['first_name'];
                     $_SESSION['address'] = $userinfos['address'];
                     $_SESSION['email'] = $userinfos['email'];
-                    $_SESSION['shoppingcart'] = $userinfos['shopping_cart'];
                     $_SESSION['password'] = $userinfos['password'];
                     $_SESSION['status'] = "buyer";
                     header("Location: buyerProfile.php");

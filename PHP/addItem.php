@@ -38,7 +38,8 @@
                         $result = move_uploaded_file($_FILES['photos']['tmp_name'], $path);
                         if($result) {
                             $photo = $_SESSION['id']."-".$name."-1.".$extension;
-                            $mysqli->query("INSERT INTO `items` (`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`) VALUES(NULL,'$name','$description','$price','$category','$photo','','','','$quantity','$type')");
+                            $idseller = $_SESSION['id'];
+                            $mysqli->query("INSERT INTO `items` (`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`, `id_seller`) VALUES(NULL,'$name','$description','$price','$category','$photo','','','','$quantity','$type', '$idseller')");
                         }else {
                         $msg = "Error while importing your photo 1";
                         }

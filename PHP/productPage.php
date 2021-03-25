@@ -27,7 +27,20 @@
                 $description = $row["description"];
                 $quantity = $row["quantity"];
                 $type = $row["type_of_selling"];
+                $idseller = $row["id_seller"];
             }
+        }
+    }
+
+    if(isset($_POST['addtocart'])){
+        if(isset($_SESSION['status']) && $_SESSION['status']=="buyer"){ 
+            $idbuyer = $_SESSION['id'];
+            $mysqli->query("INSERT INTO `buyitnow`(`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`,`id_item`,`quantity`) VALUES(NULL,'$idseller','$idbuyer','$price','shoppingcart','$id','1')");
+            $msg = "Added to your shopping cart";
+            $quantity-=1;
+            
+        }else{
+            $msg = "You need to be logged in to buy something";
         }
     }
 
@@ -36,13 +49,33 @@
 
 <table class="table_of_item" border="1">
     <tr>
-        <td rowspan="4" id="picture_item"><img src="../itemImages/<?= $photo1?>" width=600 height=600></td>
+        <td rowspan="5" id="picture_item"><img src="../itemImages/<?= $photo1?>" width=600 height=600></td>
         <td class="raw_table_items_list"  id="title_of_an_item" id='prix_item'><b><?= $name ?></b></td>
         
     </tr>
     <tr><td class="raw_table_items_list"  id="prix_of_an_item"><b>Price : </b><span style="color : #D86B27;font-weight : bold; ">$<?= $price ?></span></td></tr>
-     <tr><td class="raw_table_items_list" id="type_item_an_item">Type : <em><?= $type ?></em></td></tr>
+    <tr><td class="raw_table_items_list" id="type_item_an_item">Type : <em><?= $type ?></em></td></tr>
     <tr><td class="raw_table_items_list" id="quantity_of_an_item">Quantity : <?= $quantity ?></td></tr>
+    <tr><td class="raw_table_items_list" id="paybutton">
+    <?php
+        if($type == "buyitnow" && $quantity != 0){?>
+            <form method="post">
+                <input type='submit' name='addtocart' value='Add to your cart'>
+            </form>
+        <?php
+            if(isset($msg))
+                echo $msg;
+        }
+        if($type == "bestoffer"){?>
+            <form method="post">
+            <input type="number" name="negotiation">
+            <input type='submit' name='addtocart' value='Add to your cart'>
+            </form>
+        <?php
+        }
+    ?> 
+    </td></tr>
+
     <tr><td colspan="2" class="raw_table_items_list" id="description_of_an_item"><?= $description ?></td></tr>
     <tr>
         <?php
@@ -57,6 +90,9 @@
         ?>
     </tr>
 </table>
+
+
+
 
 <?php include 'footer.php'?>
     
