@@ -96,18 +96,15 @@
                     for ($row = 0; $row < $result->num_rows ; $row++) {
                         $photo = "../itemImages/".$allProducts[$row][2];
                         $linkproduct = "productPage.php?idproduct=".$allProducts[$row][0];
-                        echo "<a class='link_for_article' href='$linkproduct'>";
                         echo "<table class='table_of_items' border=1>";
                         echo "<tr>";
-                        echo "<td rowspan=5><img src=$photo width=300></td>";
+                        echo "<td rowspan=5 id='picture_item'><a class='link_for_article' href='$linkproduct'><img src=$photo width=300 height=300></a></td>";
                         echo "<td class='raw_table_items_list'  id='title_item'>".$allProducts[$row][1]."</td></tr>";
-                        echo "<tr><td class='raw_table_items_list' id='prix_item'><b>Price : </b>$".$allProducts[$row][3]."</td></tr>";
-                        echo "<tr><td class='raw_table_items_list' id='type_item'>Type : ".$allProducts[$row][6]."</td></tr>";
-                        echo "<tr><td class='raw_table_items_list'  id='quantity_item'>Quantity  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp".$allProducts[$row][5]."</td></tr>";
-                        echo "<tr><td class='raw_table_items_list'>".$allProducts[$row][4]."</td></tr>";
+                        echo "<tr><td class='raw_table_items_list' id='prix_item'><b>Price : </b><span id='nuber_price_item'>$".$allProducts[$row][3]."</span></td></tr>";
+                        echo "<tr><td class='raw_table_items_list' id='type_item'>Type : <em>".$allProducts[$row][6]."</em></td></tr>";
+                        echo "<tr><td class='raw_table_items_list'  id='quantity_item'><span style='text-decoration:overline;'>Quantity</span>  <br><span style='text-decoration:underline;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp".$allProducts[$row][5]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp</span></td></tr>";
+                        echo "<tr><td class='raw_table_items_list' id='description_item'>".$allProducts[$row][4]."</td></tr>";
                         echo "</table>";
-                        echo "</a>";
-                        
                     }
                 }
                 ?>
