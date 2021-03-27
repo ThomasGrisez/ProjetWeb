@@ -45,19 +45,48 @@
         }
         //La je recupere le tableau avec les items et leurs infos
         //Donc la je connais les infos du panier + les infos de chaque item de ce panier
+
+        //une fois qu on appuie sur le bouton de paiement
+        if(isset($_POST['payment'])){
+            header("Location: payment.php");
+        }
+
+
+
+
+
     ?>
 
     <h2>Your Shopping Cart : <?= $nbItems ?> Product(s)</h2>
     <?php
-        for($j=0;$j<$nbItems;$j++){
-            $image = "../itemImages/".$allItems[$j][2];
-            echo "<b>Item : </b>".$allItems[$j][1]."<input type='submit' value='Delete'><br>";
-            echo "<b>Quantity : </b>"."<br>";
-            echo "<b>Price : </b>".$allItems[$j][3]."$<br>";
-            echo "<img src='$image' width=50>"."<br>";
+        if($nbItems > 0){
+            $totalprice = 0;
+            for($j=0;$j<$nbItems;$j++){
+    
+                $idItem = $allItems[$j][0];
+                $result3 = $mysqli->query("SELECT quantity FROM `buyitnow` WHERE `id_item`='$idItem'");
+                while($row = $result3->fetch_assoc()){
+                    $quantitywanted = $row["quantity"];
+                }
+                $pricetopay = $quantitywanted*$allItems[$j][3];
+                $image = "../itemImages/".$allItems[$j][2];
+                echo "<b>Item : </b>".$allItems[$j][1]."<input type='submit' value='Delete'><br>";
+                echo "<b>Quantity : </b>".$quantitywanted."<br>";
+                echo "<b>Price : </b>".$pricetopay."$<br>";
+                echo "<img src='$image' width=50>"."<br>";
+                echo "<hr>";
+                $totalprice+=$pricetopay;
+            }
+            echo "<b>Total Price  : </b>".$totalprice."$";
+            $_SESSION['price'] = $totalprice;
+            ?>
+            
+            <form action="" method="POST"><input type="submit" value="Pay" name="payment"></form>
+            <?php
+        }else{
+            echo "There is nothing in your shopping cart";
         }
-
-
+        
     ?>
 
     <?php include 'footer.php'?>

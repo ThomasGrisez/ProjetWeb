@@ -10,6 +10,22 @@
 </head>
 <body>
     <?php include 'categories_header.php'?>
+    <?php
+        if(session_status() == PHP_SESSION_NONE){session_start();}
+        
+        $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
+    
+        $allProducts = array();
+        //Select all products
+        $result = $mysqli->query("SELECT * FROM `items` WHERE `category`='equipment'");
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()) {
+                $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
+                $allProducts[]=$product;
+            }
+        }
+    ?>
+
     <h1>Equipments</h1>
     <div  class="filter_item_categories_bloc">
         <div class="filter_form_block">
@@ -75,23 +91,10 @@
         </div>
         <div  class="item_table_block">
              <?php
-                 if(session_status() == PHP_SESSION_NONE){session_start();}
-                 
-                 $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
-             
-                 $allProducts = array();
-                 //Select all products
-                 $result = $mysqli->query("SELECT * FROM `items` WHERE `category`='equipment'");
-                 if($result->num_rows > 0){
-                     while($row = $result->fetch_assoc()) {
-                         $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
-                         $allProducts[]=$product;
-                     }
-                 }
-             ?>
-             <?php
                  if($result->num_rows > 0){ 
                      for ($row = 0; $row < $result->num_rows ; $row++) {
+                        // If quantity > 0
+                        if($allProducts[$row][5]>0){
                          $photo = "../itemImages/".$allProducts[$row][2];
                          $linkproduct = "productPage.php?idproduct=".$allProducts[$row][0];
                          echo "<div class='one_table_of_items'><table  class='table_of_items' border=1>";
@@ -103,7 +106,7 @@
                          echo "<tr><td class='raw_table_items_list' id='quantity_item'><span style='text-decoration:overline;'>Quantity</span>  <br><span style='text-decoration:underline;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp".$allProducts[$row][5]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp</span></td></tr>";
                          echo "<tr><td class='raw_table_items_list' id='description_item'>".$allProducts[$row][4]."</td></tr>";
                          echo "</table></div>";
-                         
+                        }
                      } 
                  }
              ?>

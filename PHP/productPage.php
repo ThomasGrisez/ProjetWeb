@@ -33,11 +33,12 @@
     }
 
     if(isset($_POST['addtocart'])){
-        if(isset($_SESSION['status']) && $_SESSION['status']=="buyer"){ 
+        if(isset($_SESSION['status']) && $_SESSION['status']=="buyer" && isset($_POST['quantitychosen'])){ 
             $idbuyer = $_SESSION['id'];
-            $mysqli->query("INSERT INTO `buyitnow`(`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`,`id_item`,`quantity`) VALUES(NULL,'$idseller','$idbuyer','$price','shoppingcart','$id','1')");
+            $quantitychosen = $_POST['quantitychosen'];
+            $mysqli->query("INSERT INTO `buyitnow`(`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`,`id_item`,`quantity`) VALUES(NULL,'$idseller','$idbuyer','$price','shoppingcart','$id','$quantitychosen')");
             $msg = "Added to your shopping cart";
-            $quantity-=1;
+            $quantity-=$quantitychosen;
             
         }else{
             $msg = "You need to be logged in to buy something";
@@ -60,6 +61,7 @@
     <?php
         if($type == "buyitnow" && $quantity != 0){?>
             <form method="post">
+                <input type="number" name="quantitychosen" min="0" max="<?= $quantity?>" placeholder="0" value="1">
                 <input type='submit' name='addtocart' value='Add to your cart'>
             </form>
         <?php
