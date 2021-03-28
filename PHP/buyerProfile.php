@@ -44,7 +44,7 @@
         //Donc la je connais les infos des items deja achetés
     ?>
     
-    <div>
+    <div class="bloc_information_of_buyer">
         <h2 class="main_title" align="center">• Welcome back  <span style="text-transform: uppercase;"><?php echo $_SESSION['lname'] ?></span><?php echo " ".$_SESSION['fname']; ?> •</h2>
         <div class="main_aspect_of_profile_bloc">
             <p class="list_of_informations" id="mail_information_buyer"><span class="lis_of_information_title">Your E-Mail : </span><?php echo $_SESSION['email']; ?></p>
@@ -58,7 +58,7 @@
     <div class="main_aspect_of_profile_bloc">
     <?php
         if($nbItems>0){
-            echo "<h2 class='list_of_informations' style='font-size : 20px;'>Old orders : </h2>";
+            echo "<h2 class='list_of_informations' style='font-size : 20px;'><em><u>Old orders :</u></em> </h2>";
             echo "<div  class='one_table_of_items'><table  class='table_of_items' border=1>";
             for($j=0;$j<$nbItems;$j++){
                 $idItem = $allItems[$j][0];
@@ -68,7 +68,7 @@
                 }
                 $pricetopay = $quantitywanted*$allItems[$j][3];
                 $image = "../itemImages/".$allItems[$j][2];
-                echo "<tr><td><img src='$image' width=50></td><td class='raw_table_items_list' id='title_item'>".$allItems[$j][1]."</td></tr><tr><td class='raw_table_items_list'>Price :</td> <td class='raw_table_items_list'>".$pricetopay."$</td></tr><tr><td class='raw_table_items_list'>Quantity : </td><td class='raw_table_items_list'>".$quantitywanted."</td></tr><tr id='last_tr_of_table_item'><td class='raw_table_items_list'>Buy It Now</td></tr>";
+                echo "<tr><td style='border : none;'><img src='$image' width=50></td><td class='raw_table_items_list' id='title_item'>".$allItems[$j][1]."</td></tr><tr><td class='raw_table_items_list'  id='price_item'>Price :</td> <td class='raw_table_items_list'><span style='color :#D86B27; font-weight : bold;'>".$pricetopay."$</span></td></tr><tr><td class='raw_table_items_list'  id='quantity_item'>Quantity : </td><td class='raw_table_items_list'>".$quantitywanted."</td></tr><tr><td class='raw_table_items_list' id='last_tr_of_table_item2'><em>Buy It Now</em></td></tr>";
             }
             echo "</table></div>";
         }
