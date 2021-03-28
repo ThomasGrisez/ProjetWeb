@@ -61,6 +61,9 @@
         <div class="main_aspect_of_profile_bloc" >
           <div class="button_add_to_list_an_item">  
                 <a href="addItem.php"><button class="button_of_informations"  id="add_an_item_to_sell">Add an item +</button></a>
+          </div>
+          <div class="button_add_to_list_an_item">  
+                <a href="seeAuction.php"><button class="button_of_informations"  id="add_an_item_to_sell">See Auction</button></a>
           </div>  
         </div>
         <div class="main_aspect_of_profile_bloc" id="bloc_button_buyer_profil">

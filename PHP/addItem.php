@@ -40,6 +40,17 @@
                         if($result) {
                             $idseller = $_SESSION['id'];
                             $mysqli->query("INSERT INTO `items`(`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`, `id_seller`) VALUES(NULL,'$name','$description','$price','$category','$photo1','','','','$quantity','$type', '$idseller')");
+                            if($type == "auction"){
+                                $date = date('Y-m-d');
+
+                                $queryItem = $mysqli->query("SELECT id FROM `items` WHERE id=(SELECT max(id) FROM `items`)");
+                                if ($queryItem->num_rows > 0) {
+                                    while($row = $queryItem->fetch_assoc()) {
+                                        $iditem = $row['id'];
+                                    }
+                                  }
+                                $mysqli->query("INSERT INTO `auction`(`id_auction`,`id_buyer`,`id_seller`, `id_item`,`price`,`date`,`status`) VALUES(NULL, '-1', '$idseller','$iditem','$price', '$date', 'inprogress') ");
+                            }
                         }else {
                         $msg = "Error while importing your first photo";
                         }

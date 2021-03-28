@@ -33,6 +33,8 @@
         }
     }
 
+
+    //Add to shopping if it's buyitnow
     if(isset($_POST['addtocart'])){
         if(isset($_SESSION['status']) && $_SESSION['status']=="buyer" && isset($_POST['quantitychosen'])){ 
             $idbuyer = $_SESSION['id'];
@@ -49,6 +51,29 @@
 
         }
     }
+
+    //Bid if auction
+    if(isset($_POST['auctionoffer'])){
+        if(isset($_SESSION['status']) && $_SESSION['status']=="buyer" && isset($_POST['priceoffer'])){
+            $newprice = $_POST['priceoffer'];
+            if($newprice > $price){
+                $idbuyer = $_SESSION['id'];
+                $mysqli->query("UPDATE auction SET price='$newprice', id_buyer='$idbuyer' WHERE id_item='$id'");
+                $mysqli->query("UPDATE items SET price='$newprice'WHERE id='$id'");
+                echo "<meta http-equiv='refresh' content='0'>";
+            }else{
+                $msg = "Your bid is too low !";
+            }
+        }else{
+            if(isset($_SESSION['status']) && $_SESSION['status']=="seller")
+                $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/sellerProfile.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to bid</span>";
+            else
+                $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/login.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to bid</span>";
+
+        }
+    }
+
+
 
 ?>
 
@@ -80,7 +105,15 @@
              </form>
          <?php
          }
-     ?> 
+        if($type == "auction"){?>
+             <form method="post">
+             <label for="negotiation">Price Offer :</label>
+             <input type="number" class="priceoffer" name="priceoffer" min="<?= $price+1 ?>" value="<?= $price+1 ?>">
+             <input type='submit' class="add_to_cart" name='auctionoffer' value='Bid'>
+             </form>
+         <?php
+         }
+        ?> 
      </td></tr>
 
      <tr><td colspan="2" class="raw_table_items_list" id="description_of_an_item"><?= $description ?></td></tr>
