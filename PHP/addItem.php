@@ -15,30 +15,33 @@
 
         if(isset($_POST['submititem'])){
             $name = htmlspecialchars($_POST['nameitem']);
-            // $name = str_replace(" ", "_", $name1);
+            $namephoto = str_replace(" ", "_", $name);
             $price = htmlspecialchars($_POST['priceitem']);
             $quantity = htmlspecialchars($_POST['quantity']);
             $description = htmlspecialchars($_POST['descriptionitem']);
+            $description = str_replace("'"," ",$description);
             $category = htmlspecialchars($_POST['categoryitem']);
             $type = htmlspecialchars($_POST['typesale']);
             unset($msg);
             
 
             if(!empty($name) && !empty($price) && !empty($quantity) && !empty($description) && !empty($category) && !empty($type)){
-                if(isset($_FILES['photos']) && !empty($_FILES['photos']['name'])){  
-                    $validextensions = array('jpg', 'jpeg', 'gif', 'png');
-                    $extension = strtolower(substr(strrchr($_FILES['photos']['name'], '.'), 1));
+                if(isset($_FILES['photo1']) && !empty($_FILES['photo1']['name'])){
 
-                    if(in_array($extension, $validextensions)) {
-                        
-                        $path = "../itemImages/".$_SESSION['id']."-".$name."-1.".$extension;
-                        $result = move_uploaded_file($_FILES['photos']['tmp_name'], $path);
+                    $photoname = $_FILES['photo1']['name'];
+                    $photoExt = explode('.',$photoname);
+                    $photoActualExt = strtolower(end($photoExt));
+                    $validextensions = array('jpg', 'jpeg', 'gif', 'png');
+
+                    if(in_array($photoActualExt, $validextensions)) {
+                        $photo1 = $_SESSION['id']."-".$namephoto."-1.".$photoActualExt;
+                        $path = "../itemImages/".$photo1;
+                        $result = move_uploaded_file($_FILES['photo1']['tmp_name'], $path);
                         if($result) {
-                            $photo = $_SESSION['id']."-".$name."-1.".$extension;
                             $idseller = $_SESSION['id'];
-                            $mysqli->query("INSERT INTO `items` (`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`, `id_seller`) VALUES(NULL,'$name','$description','$price','$category','$photo','','','','$quantity','$type', '$idseller')");
+                            $mysqli->query("INSERT INTO `items`(`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`, `id_seller`) VALUES(NULL,'$name','$description','$price','$category','$photo1','','','','$quantity','$type', '$idseller')");
                         }else {
-                        $msg = "Error while importing your photo 1";
+                        $msg = "Error while importing your first photo";
                         }
                     }else {
                         $msg = "Your photo format must be jpg, jpeg, gif or png";
@@ -46,17 +49,17 @@
 
                     if(isset($_FILES['photo2']) && !empty($_FILES['photo2']['name'])) {
                     
-                        $extension = strtolower(substr(strrchr($_FILES['photo2']['name'], '.'), 1));
+                        $photoname = $_FILES['photo2']['name'];
+                        $photoExt = explode('.',$photoname);
+                        $photoActualExt = strtolower(end($photoExt));
     
-                        if(in_array($extension, $validextensions)) {
-                            $path = "../itemImages/".$_SESSION['id']."-".$name."-2.".$extension;
+                        if(in_array($photoActualExt, $validextensions)) {
+                            $photo2 = $_SESSION['id']."-".$namephoto."-2.".$photoActualExt;
                             $result = move_uploaded_file($_FILES['photo2']['tmp_name'], $path);
                             if($result) {
-                                $photo1 = $_SESSION['id']."-".$name."-1.".$extension;
-                                $photo = $_SESSION['id']."-".$name."-2.".$extension;
-                                $mysqli->query("UPDATE items SET photo2='$photo' WHERE photo1='$photo1'");
+                                $mysqli->query("UPDATE items SET photo2='$photo2' WHERE photo1='$photo1'");
                             }else {
-                            $msg = "Error while importing your photo 2";
+                            $msg = "Error while importing your second photo";
                             }
                         }else {
                             $msg = "Your photo format must be jpg, jpeg, gif or png";
@@ -65,21 +68,22 @@
                     }
                     if(isset($_FILES['photo3']) && !empty($_FILES['photo3']['name'])) {
                     
-                        $extension = strtolower(substr(strrchr($_FILES['photo3']['name'], '.'), 1));
+                        $photoname = $_FILES['photo3']['name'];
+                        $photoExt = explode('.',$photoname);
+                        $photoActualExt = strtolower(end($photoExt));
     
-                        if(in_array($extension, $validextensions)) {
-                            $path = "../itemImages/".$_SESSION['id']."-".$name."-3.".$extension;
+                        if(in_array($photoActualExt, $validextensions)) {
+                            $photo3 = $_SESSION['id']."-".$namephoto."-3.".$photoActualExt;
                             $result = move_uploaded_file($_FILES['photo3']['tmp_name'], $path);
                             if($result) {
-                                $photo1 = $_SESSION['id']."-".$name."-1.".$extension;
-                                $photo = $_SESSION['id']."-".$name."-3.".$extension;
-                                $mysqli->query("UPDATE items SET photo3='$photo' WHERE photo1='$photo1'");
+                                $mysqli->query("UPDATE items SET photo3='$photo3' WHERE photo1='$photo1'");
                             }else {
-                            $msg = "Error while importing your photo 3";
+                            $msg = "Error while importing your second photo";
                             }
                         }else {
                             $msg = "Your photo format must be jpg, jpeg, gif or png";
                         }
+                        
                     }
                 }else $msg = "you need a photo";
                 
@@ -121,8 +125,8 @@
             <input type="number" id="numberphotos" id="numberphotos" min="1" max="3" value="1" onclick="visibility()">
             <br>
 
-            <label id="l1" for="photos">Import photo:</label>
-            <input type="file" name="photos" id="photos"/>
+            <label id="l1" for="photo1">Import photo:</label>
+            <input type="file" name="photo1" id="photo1"/>
             <br>
             <label id="l2" for="photo2" hidden>Import photo:</label>
             <input type="file" name="photo2" id="photo2" hidden/>
