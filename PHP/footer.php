@@ -49,17 +49,6 @@
                             <input type="text" name="email_marketing" id="textLabel_email_marketing" size="50">
 							<input  id="button_email_marketing" type="submit" name="newsletter" value="Subscribe">
                         </form>
-						<?php
-							if(isset($_POST['newsletter']) && !empty($_POST['email_marketing'])){
-								$mail = htmlspecialchars($_POST['email_marketing']);
-								$message = "testrveonvnvjenje";
-								// Dans le cas où nos lignes comportent plus de 70 caractères, nous les coupons en utilisant wordwrap()
-								$message = wordwrap($message, 70, "\r\n");
-
-								// Envoi du mail
-								mail($mail, 'Mon Sujet', $message);
-							}
-						?>
     				</td>
     				<td class="third_footerpart">
     					<h5 class="title_footer3" >Help Center</h5>

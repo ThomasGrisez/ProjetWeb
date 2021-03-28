@@ -9,7 +9,20 @@
     <link rel="stylesheet" type="text/css" href="../CSS/categorie.css">
 </head>
     <body>
-        <?php include 'categories_header.php'?>
+        <?php include 'header.php'?>
+        <?php  
+            $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
+
+            $allProducts = array();
+            //Select all products
+            $result = $mysqli->query("SELECT * FROM `items` WHERE `category`='clothe'");
+            if($result->num_rows > 0){
+                while($row = $result->fetch_assoc()) {
+                    $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
+                    $allProducts[]=$product;
+                }
+            }
+        ?>
        <h1>Clothes</h1>
        <div class="filter_item_categories_bloc">
           <div class="filter_form_block">
@@ -76,21 +89,6 @@
                </form>
            </div>
            <div class="item_table_block">
-                <?php
-                if(session_status() == PHP_SESSION_NONE){session_start();}
-                
-                $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
-        
-                $allProducts = array();
-                //Select all products
-                $result = $mysqli->query("SELECT * FROM `items` WHERE `category`='clothe'");
-                if($result->num_rows > 0){
-                    while($row = $result->fetch_assoc()) {
-                        $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
-                        $allProducts[]=$product;
-                    }
-                }
-                ?>
                 <?php
                 if($result->num_rows > 0){
                     for ($row = 0; $row < $result->num_rows ; $row++) {

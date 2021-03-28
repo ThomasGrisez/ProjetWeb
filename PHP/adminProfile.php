@@ -9,9 +9,6 @@
 <body>
     <?php include 'header.php'?>
     <?php
-        if(session_status() == PHP_SESSION_NONE){
-        session_start();
-        }
     
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
     ?>
