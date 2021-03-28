@@ -44,7 +44,7 @@
         //Donc la je connais les infos des items deja achetés
     ?>
     
-    <div class="bloc_information_of_buyer">
+    <div class="bloc_information_of">
         <h2 class="main_title" align="center">• Welcome back  <span style="text-transform: uppercase;"><?php echo $_SESSION['lname'] ?></span><?php echo " ".$_SESSION['fname']; ?> •</h2>
         <div class="main_aspect_of_profile_bloc">
             <p class="list_of_informations" id="mail_information_buyer"><span class="lis_of_information_title">Your E-Mail : </span><?php echo $_SESSION['email']; ?></p>

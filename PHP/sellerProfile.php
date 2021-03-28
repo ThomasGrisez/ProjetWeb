@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fit.net | Profile</title>
 	<link rel="icon" type="image/png" href="../Images/favicon.png" />
+    <?php include '../CSS/profileCSS.php' ?>
 </head>
 <body>
     <?php include 'header.php'?>
@@ -30,31 +31,46 @@
 
     ?>
     
-    <div class="profile" align="center">
-        <h2>Profil de <?php echo $_SESSION['lname']." ".$_SESSION['fname']; ?></h2>
-        <img src="../profilepictures/<?= $_SESSION['photo']?>" width="50"alt="photoprofile">
-        <br>
-        Mail : <?php echo $_SESSION['email']; ?>
-        <br>
-        Password : <?php echo $_SESSION['password']; ?>
-        <br>
+    <div class="profile">
+        <h2 class="main_title"  align="center">• Welcome back  <span style="text-transform: uppercase;"><?php echo $_SESSION['lname']?></span><?php echo" ".$_SESSION['fname']; ?> •</h2>
+        <div class="main_aspect_of_profile_bloc">
+          <div  align="center">
+              <img src="../profilepictures/<?= $_SESSION['photo']?>" width="auto" height="250" alt="photoprofile">
+          </div>
+          <p class="list_of_informations" id="mail_information_buyer"><span class="lis_of_information_title">Mail :</span> <?php echo $_SESSION['email']; ?></p>
+          <p class="list_of_informations" id="password_information_buyer"><span class="lis_of_information_title">Password :</span> <?php echo $_SESSION['password']; ?></p>
+        </div>
+
+        <div class="main_aspect_of_profile_bloc">
         <?php
             if($result->num_rows > 0){
-                echo "<h3>List of your items</h3>";
+                echo "<h3 class='list_of_informations' style='font-size : 20px;'><em><u>List of your items :</u></em></h3>";
+                echo "<div  class='one_table_of_items'><table  class='table_of_items' border=1>";
                 for ($row = 0; $row < $result->num_rows ; $row++) {
                     $photo = "../itemImages/".$allProducts[$row][2];
-                    echo "<img src=$photo width=30>"."-Id : ".$allProducts[$row][0].", Name : ".$allProducts[$row][1]."<br>";
+                    echo "<tr><td style='border : none;'><img src=$photo width=60></td></tr>"."<tr><td style='border : none;'><span style='font-weight : bold; font-size : 20px; '>ID : </span><span style='color :#D86B27; font-weight : bold; font-size : 20px;'>".$allProducts[$row][0]."</span></td></tr><tr><td class='raw_table_items_list'  id='last_tr_of_table_item3'><span style='font-size : 16px; font-weight : bold;'>Name : </span>".$allProducts[$row][1]."</td></tr>";
                     
                   }
+
+                echo "</table></div>";
             }else{
-                echo "You have no items for sale <br>";
+                echo "<span style='color : red;'><b><em>You have no items for sale </em></b><br></span>";
             }
         ?>
-        
-        
-        <a href="addItem.php">Add an item</a>
-        <a href="editSeller.php">Edit my profile</a>
-        <a href="logout.php">Log out</a>
+        </div>
+        <div class="main_aspect_of_profile_bloc" >
+          <div class="button_add_to_list_an_item">  
+                <a href="addItem.php"><button class="button_of_informations"  id="add_an_item_to_sell">Add an item +</button></a>
+          </div>  
+        </div>
+        <div class="main_aspect_of_profile_bloc" id="bloc_button_buyer_profil">
+            <div class="button_list_buyer_profil">  
+                 <a href="editSeller.php"><button class="button_of_informations"  id="edit_information_buyer">Edit my profile</button></a>
+            </div>
+            <div class="button_list_buyer_profil">  
+            <a href="logout.php"><button class="button_of_informations"  id="logout_information_buyer">Log out</button></a>
+            </div>
+        </div>
     </div>
     <?php include 'footer.php'?>
 </body>

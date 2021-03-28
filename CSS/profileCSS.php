@@ -62,11 +62,11 @@
 
 }
 
-.
 
 #price_item, #quantity_item, last_tr_of_table_item2{
 	text-align : center; 
 	font-weight : bold;  
+
 
 }
 #title_item{
@@ -74,12 +74,19 @@
 	font-size : 19px; 
 }
 
+
 #last_tr_of_table_item1{
 	border-bottom : 1px solid black; 
 }
 
+
 #last_tr_of_table_item2{
 	border-bottom : 1px solid black; 
+	padding-bottom : 10px; 
+}
+
+#last_tr_of_table_item3{
+	border-bottom : 1px solid grey; 
 	padding-bottom : 10px; 
 }
 
@@ -138,6 +145,32 @@
 	color : white;
 	cursor: pointer; 
 }
+
+.button_add_to_list_an_item{
+	display : flex; 
+	padding-bottom : 30px;
+	padding-right : 70px;  
+	margin: 0 auto;
+    width: 300px;
+}
+
+#add_an_item_to_sell{
+	padding: 5px 10px 5px 10px; 
+	font-family: lato; 
+	text-align: center;
+	border-radius: 4px; 
+	color : #D86B27;
+	border-color:  #D86B27;
+	background-color: white; 
+}
+
+#add_an_item_to_sell:hover{
+	background-color: #D86B27; 
+	border-color :#D86B27; 
+	color : white;
+	cursor: pointer;
+}
+
 
 
  </style>';
