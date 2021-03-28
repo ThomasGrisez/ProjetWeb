@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/favicon.png" />
-    <?php include '../CSS/equipmentsCSS.php' ?>
     <link rel="stylesheet" type="text/css" href="../CSS/categorie.css">
+    <?php include '../CSS/equipmentsCSS.php' ?>
+
 </head>
 <body>
-    <?php include 'categories_header.php'?>
+    <?php include 'header.php'?>
     <?php
-        if(session_status() == PHP_SESSION_NONE){session_start();}
-        
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
     
         $allProducts = array();
@@ -115,7 +114,7 @@
 
 
 
-<?php include 'footer.php'?>
+    <?php include 'footer.php'?>
     
 </body>
 </html>

@@ -9,8 +9,9 @@
 </head>
 <body>
 
+<?php include 'header.php'?>
+
 <?php
-    if(session_status() == PHP_SESSION_NONE){session_start();}
     
     $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
@@ -41,12 +42,15 @@
             $quantity-=$quantitychosen;
             
         }else{
-            $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/login.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in</a></em> to buy something</span>";
+            if(isset($_SESSION['status']) && $_SESSION['status']=="seller")
+                $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/sellerProfile.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to buy something</span>";
+            else
+                $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/login.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to buy something</span>";
+
         }
     }
 
 ?>
-<?php include 'categories_header.php'?>
 
 <div class="table_of_item_bloc">
     <table class="table_of_item" border="1">

@@ -5,12 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../Images/favicon.png" />
-    <?php include '../CSS/equipmentsCSS.php' ?>
     <link rel="stylesheet" type="text/css" href="../CSS/categorie.css">
+    <?php include '../CSS/equipmentsCSS.php' ?>
+
 </head>
 <body>
-    <?php include 'categories_header.php'?>
-    <h1>Clothes</h1>
+    <?php include 'header.php'?>
+    <?php   
+        $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
+    
+        $allProducts = array();
+        //Select all products
+        $result = $mysqli->query("SELECT * FROM `items` WHERE `category`='complement'");
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()) {
+                $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
+                $allProducts[]=$product;
+            }
+        }
+    ?>
+    <h1>Complements</h1>
        <div class="filter_item_categories_bloc">
           <div class="filter_form_block">
              <form class="filter_form" name="form" action="" method="post">
@@ -75,23 +89,7 @@
                    </div>
                </form>
            </div>
-           <div  class="item_table_block"> 
-             <?php
-                 if(session_status() == PHP_SESSION_NONE){session_start();}
-                 
-                 $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
-             
-                 $allProducts = array();
-                 //Select all products
-                 $result = $mysqli->query("SELECT * FROM `items` WHERE `category`='complement'");
-                 if($result->num_rows > 0){
-                     while($row = $result->fetch_assoc()) {
-                         $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
-                         $allProducts[]=$product;
-                     }
-                 }
-             ?>
-             
+           <div  class="item_table_block">             
              
              <?php
                  if($result->num_rows > 0){
