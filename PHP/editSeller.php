@@ -66,7 +66,6 @@
         $photoExt = explode('.',$photoname);
         $photoActualExt = strtolower(end($photoExt));
         $validextensions = array('jpg', 'jpeg', 'gif', 'png');
-
         if(in_array($photoActualExt, $validextensions)) {
             $namephoto = "ID=".$_SESSION['id']."_".uniqid('',true);
             $path = "../profilepictures/".$namephoto.".".$photoActualExt;
@@ -79,6 +78,7 @@
                 $mysqli->query("UPDATE seller SET photo='$newphoto' WHERE id='$idseller'");
                 unset($_SESSION['photo']);
                 $_SESSION['photo'] = $newphoto;
+                header("Location: editSeller.php");
             }else {
             $msg = "Error while importing your photo";
             }

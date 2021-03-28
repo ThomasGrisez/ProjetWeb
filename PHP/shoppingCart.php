@@ -49,25 +49,31 @@
         }
 
 
+        for($j=0;$j<$nbItems;$j++){
+            $idItem = $allItems[$j][0];
+            if(isset($_POST[$idItem])){
+                $mysqli->query("DELETE FROM `buyitnow` WHERE `id_item`='$idItem' AND `status`='shoppingcart'");
+                header("Location: shoppingCart.php");
+            }
 
-
-
+        }
     ?>
 
     <h2>Your Shopping Cart : <?= $nbItems ?> Product(s)</h2>
     <?php
         if($nbItems > 0){
             $totalprice = 0;
+            echo "<form method='POST'>";
             for($j=0;$j<$nbItems;$j++){
     
                 $idItem = $allItems[$j][0];
-                $result3 = $mysqli->query("SELECT quantity FROM `buyitnow` WHERE `id_item`='$idItem'");
+                $result3 = $mysqli->query("SELECT quantity FROM `buyitnow` WHERE `id_item`='$idItem' AND `status`='shoppingcart'");
                 while($row = $result3->fetch_assoc()){
                     $quantitywanted = $row["quantity"];
                 }
                 $pricetopay = $quantitywanted*$allItems[$j][3];
                 $image = "../itemImages/".$allItems[$j][2];
-                echo "<b>Item : </b>".$allItems[$j][1]."<input type='submit' value='Delete'><br>";
+                echo "<b>Item : </b>".$allItems[$j][1]."<input type='submit' name='$idItem' value='Delete'><br>";
                 echo "<b>Quantity : </b>".$quantitywanted."<br>";
                 echo "<b>Price : </b>".$pricetopay."$<br>";
                 echo "<img src='$image' width=50>"."<br>";
@@ -76,9 +82,10 @@
             }
             echo "<b>Total Price  : </b>".$totalprice."$";
             $_SESSION['price'] = $totalprice;
+            echo "</form>";
             ?>
             
-            <form action="" method="POST"><input type="submit" value="Pay" name="payment"></form>
+            <form method="POST"><input type="submit" value="Pay" name="payment"></form>
             <?php
         }else{
             echo "There is nothing in your shopping cart";
