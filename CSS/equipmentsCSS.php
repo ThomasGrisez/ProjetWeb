@@ -3,7 +3,7 @@
 
 
 
-			/*Change scroll bar aspect*/ 
+			/*Change scroll bar aspect===================*/ 
 			::-webkit-scrollbar-track {
 			    background-color: #F5F5F5;
 			}
@@ -24,7 +24,7 @@
 
 
 
-			/*For the list of items*/
+			/*For the list of items================*/
             .table_of_items{
             	padding-bottom : 5px; 
             	background-color : #EFEFEF; 
@@ -87,9 +87,14 @@
 
 
 
-     	   /*For a specific item */
+     	   /*For a specific item============================== */
+           .table_of_item_bloc{
+                padding-bottom : 40px; 
+           }
+
+
      	   .table_of_item{
-     	   		padding-bottom : 5px; 
+     	   		padding-bottom : 1px; 
             	background-color : #EFEFEF; 
                 border : none;
                 border-bottom :  1px solid black;  
@@ -112,15 +117,72 @@
      		}
 
      		#quantity_of_an_item{
-				height : 20%; 
+				height : 2%; 
      		}
 
+
+            #paybutton{
+                height : 7%; 
+                border-bottom: 1px grey solid;
+            }
+
      		#description_of_an_item{
+                height : 200%;
      			padding-top : 10px;
         		font-size : 15px; 
         		display : flex; 
         		align-items : flex-start;  
      		}
+
+            .add_to_cart{
+                padding: 10px 20px 10px 20px; 
+                font-family: lato; 
+                text-align: center;
+                border-radius: 4px; 
+                color : white;
+                border-color: #D86B27;
+                background-color: #D86B27; 
+              
+            }
+
+            .add_to_cart:hover{
+                background-color: #B44500; 
+                cursor: pointer; 
+                animation: shake 0.4s ease-out;
+            }
+            @keyframes shake {
+            0% {
+                 transform: skewX(-10deg);
+                  }
+  
+            25% {
+               transform: skewX(10deg);
+                  }
+        
+            50% {
+                transform: skewX(-10deg);
+                }
+  
+           75% {
+                transform: skewX(10deg);
+                }
+  
+            100% {
+                transform: skewX(-10deg);
+                }
+            }
+            input[type=number]{
+  
+  left: 10px;
+  top: 10px;
+  width: 50px;
+  height: 30px;
+  padding: 0px;
+  font-size: 14pt;
+  border: solid 0.5px #000;
+  z-index: 1;
+}
+
 
 
             </style>';

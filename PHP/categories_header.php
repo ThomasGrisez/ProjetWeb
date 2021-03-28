@@ -46,7 +46,7 @@
     	<ul id="selectionMode">
     		<a href="../PHP/" class="selectionType1"><li>Categories</li></a>
     		<a href="" class="selectionType1"><li>Buying</li></a>
-    		<a href="" class="selectionType1"><li>Sell</li></a>
+    		<a href="<?= $linkSell?>" class="selectionType1"><li>Sell</li></a>
     	</ul>
     	<div id="logoHeader">
     		<a hrf="../PHP/index.php"><img src="../Images/Fit.net.png" alt="logo"></a>

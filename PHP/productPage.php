@@ -37,62 +37,63 @@
             $idbuyer = $_SESSION['id'];
             $quantitychosen = $_POST['quantitychosen'];
             $mysqli->query("INSERT INTO `buyitnow`(`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`,`id_item`,`quantity`) VALUES(NULL,'$idseller','$idbuyer','$price','shoppingcart','$id','$quantitychosen')");
-            $msg = "Added to your shopping cart";
+            $msg = "<span style='color :  #219D57; font-weight : bold; font-style : italic;'>Added to your shopping cart</span>";
             $quantity-=$quantitychosen;
             
         }else{
-            $msg = "You need to be logged in to buy something";
+            $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/login.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in</a></em> to buy something</span>";
         }
     }
 
 ?>
 <?php include 'categories_header.php'?>
 
-<table class="table_of_item" border="1">
-    <tr>
-        <td rowspan="5" id="picture_item"><img src="../itemImages/<?= $photo1?>" width=600 height=600></td>
-        <td class="raw_table_items_list"  id="title_of_an_item" id='prix_item'><b><?= $name ?></b></td>
-        
-    </tr>
-    <tr><td class="raw_table_items_list"  id="prix_of_an_item"><b>Price : </b><span style="color : #D86B27;font-weight : bold; ">$<?= $price ?></span></td></tr>
-    <tr><td class="raw_table_items_list" id="type_item_an_item">Type : <em><?= $type ?></em></td></tr>
-    <tr><td class="raw_table_items_list" id="quantity_of_an_item">Quantity : <?= $quantity ?></td></tr>
-    <tr><td class="raw_table_items_list" id="paybutton">
-    <?php
-        if($type == "buyitnow" && $quantity != 0){?>
-            <form method="post">
-                <input type="number" name="quantitychosen" min="0" max="<?= $quantity?>" placeholder="0" value="1">
-                <input type='submit' name='addtocart' value='Add to your cart'>
-            </form>
-        <?php
-            if(isset($msg))
-                echo $msg;
-        }
-        if($type == "bestoffer"){?>
-            <form method="post">
-            <input type="number" name="negotiation">
-            <input type='submit' name='addtocart' value='Add to your cart'>
-            </form>
-        <?php
-        }
-    ?> 
-    </td></tr>
+<div class="table_of_item_bloc">
+    <table class="table_of_item" border="1">
+     <tr>
+         <td rowspan="5" id="picture_item"><img src="../itemImages/<?= $photo1?>" width=400 height=400></td>
+         <td class="raw_table_items_list"  id="title_of_an_item" id='prix_item'><b><?= $name ?></b></td>
+         
+     </tr>
+     <tr><td class="raw_table_items_list"  id="prix_of_an_item"><b>Price : </b><span style="color : #D86B27;font-weight : bold; ">$<?= $price ?></span></td></tr>
+     <tr><td class="raw_table_items_list" id="type_item_an_item">Type : <em><?= $type ?></em></td></tr>
+     <tr><td class="raw_table_items_list" id="quantity_of_an_item">Quantity : <?= $quantity ?></td></tr>
+     <tr><td class="raw_table_items_list" id="paybutton">
+     <?php
+         if($type == "buyitnow" && $quantity != 0){?>
+             <form class="form_for_add_to_cart" method="post">
+                 <input type="number" class="quantity_chosen" name="quantitychosen" min="0" max="<?= $quantity?>" placeholder="0" value="1">
+                 <input type='submit' class="add_to_cart" name='addtocart' value='Add to your cart'>
+             </form>
+         <?php
+             if(isset($msg))
+                 echo $msg;
+         }
+         if($type == "bestoffer"){?>
+             <form method="post">
+             <input type="number" class="quantity_chosen" name="negotiation">
+             <input type='submit'class="add_to_cart" name='addtocart' value='Add to your cart'>
+             </form>
+         <?php
+         }
+     ?> 
+     </td></tr>
 
-    <tr><td colspan="2" class="raw_table_items_list" id="description_of_an_item"><?= $description ?></td></tr>
-    <tr>
-        <?php
-            if($photo2 != "" && $photo3 ==""){?>
-                <td><img src="../itemImages/<?= $photo1?>" width=50><img src="../itemImages/<?= $photo2?>" width=50></td>
-            <?php
-            }
-            if($photo2 != "" && $photo3 != ""){?>
-                <td><img src="../itemImages/<?= $photo1?>" width=50><img src="../itemImages/<?= $photo2?>" width=50><img src="../itemImages/<?= $photo3?>" width=50></td>
-            <?php
-            }  
-        ?>
-    </tr>
-</table>
-
+     <tr><td colspan="2" class="raw_table_items_list" id="description_of_an_item"><?= $description ?></td></tr>
+     <tr>
+         <?php
+             if($photo2 != "" && $photo3 ==""){?>
+                 <td><img src="../itemImages/<?= $photo1?>" width=50><img src="../itemImages/<?= $photo2?>" width=50></td>
+             <?php
+             }
+             if($photo2 != "" && $photo3 != ""){?>
+                 <td><img src="../itemImages/<?= $photo1?>" width=50><img src="../itemImages/<?= $photo2?>" width=50><img src="../itemImages/<?= $photo3?>" width=50></td>
+             <?php
+             }  
+         ?>
+     </tr>
+    </table>
+</div>
 
 
 
