@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fit.net | Profile</title>
 	<link rel="icon" type="image/png" href="../Images/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="../CSS/profile.css">
+    <?php include '../CSS/profileCSS.php' ?>
 </head>
 <body>
     <?php include 'header.php'?>
@@ -47,22 +47,22 @@
         //Donc la je connais les infos des items deja achetés
     ?>
     
-    <div class="profile" align="center">
-        <h2>Profil de <?php echo $_SESSION['lname']." ".$_SESSION['fname']; ?></h2>
-        Mail = <?php echo $_SESSION['email']; ?>
-        <br>
-        Password = <?php echo $_SESSION['password']; ?>
-        <br>
-        Address = <?php echo $_SESSION['address']; ?>
-        <br>
-        <a href="editBuyer.php">Edit my profile</a>
-        <a href="logout.php">Log out</a>
+    <div>
+        <h2 class="main_title" align="center">• Welcome back  <span style="text-transform: uppercase;"><?php echo $_SESSION['lname'] ?></span><?php echo " ".$_SESSION['fname']; ?> •</h2>
+        <div class="main_aspect_of_profile_bloc">
+            <p class="list_of_informations" id="mail_information_buyer"><span class="lis_of_information_title">Your E-Mail : </span><?php echo $_SESSION['email']; ?></p>
+            
+            <p class="list_of_informations" id="password_information_buyer"><span class="lis_of_information_title">Your Password : </span><?php echo $_SESSION['password']; ?></p>
+            
+            <p class="list_of_informations" id="adress_information_buyer"><span class="lis_of_information_title">Your Address : </span><?php echo $_SESSION['address']; ?></p>
+        </div>
     </div>
 
+    <div class="main_aspect_of_profile_bloc">
     <?php
         if($nbItems>0){
-            echo "<h2>Old orders : </h2>";
-            echo "<table border=1>";
+            echo "<h2 class='list_of_informations' style='font-size : 20px;'>Old orders : </h2>";
+            echo "<div  class='one_table_of_items'><table  class='table_of_items' border=1>";
             for($j=0;$j<$nbItems;$j++){
                 $idItem = $allItems[$j][0];
                 $result3 = $mysqli->query("SELECT quantity FROM `buyitnow` WHERE `id_item`='$idItem'");
@@ -71,12 +71,20 @@
                 }
                 $pricetopay = $quantitywanted*$allItems[$j][3];
                 $image = "../itemImages/".$allItems[$j][2];
-                echo "<tr><td><img src='$image' width=50></td><td>".$allItems[$j][1]."</td><td>Price : ".$pricetopay."$</td><td>Quantity : ".$quantitywanted."</td><td>Buy It Now</td></tr>";
+                echo "<tr><td><img src='$image' width=50></td><td class='raw_table_items_list' id='title_item'>".$allItems[$j][1]."</td></tr><tr><td class='raw_table_items_list'>Price :</td> <td class='raw_table_items_list'>".$pricetopay."$</td></tr><tr><td class='raw_table_items_list'>Quantity : </td><td class='raw_table_items_list'>".$quantitywanted."</td></tr><tr id='last_tr_of_table_item'><td class='raw_table_items_list'>Buy It Now</td></tr>";
             }
-            echo "</table>";
+            echo "</table></div>";
         }
     ?>
-    
+    </div>
+    <div class="main_aspect_of_profile_bloc" id="bloc_button_buyer_profil">
+      <div class="button_list_buyer_profil">  
+          <a class="link_for_buttons_buyer_profil" href="editBuyer.php"><button class="button_of_informations" id="edit_information_buyer">Edit my profile</button></a>
+      </div>
+      <div  class="button_list_buyer_profil">
+          <a class="link_for_buttons_buyer_profil" href="logout.php"><button class="button_of_informations" id="logout_information_buyer">Log out</button></a>
+      </div>
+    </div>
 
     <div class="itemsbuyed">
 
