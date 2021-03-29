@@ -18,15 +18,11 @@
         //Select all products
         $result = $mysqli->query("SELECT * FROM `items` WHERE `category`='equipment'");
         if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
+            while($row = $result->fetch_assoc()) {
                 $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
                 $allProducts[]=$product;
             }
         }
-
-        
-
-
     ?>
 
     <h1>Equipments</h1>

@@ -21,9 +21,23 @@
 
 /*CSS FOR INFORMATIONS PROFILE =============*/
 .main_aspect_of_profile_bloc{
-	margin: 0 auto;
-     width: 500px; 
-     padding-right :0.01%; 
+	margin : 0 auto;
+    padding-right: 20%;
+	padding-left: 20%; 
+	padding-bottom : 60px; 
+	display : flex; 
+}
+
+.main_aspect_of_profile_bloc1{
+	margin : 0 auto;
+    padding-right: 30%;
+	padding-left: 30%; 
+	padding-bottom : 60px; 
+}
+
+
+.profile_image_bloc{
+	padding-left : 20%; 
 }
 
 .main_title{
@@ -33,7 +47,7 @@
 
 .list_of_informations{
 	font-size : 18px; 
-	padding-left : 60px; ; 
+	padding-left : 60px; 
 }
  
 .lis_of_information_title{
@@ -45,15 +59,33 @@
 	padding-bottom : 20px; 
  }
 
+
+
 /*CSS FOR ITEM BUY ===============*/
 
 .one_table_of_items{ 		
 	padding-left : 60px; 
+	display : flex; 
+	flex-wrap : wrap;
+	justify-content : flex-start; 
+	padding-top : 10px; 
 }
 
 .table_of_items{
     padding-bottom : 5px; 
-    border : none;
+    border : none; 
+    padding-left : 10px;
+    padding-right : 20px;  
+    width : 150px; 
+}
+
+.table_of_differnets_items{
+	 border : none; 
+}
+
+.div_for_border_in_table{
+
+  border-right : 1px solid grey;  
 }
 
 .raw_table_items_list{
@@ -86,17 +118,14 @@
 }
 
 #last_tr_of_table_item3{
-	border-bottom : 1px solid grey; 
 	padding-bottom : 10px; 
 }
 
 /*CSS FOR BUTTONS ON BUYER PROFILE======= */
 #bloc_button_buyer_profil{
 	display : flex; 
-	padding-top : 30px;
 	padding-right : 70px;  
-	margin: 0 auto;
-    width: 300px;
+	padding-left : 40%; 
 }
 
 .button_list_buyer_profil{
@@ -147,11 +176,11 @@
 }
 
 .button_add_to_list_an_item{
-	display : flex; 
-	padding-bottom : 30px;
-	padding-right : 70px;  
-	margin: 0 auto;
-    width: 300px;
+
+	padding-right : 20px; 
+}
+#button_for_see_our_item_as_a_seller{
+	padding-left : 40%; 
 }
 
 #add_an_item_to_sell{
@@ -170,7 +199,6 @@
 	color : white;
 	cursor: pointer;
 }
-
 
 
  </style>';

@@ -42,7 +42,6 @@
                             $mysqli->query("INSERT INTO `items`(`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`, `id_seller`) VALUES(NULL,'$name','$description','$price','$category','$photo1','','','','$quantity','$type', '$idseller')");
                             if($type == "auction"){
                                 $date = date('Y-m-d');
-                                $date = date('Y-m-d', strtotime('+2 days', strtotime($date)));
 
                                 $queryItem = $mysqli->query("SELECT id FROM `items` WHERE id=(SELECT max(id) FROM `items`)");
                                 if ($queryItem->num_rows > 0) {

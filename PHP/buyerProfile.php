@@ -46,7 +46,7 @@
     
     <div class="bloc_information_of">
         <h2 class="main_title" align="center">• Welcome back  <span style="text-transform: uppercase;"><?php echo $_SESSION['lname'] ?></span><?php echo " ".$_SESSION['fname']; ?> •</h2>
-        <div class="main_aspect_of_profile_bloc">
+        <div class="main_aspect_of_profile_bloc1">
             <p class="list_of_informations" id="mail_information_buyer"><span class="lis_of_information_title">Your E-Mail : </span><?php echo $_SESSION['email']; ?></p>
             
             <p class="list_of_informations" id="password_information_buyer"><span class="lis_of_information_title">Your Password : </span><?php echo $_SESSION['password']; ?></p>
@@ -55,11 +55,11 @@
         </div>
     </div>
 
-    <div class="main_aspect_of_profile_bloc">
+    <div class="main_aspect_of_profile_bloc1">
     <?php
         if($nbItems>0){
             echo "<h2 class='list_of_informations' style='font-size : 20px;'><em><u>Old orders :</u></em> </h2>";
-            echo "<div  class='one_table_of_items'><table  class='table_of_items' border=1>";
+            echo "<div  class='one_table_of_items'><table  class='table_of_differnets_items' border=1>";
             for($j=0;$j<$nbItems;$j++){
                 $idItem = $allItems[$j][0];
                 $result3 = $mysqli->query("SELECT quantity FROM `buyitnow` WHERE `id_item`='$idItem'");
@@ -74,7 +74,7 @@
         }
     ?>
     </div>
-    <div class="main_aspect_of_profile_bloc" id="bloc_button_buyer_profil">
+    <div class="main_aspect_of_profile_bloc1" id="bloc_button_buyer_profil">
       <div class="button_list_buyer_profil">  
           <a class="link_for_buttons_buyer_profil" href="editBuyer.php"><button class="button_of_informations" id="edit_information_buyer">Edit my profile</button></a>
       </div>
