@@ -14,15 +14,53 @@
     <?php
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
     
+        $allauctions = array();
+        //Select all auctions
+        $result2 = $mysqli->query("SELECT * FROM `auction`");
+        if($result2->num_rows > 0){
+            while($row = $result2->fetch_assoc()) {
+                $auction=array($row["id_auction"],$row["id_seller"],$row["id_buyer"],$row["id_item"],$row["price"],$row["status"],$row["date"]);
+                $allauctions[]=$auction;
+            }
+        }
+
+        $nbAuctions = count($allauctions);
+
+        for($i=0;$i<$nbAuctions;$i++){
+            $currentId = $allauctions[$i][0];
+            $actualDate = date("Y-m-d");
+            $actualDate = date_create($actualDate);
+            $dateauction = date_create($allauctions[$i][6]);
+            $diff = date_diff($actualDate, $dateauction);//Diff > 0 if auction not finished
+            if($diff->format('%R%a days')<0){
+                $mysqli->query("UPDATE `auction` SET `status`='finished' WHERE `id_auction`='$currentId' ");
+            }
+        }
+
+
         $allProducts = array();
         //Select all products
         $result = $mysqli->query("SELECT * FROM `items` WHERE `category`='equipment'");
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()) {
-                $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
-                $allProducts[]=$product;
+                if($row["type_of_selling"] == "auction"){
+                    $iditemauction = $row["id"];
+                    $checkstatus = $mysqli->query("SELECT `status` FROM `auction` WHERE `id_item`='$iditemauction' ");
+                    if($checkstatus->num_rows > 0){
+                        while($row2 = $checkstatus->fetch_assoc()){
+                            if($row2["status"] == "inprogress"){
+                                $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
+                                $allProducts[]=$product;
+                            }
+                        }
+                    }
+                }else{
+                    $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
+                    $allProducts[]=$product;
+                }
             }
         }
+        $nbProducts = count($allProducts);
     ?>
 
     <h1>Equipments</h1>
@@ -90,8 +128,8 @@
         </div>
         <div  class="item_table_block">
              <?php
-                 if($result->num_rows > 0){ 
-                     for ($row = 0; $row < $result->num_rows ; $row++) {
+                 if($nbProducts > 0){ 
+                     for ($row = 0; $row < $nbProducts ; $row++) {
                         // If quantity > 0
                         if($allProducts[$row][5]>0){
                          $photo = "../itemImages/".$allProducts[$row][2];
