@@ -63,9 +63,9 @@
 
         <section class="carroussel_fitness">
             <div>
-            <a href="" style="text-decoration-color: #D86B27; "><h3 style="font-size: 25px; color: #D86B27;">Workout essentials</h3></a>
+            <a href="../PHP/equipment.php" style="text-decoration-color: #D86B27; "><h3 style="font-size: 25px; color: #D86B27;">Workout essentials</h3></a>
             <p>The right equipment at the right price !</p>
-            <button class="button_discover">I discover ></button>
+            <a href="../PHP/equipment.php"><button class="button_discover">I discover ></button></a>
             </div>
             <ul class="caroussel_items">
               <li class="carrousel_item">

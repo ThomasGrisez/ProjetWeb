@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fit.net | Edit Profile</title>
 	<link rel="icon" type="image/png" href="../Images/favicon.png" />
+    <?php include '../CSS/modifyprofileCSS.php' ?>
 </head>
 <body>
     <?php include 'header.php'?>
@@ -122,52 +123,71 @@
      
     ?>
     
-    <div class="profile" align="center">
-        <h2>Edit profile</h2>
+    <div class="profile"  align="center">
+        <h2 style="font-size : 35px;">Edit profile</h2>
         <form action="" method="post" enctype="multipart/form-data">
-            <label for="newlname">Last name :</label>
-            <input type="text" name="newlname" id="newlname" placeholder="Last name" value=<?=$_SESSION['lname']?>>
+            <div class="profile_information_change">
+                <div class="form_part_of_profile_information" id="last_name_profile_information_bloc" align="left">
+                    <label for="newlname">Last name :</label>
+                    <input class="text_label_for_modify_profile" type="text" name="newlname" id="newlname" placeholder="Last name" value=<?=$_SESSION['lname']?>>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="first_name_profile_information_bloc" align="left">
+                    <label for="newfname">First name :</label>
+                    <input class="text_label_for_modify_profile" type="text" name="newfname" id="newfname" placeholder="First name" value=<?=$_SESSION['fname']?>>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="email_profile_information_bloc" align="left">
+                    <label for="newmail">Email :</label>
+                    <input class="text_label_for_modify_profile" type="email" name="newmail" id="newmail" placeholder="Email" value=<?=$_SESSION['email']?>>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="confirm_email_profile_information_bloc" align="left">
+                    <label for="newmail2">Email Confirmation :</label>
+                    <input class="text_label_for_modify_profile" type="email" name="newmail2" id="newmail2" placeholder="Confirm new email">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="password_profile_information_bloc" align="left">
+                    <label for="newpw">Password :</label>
+                    <input class="text_label_for_modify_profile" type="password" name="newpw" id="newpw" placeholder="Password">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="confirm_pssword_profile_information_bloc" align="left">
+                    <label for="newpw2">Password Confirmation :</label>
+                    <input class="text_label_for_modify_profile" type="password" name="newpw2" id="newpw2" placeholder="Confirm new password">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="picture_profile_information_bloc" align="left">
+                    <label for="photo">Photo :</label>
+                    <input id="select_a_picture_file" type='file' name="photo" id="photo">
+                </div>
+            </div>
             <br>
-            <label for="newfname">First name :</label>
-            <input type="text" name="newfname" id="newfname" placeholder="First name" value=<?=$_SESSION['fname']?>>
-            <br>
-            <label for="newmail">Email :</label>
-            <input type="email" name="newmail" id="newmail" placeholder="Email" value=<?=$_SESSION['email']?>>
-            <br>
-            <label for="newmail2">Email Confirmation :</label>
-            <input type="email" name="newmail2" id="newmail2" placeholder="Confirm new email">
-            <br>
-            <label for="newpw">Password :</label>
-            <input type="password" name="newpw" id="newpw" placeholder="Password">
-            <br>
-            <label for="newpw2">Password Confirmation :</label>
-            <input type="password" name="newpw2" id="newpw2" placeholder="Confirm new password">
-            <br>
-            <label for="photo">Photo :</label>
-            <input type='file' name="photo" id="photo">
-
-            <br>
-            <input type="submit" value="confirm">
+            <input class="button_validate_edit_profile" type="submit" value="Confirm">
         </form>
-
+    </div>
+    <div align="left" style="width: 25%; padding-left: 40%" > 
         <?php
             if($resultProducts->num_rows > 0){
-                echo "<h3>List of your items</h3>";
+                echo "<h3 style='font-size : 28px; padding-top : 15px; '>List of your items</h3>";
                 for ($row = 0; $row < $resultProducts->num_rows ; $row++) {
                     $photo = "../itemImages/".$allProducts[$row][2];
-                    echo "Name : ".$allProducts[$row][1].", Id : ".$allProducts[$row][0]."<br>";
-                    
+                    echo "<p style='padding-bottom : 5px; '><span style='padding-right : 10px;'><b>Name :</b> ".$allProducts[$row][1].",</span><span><b> Id :</b> <span style='color :#D86B27; font-weight : bolder;'>".$allProducts[$row][0]."</span></p>";
                   }
             }else{
-                echo "You have no items for sale <br>";
+                echo "<p style='font-size : 20px; font-weight : bold; padding-top : 15px; '>You have no items for sale </p><br>";
             }
         ?>
         <form action="" method="post">
             <label for="todelete">Id of the item you want to remove :</label>
-            <input type="text" name="todelete" id="todelete" placeholder="Id to remove">
-            <input type="submit" name="itemtodelete"value="Remove">
+            <div class="delete_an_item_menu">
+                <input  class="text_label_for_delet_item_profile"  type="text" name="todelete" id="todelete" placeholder="Id to remove">
+                <input  class="button_validate_delete_item_profile" type="submit" name="itemtodelete"value="Remove">
+            </div>
         </form>
-        <a href="sellerProfile.php">Go back to my profile</a>
+        <div style="padding-top: 30px; padding-bottom: 10px; " >
+            <a href="sellerProfile.php"><button class="button_go_back_to_my_profile">← Go back to my profile</button></a>
+        </div>
         <?php if(isset($msg)) echo $msg;?>
 
     </div>

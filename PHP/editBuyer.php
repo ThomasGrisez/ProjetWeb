@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fit.net | Edit Profile</title>
 	<link rel="icon" type="image/png" href="../Images/favicon.png" />
+     <?php include '../CSS/modifyprofileCSS.php' ?>
 </head>
 <body>
     <?php include 'header.php'?>
@@ -70,32 +71,48 @@
     ?>
     
     <div class="profile" align="center">
-        <h2>Edit profile</h2>
+        <h2 style="font-size : 35px;">Edit profile</h2>
         <form action="" method="post">
-            <label for="newlname">Last name :</label>
-            <input type="text" name="newlname" id="newlname" placeholder="Last name" value=<?=$_SESSION['lname']?>>
-            <br>
-            <label for="newfname">First name :</label>
-            <input type="text" name="newfname" id="newfname" placeholder="First name" value=<?=$_SESSION['fname']?>>
-            <br>
-            <label for="newaddress">Address :</label>
-            <input type="text" name="newaddress" id="newaddress" placeholder="Address" value=<?=$_SESSION['address']?>>
-            <br>
-            <label for="newmail">Email :</label>
-            <input type="email" name="newmail" id="newmail" placeholder="Email" value=<?=$_SESSION['email']?>>
-            <br>
-            <label for="newmail2">Email Confirmation :</label>
-            <input type="email" name="newmail2" id="newmail2" placeholder="Confirm new email">
-            <br>
-            <label for="newpw">Password :</label>
-            <input type="password" name="newpw" id="newpw" placeholder="Password">
-            <br>
-            <label for="newpw2">Password Confirmation :</label>
-            <input type="password" name="newpw2" id="newpw2" placeholder="Confirm new password">
-            <br>
-            <input type="submit" value="confirm">
+            <div class="profile_information_change">
+                <div class="form_part_of_profile_information" id="last_name_profile_information_bloc" align="left">
+                    <label for="newlname">Last name :</label>
+                    <input class="text_label_for_modify_profile" type="text" name="newlname" id="newlname" placeholder="Last name" value=<?=$_SESSION['lname']?>>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="first_name_profile_information_bloc" align="left">
+                    <label for="newfname">First name :</label>
+                    <input class="text_label_for_modify_profile" type="text" name="newfname" id="newfname" placeholder="First name" value=<?=$_SESSION['fname']?>>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="adress_profile_information_bloc" align="left">
+                    <label for="newaddress">Address :</label>
+                    <input class="text_label_for_modify_profile" type="text" name="newaddress" id="newaddress" placeholder="Address" value=<?=$_SESSION['address']?>>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="email_profile_information_bloc" align="left">
+                    <label for="newmail">Email :</label>
+                    <input class="text_label_for_modify_profile" type="email" name="newmail" id="newmail" placeholder="Email" value=<?=$_SESSION['email']?>>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="confirm_email_profile_information_bloc" align="left">
+                    <label for="newmail2">Email Confirmation :</label>
+                    <input class="text_label_for_modify_profile" type="email" name="newmail2" id="newmail2" placeholder="Confirm new email">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="password_profile_information_bloc" align="left">
+                    <label for="newpw">Password :</label>
+                    <input class="text_label_for_modify_profile" type="password" name="newpw" id="newpw" placeholder="Password">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" id="confirm_pssword_profile_information_bloc" align="left">
+                    <label for="newpw2">Password Confirmation :</label>
+                    <input class="text_label_for_modify_profile" type="password" name="newpw2" id="newpw2" placeholder="Confirm new password">
+                </div>
+                <br>
+                <input  class="button_validate_edit_profile" type="submit" value="confirm">
+            </div>
         </form>
-        <a href="buyerProfile.php">Go back to my profile</a>
+        <a href="buyerProfile.php"><button class="button_go_back_to_my_profile">← Go back to my profile</button></a>
         <?php if(isset($msg)) echo $msg;?>
 
     </div>
