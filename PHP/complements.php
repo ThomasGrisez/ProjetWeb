@@ -19,7 +19,7 @@
         $result2 = $mysqli->query("SELECT * FROM `auction`");
         if($result2->num_rows > 0){
             while($row = $result2->fetch_assoc()) {
-                $auction=array($row["id_auction"],$row["id_seller"],$row["id_buyer"],$row["id_item"],$row["price"],$row["status"],$row["date"]);
+                $auction=array($row["id_auction"],$row["id_seller"],$row["id_buyer"],$row["id_item"],$row["price"],$row["status"],$row["date"],$row["secondbestprice"]);
                 $allauctions[]=$auction;
             }
         }
@@ -33,7 +33,15 @@
             $dateauction = date_create($allauctions[$i][6]);
             $diff = date_diff($actualDate, $dateauction);//Diff > 0 if auction not finished
             if($diff->format('%R%a days')<0){
+                //Update the status of the auction
                 $mysqli->query("UPDATE `auction` SET `status`='finished' WHERE `id_auction`='$currentId' ");
+                // Now we need to add the product to shopping cart of the winner  
+                $secondbestprice = $allauctions[$i][7];
+                $finalprice = $secondbestprice+1;
+                $id_buyer =  $allauctions[$i][2];
+                $id_seller =  $allauctions[$i][1];
+                $id_item =  $allauctions[$i][3];
+                $mysqli->query("INSERT INTO `buyitnow`(`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`,`id_item`,`quantity`) VALUES(NULL,'$id_seller','$id_buyer','$finalprice','shoppingcart','$id_item','1')");
             }
         }
 
@@ -83,7 +91,7 @@
                        <tr class="filter_table_row_line">
                            <td><input class="radio_button_filter" type="radio" name="filter" value="Max Price" onclick="afficherPrice()"></td>
                            <td><label class="label_filter" for="max_price_value">Max Price</label>
-                           <div id="selecteur_of_price_block" hidden><input class="range" type="range" name="max_price_value" id="max_price_value" value="0" step="5" min="0" max="250"><output></output>$</div></td>
+                           <div id="selecteur_of_price_block" hidden><input class="range" type="range" name="max_price_value" id="max_price_value" value="0" step="5" min="0" max="250"><output> </output>$</div></td>
                        </tr>
                        <tr class="filter_table_row_line">
                            <td><input class="radio_button_filter" type="radio" name="filter" value="Name" onclick="afficherType()"></td>

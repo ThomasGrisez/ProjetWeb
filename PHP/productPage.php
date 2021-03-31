@@ -58,7 +58,7 @@
             $newprice = $_POST['priceoffer'];
             if($newprice > $price){
                 $idbuyer = $_SESSION['id'];
-                $mysqli->query("UPDATE auction SET price='$newprice', id_buyer='$idbuyer' WHERE id_item='$id'");
+                $mysqli->query("UPDATE auction SET price='$newprice', id_buyer='$idbuyer',secondbestprice='$price' WHERE id_item='$id'");
                 $mysqli->query("UPDATE items SET price='$newprice'WHERE id='$id'");
                 echo "<meta http-equiv='refresh' content='0'>";
             }else{
@@ -72,12 +72,47 @@
 
         }
     }
+
+    //Negotiation if bestoffer
+    if(isset($_POST['bestoffernegotiation'])){
+        if(isset($_SESSION['status']) && $_SESSION['status']=="buyer" && isset($_POST['negotiation'])){
+            
+            if(!empty($_POST['negotiation'])){
+                $idbuyer = $_SESSION['id'];
+                $negotiation = $_POST['negotiation'];
+                $checknego = $mysqli->query("SELECT id_buyer,num_of_negotiations  FROM bestoffer WHERE id_item='$id'");
+                if($checknego->num_rows >0){
+                    while($row = $checknego->fetch_assoc()) {
+                        $buyer = $row["id_buyer"];
+                        $nb = $row["num_of_negotiations"];
+                    }
+                    if($buyer == $idbuyer)
+                        $numbofnego = $nb+1;
+                    else $numbofnego = 1;
+                    $mysqli->query("UPDATE bestoffer SET price='$negotiation', id_buyer='$idbuyer',num_of_negotiations='$numbofnego',status='negotiationoffer'  WHERE id_item='$id'");
+                    $mysqli->query("UPDATE items SET price='$negotiation' WHERE id='$id'");
+
+                    $msg = "You will be notified on your profile when the seller accept or refuse your offer";
+                }
+            }else{
+                $msg = "Please enter a price !";
+            }
+        }
+    }else{
+        if(isset($_SESSION['status']) && $_SESSION['status']=="seller")
+            $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/sellerProfile.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to negotiate</span>";
+        else
+            $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/login.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to negotiate</span>";
+
+        }
+
+
 ?>
 
 <div class="table_of_item_bloc">
     <table class="table_of_item" border="1">
      <tr>
-         <td rowspan=<?php if($type == "auction")echo 6; else echo 5;?> id="picture_item"><img src="../itemImages/<?= $photo1?>" width=400 height=400></td>
+         <td rowspan=<?php if($type != "buyitnow")echo 6; else echo 5;?> id="picture_item"><img src="../itemImages/<?= $photo1?>" width=400 height=400></td>
          <td class="raw_table_items_list"  id="title_of_an_item" id='prix_item'><b><?= $name ?></b></td>
          
      </tr>
@@ -95,6 +130,16 @@
             }
             echo "<tr><td class='raw_table_items_list' id='date_of_an_item'>End of the auction :".$date."</td></tr> ";  
         }
+        if($type == "bestoffer"){
+            $querynego = $mysqli->query("SELECT num_of_negotiations FROM bestoffer WHERE id_item='$id'");
+            if($querynego->num_rows == 1){
+                while($row = $querynego->fetch_assoc()) {
+                    $nego = $row["num_of_negotiations"];
+                }
+            }
+            $nego = 5-$nego;
+            echo "<tr><td class='raw_table_items_list' id='nego_of_an_item'>You have 5 tries to negotiate, remaining tries :".$nego."</td></tr> ";  
+        }
     ?>
 
 
@@ -109,20 +154,24 @@
              if(isset($msg))
                  echo $msg;
          }
-         if($type == "bestoffer"){?>
+         if($type == "bestoffer" && $quantity != 0){?>
              <form method="post">
-             <input type="number" class="quantity_chosen" name="negotiation">
-             <input type='submit'class="add_to_cart" name='addtocart' value='Add to your cart'>
+             <input type="number" class="priceoffer" name="negotiation" min="1" value="<?= $price ?>">
+             <input type='submit'class="add_to_cart" name='bestoffernegotiation' value='Negotiate'>
              </form>
          <?php
+            if(isset($msg))
+            echo $msg;
          }
-        if($type == "auction"){?>
+        if($type == "auction" && $quantity != 0){?>
              <form method="post">
              <label for="negotiation">Price Offer :</label>
              <input type="number" class="priceoffer" name="priceoffer" min="<?= $price+1 ?>" value="<?= $price+1 ?>">
              <input type='submit' class="add_to_cart" name='auctionoffer' value='Bid'>
              </form>
          <?php
+            if(isset($msg))
+            echo $msg;
          }
         ?> 
      </td></tr>

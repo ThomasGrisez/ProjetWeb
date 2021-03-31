@@ -27,8 +27,6 @@
             }
         }
 
-
-
     ?>
     
     <div class="profile">
@@ -67,6 +65,9 @@
                </div>
                <div class="button_add_to_list_an_item">  
                      <a href="seeAuction.php"><button class="button_of_informations"  id="add_an_item_to_sell">See Auction</button></a>
+               </div> 
+               <div class="button_add_to_list_an_item">  
+                     <a href="seeNegotiations.php"><button class="button_of_informations"  id="add_an_item_to_sell">See Offers</button></a>
                </div>  
              </div>
         </div>

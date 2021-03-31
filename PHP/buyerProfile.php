@@ -42,6 +42,36 @@
         }
         //La je recupere le tableau avec les items et leurs infos
         //Donc la je connais les infos des items deja achetés
+
+
+        $allauctions = array();
+        //Select all auctions
+        $queryauctions = $mysqli->query("SELECT * FROM `auction` WHERE `status`='inprogress'");
+        if($queryauctions->num_rows > 0){
+            while($row = $queryauctions->fetch_assoc()) {
+                $auction=array($row["id_auction"],$row["id_seller"],$row["id_buyer"],$row["id_item"],$row["price"],$row["status"],$row["date"]);
+                $allauctions[]=$auction;
+            }
+        }
+
+        $nbAuctions = count($allauctions);
+        $buyerAuctions = array();
+        for($i=0;$i<$nbAuctions;$i++){
+            if($allauctions[$i][2] == $idbuyer){
+                $id_item = $allauctions[$i][3];
+                $queryitem = $mysqli->query("SELECT `id`,`name`,`photo1`,`price` FROM `items` WHERE `id`='$id_item'");
+                if($queryitem->num_rows != 0){
+                    while($row = $queryitem->fetch_assoc()) {
+                        $item=array($row["id"],$row["name"],$row["photo1"],$row["price"]);
+                    }
+                }
+                $buyerAuctions[] = $item;
+            }
+        }
+        //We have an array with every auctions where the buyer is the highest bidder and will potentially win the auction
+        $nbBuyerAuction = count($buyerAuctions);
+
+
     ?>
     
     <div class="bloc_information_of">
@@ -69,6 +99,21 @@
                 $pricetopay = $quantitywanted*$allItems[$j][3];
                 $image = "../itemImages/".$allItems[$j][2];
                 echo "<tr><td style='border : none;'><img src='$image' width=50></td><td class='raw_table_items_list' id='title_item'>".$allItems[$j][1]."</td></tr><tr><td class='raw_table_items_list'  id='price_item'>Price :</td> <td class='raw_table_items_list'><span style='color :#D86B27; font-weight : bold;'>".$pricetopay."$</span></td></tr><tr><td class='raw_table_items_list'  id='quantity_item'>Quantity : </td><td class='raw_table_items_list'>".$quantitywanted."</td></tr><tr><td class='raw_table_items_list' id='last_tr_of_table_item2'><em>Buy It Now</em></td></tr>";
+            }
+            echo "</table></div>";
+        }
+        if($nbBuyerAuction>0){
+            echo "<h2 class='list_of_informations' style='font-size : 20px;'><em><u>Auction(s) where you have the highest bid :</u></em> </h2>";
+            echo "<div  class='one_table_of_items'><table  class='table_of_differnets_items' border=1>";
+            for($j=0;$j<$nbBuyerAuction;$j++){
+                $idItem = $buyerAuctions[$j][0];
+                $image = "../itemImages/".$buyerAuctions[$j][2];
+                $result4 = $mysqli->query("SELECT price FROM `auction` WHERE `id_item`='$idItem'");
+                while($row = $result4->fetch_assoc()){
+                    $price = $row["price"];
+                }
+                echo "<tr><td style='border : none;'><img src='$image' width=50></td><td class='raw_table_items_list' id='title_item'>".$buyerAuctions[$j][1]."</td></tr><tr><td class='raw_table_items_list'  id='price_item'>Price :</td> <td class='raw_table_items_list'><span style='color :#D86B27; font-weight : bold;'>".$price."$</span></td></tr><tr><td class='raw_table_items_list'  id='quantity_item'>Quantity : </td><td class='raw_table_items_list'>1</td></tr><tr><td class='raw_table_items_list' id='last_tr_of_table_item2'><em>Auction</em></td></tr>";
+
             }
             echo "</table></div>";
         }

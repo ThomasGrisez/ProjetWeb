@@ -43,12 +43,12 @@
         //La je recupere le tableau avec les items et leurs infos
         //Donc la je connais les infos du panier + les infos de chaque item de ce panier
 
-        //une fois qu on appuie sur le bouton de paiement
+        //When we press the pay Button
         if(isset($_POST['payment'])){
             header("Location: payment.php");
         }
 
-
+        // Delete something in your shooping cart
         for($j=0;$j<$nbItems;$j++){
             $idItem = $allItems[$j][0];
             if(isset($_POST[$idItem])){

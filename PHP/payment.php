@@ -67,8 +67,7 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
 
 
 <?php   
-echo "Total Price : ".$_SESSION['price']."$<br>"; 
-echo "Total Price : ".$_SESSION['id']."$<br>"; 
+echo "Total Price : ".$_SESSION['price']."$<br>";  
 echo "Your address : ".$_SESSION['address']."<br>"; 
 echo "You are : ".$_SESSION['lname']."&nbsp;".$_SESSION['fname']; 
 ?>

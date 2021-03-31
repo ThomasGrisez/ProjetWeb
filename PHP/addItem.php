@@ -48,8 +48,17 @@
                                     while($row = $queryItem->fetch_assoc()) {
                                         $iditem = $row['id'];
                                     }
-                                  }
-                                $mysqli->query("INSERT INTO `auction`(`id_auction`,`id_buyer`,`id_seller`, `id_item`,`price`,`date`,`status`) VALUES(NULL, '-1', '$idseller','$iditem','$price', '$date', 'inprogress') ");
+                                }
+                                $mysqli->query("INSERT INTO `auction`(`id_auction`,`id_buyer`,`id_seller`, `id_item`,`price`,`secondbestprice`,`date`,`status`) VALUES(NULL, '-1', '$idseller','$iditem','$price','$price','$date', 'inprogress') ");
+                            }
+                            if($type=="bestoffer"){
+                                $queryItem = $mysqli->query("SELECT id FROM `items` WHERE id=(SELECT max(id) FROM `items`)");
+                                if ($queryItem->num_rows > 0) {
+                                    while($row = $queryItem->fetch_assoc()) {
+                                        $iditem = $row['id'];
+                                    }
+                                }
+                                $mysqli->query("INSERT INTO `bestoffer`(`id_bestoffer`,`id_buyer`,`id_seller`, `id_item`,`price`,`num_of_negotiations`,`status`) VALUES(NULL, '-1', '$idseller','$iditem','$price', '0', 'inprogress') ");
                             }
                         }else {
                         $msg = "Error while importing your first photo";
