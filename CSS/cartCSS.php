@@ -58,6 +58,7 @@
 
 .validate_my_cart_button_bloc{
 	padding-top : 150px; 
+	padding-bottom : 150px; 
 }
 
 .button_for_go_to_the_checkout{
@@ -74,6 +75,19 @@
 .button_for_go_to_the_checkout:hover{
 	background-color: #B44500; 
 	cursor: pointer; 
+}
+
+
+.button_go_back_to_my_profile{
+	font-size : 18px; 
+	background-color : white; 
+	border : none; 
+	color: #D86B27; 
+}
+
+.button_go_back_to_my_profile:hover{
+	color :  #700500;
+	cursor: pointer;
 }
 
 </style>';

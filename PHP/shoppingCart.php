@@ -95,7 +95,7 @@
             </div>
                 <?php
             }else{
-                echo "There is nothing in your shopping cart";
+                echo "</div><div align='center' style='font-size : 20px;'><b>There is nothing in your Cart !</b><br><br><br><a href='index.php'><button class='button_go_back_to_my_profile'>← Go back to the store</button></a></div>";
             }
         ?>
     </div>
