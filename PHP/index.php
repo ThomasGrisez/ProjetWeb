@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +8,8 @@
     <script src="../JS/index.js"></script>
     <link rel="icon" type="image/png" href="../Images/favicon.png" />
 	<link rel="stylesheet" type="text/css" href="../CSS/index.css">
+  <script type="text/javascript" src="https://click123.ca/dist/js/snow.js"></script>
+  
 </head>
 <body>
     <?php include 'header.php'?>
