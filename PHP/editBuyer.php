@@ -18,12 +18,12 @@
     if(isset($_POST['newlname']) && !empty($_POST['newlname']) && $_POST['newlname'] != $_SESSION['lname']){
         $newlname = htmlspecialchars($_POST['newlname']);
         $_SESSION['lname'] = $newlname;
-        $mysqli->query("UPDATE seller SET last_name='$newlname' WHERE id='$idseller'");
+        $mysqli->query("UPDATE buyer SET last_name='$newlname' WHERE id='$idbuyer'");
     }
     if(isset($_POST['newfname']) && !empty($_POST['newfname']) && $_POST['newfname'] != $_SESSION['fname']){
         $newfname = htmlspecialchars($_POST['newfname']);
         $_SESSION['fname'] = $newfname;
-        $mysqli->query("UPDATE seller SET first_name='$newfname' WHERE id='$idseller'");
+        $mysqli->query("UPDATE buyer SET first_name='$newfname' WHERE id='$idbuyer'");
     }
     if(isset($_POST['newaddress']) && !empty($_POST['newaddress']) && $_POST['newaddress'] != $_SESSION['address']){
         $newaddress = htmlspecialchars($_POST['newaddress']);
@@ -59,7 +59,7 @@
             if($_POST['newpw'] == $_POST['newpw2']){
                 $newpw = htmlspecialchars($_POST['newpw']);
                 $_SESSION['password'] = $newpw;
-                $mysqli->query("UPDATE seller SET password='$newpw' WHERE id='$idseller'");
+                $mysqli->query("UPDATE buyer SET `password`='$newpw' WHERE `id`='$idbuyer' ");
             }else{
                 $msg = "Your password confirmation is different";
             }
