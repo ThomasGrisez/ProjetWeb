@@ -1,3 +1,4 @@
+<?php include '../CSS/modifyprofileCSS.php' ?>
 <?php include 'header.php'?>
 
 <?php
@@ -30,12 +31,12 @@ for($i=0;$i<$nbAuctions;$i++){
 }
 ?>
 
-
-<h2>List of your auctions</h2>
+<div  align='center'>
+<h2 style="font-size : 35px;">List of your auctions</h2>
 
 <?php
 if($nbAuctions > 0){
-    echo "<table border=1>";
+    echo "<div class='profile_information_change'><table border=1 class='table_of_differnets_items'>";
     for($i=0;$i<$nbAuctions;$i++){
         $id = $allItems[$i][0];
         $name = $allItems[$i][1];
@@ -43,13 +44,13 @@ if($nbAuctions > 0){
         $photo1 = "../itemImages/".$photo1;
         $price = $allItems[$i][3];
 
-        echo "<tr><td><img src=".$photo1." width=50></td><td>".$name."</td><td>Current Price : ".$price."$</td><td>Id : ".$id."</td></tr>";
+        echo "<tr><td style='border : none; '><img src=".$photo1." width='70' height='70'></td><td style=' border : none;' class='raw_table_items_list' id='title_item'>".$name."</td></tr><tr><td style='border : none;' class='raw_table_items_list' id='price_item'>Actual Price: </td><td style='color :#D86B27; font-weight : bold;' class='raw_table_items_list'>".$price."$</td></tr><tr ><td style='border : none; border-bottom : grey 1px solid; padding-bottom : 10px;' class='raw_table_items_list'>Id : ".$id."</td></tr>";
     }
-    echo "</table>";
-}else echo "No auctions, <a href='addItem.php'>want to add one ?</a>";
+    echo "</table><div style='padding :40px 0px 3px 0px;'><a href='sellerProfile.php'><button class='button_go_back_to_my_profile'>← Go back to my profile</button></a></div>";
+}else echo "<b>NO AUCTIONS !</b> <a href='addItem.php' style='text-decoration : none; color: #D86B27; font-style : italic; font-weight : bold;'>want to add one ?</a><br><br><br><a href='sellerProfile.php'><button class='button_go_back_to_my_profile'>← Go back to my profile</button></a></div>";
 
 
 ?>
-
+</div>
 
 <?php include 'footer.php'?>

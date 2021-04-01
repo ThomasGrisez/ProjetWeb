@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fit.net | Add item</title>
 	<link rel="icon" type="image/png" href="../Images/favicon.png" />
+    <?php include '../CSS/modifyprofileCSS.php' ?>
 </head>
 <body>
     <?php include 'header.php'?>
@@ -112,81 +113,102 @@
     ?>
 
 
-    <div class="add">
-        <h2>Add Item</h2>
+    <div class="add"  align="center">
+        <h2 style="font-size : 35px;">Add Item</h2>
         <form action="" method="post" enctype="multipart/form-data">
-            <label for="nameitem">Name :</label>
-            <input type="text" name="nameitem" id="nameitem" placeholder="Name">
-            <br>
-            <label for="priceitem">Price :</label>
-            <input type="text" name="priceitem" id="priceitem" placeholder="Price">
-            <br>
-            <label for="quantity">Quantity :</label>
-            <input type="text" name="quantity" id="quantity" placeholder="Quantity" value="1">
-            <br>
-            <label for="descriptionitem">Description :</label>
-            <input type="text" name="descriptionitem" id="descriptionitem" placeholder="Description">
-            <br>
-            <label for="categoryitem">Category :</label>
-            <select name="categoryitem" id="categoryitem">
-                <option value="equipment">Equipments</option>
-                <option value="complement">Complements</option>
-                <option value="clothe">Clothes</option>
-            </select>
-            <br>
-            <label for="typesale">Type of sale :</label>
-            <select name="typesale" id="typesale">
-                <option value="buyitnow">Buy It Now</option>
-                <option value="bestoffer">Best Offer</option>
-                <option value="auction">Auction</option>
-            </select>
-            <br>
-            <label for="numberphotos">How many photos ? :</label>
-            <input type="number" id="numberphotos" id="numberphotos" min="1" max="3" value="1" onclick="visibility()">
-            <br>
-
-            <label id="l1" for="photo1">Import photo:</label>
-            <input type="file" name="photo1" id="photo1"/>
-            <br>
-            <label id="l2" for="photo2" hidden>Import photo:</label>
-            <input type="file" name="photo2" id="photo2" hidden/>
-            <br id="b2" hidden>
-            <label id="l3" for="photo3" hidden>Import photo:</label>
-            <input type="file" name="photo3" id="photo3" hidden/>
-            <br id="b3" hidden>
-            <script>
-                function visibility(){
-                    if(document.getElementById("numberphotos").value == 1){
-                    document.getElementById("l2").hidden = true;
-                    document.getElementById("photo2").hidden = true;
-                    document.getElementById("b2").hidden = true;
-                    document.getElementById("l3").hidden = true;
-                    document.getElementById("photo3").hidden = true;
-                    document.getElementById("b3").hidden = true;
+            <div class="profile_information_change">
+                <div class="form_part_of_profile_information" align="left">
+                    <label for="nameitem">Name :</label>
+                    <input class="text_label_for_modify_profile"  type="text" name="nameitem" id="nameitem" placeholder="Name">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" align="left">
+                    <label for="priceitem">Price :</label>
+                    <input class="text_label_for_modify_profile"  type="text" name="priceitem" id="priceitem" placeholder="Price">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" align="left">
+                    <label for="quantity">Quantity :</label>
+                    <input class="text_label_for_modify_profile"  type="text" name="quantity" id="quantity" placeholder="Quantity" value="1">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" align="left">
+                    <label for="descriptionitem">Description :</label>
+                    <input class="text_label_for_modify_profile"  type="text" name="descriptionitem" id="descriptionitem" placeholder="Description">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" align="left">
+                    <label for="categoryitem">Category :</label>
+                    <select class="text_label_for_modify_profile"  name="categoryitem" id="categoryitem">
+                        <option value="equipment">Equipments</option>
+                        <option value="complement">Complements</option>
+                        <option value="clothe">Clothes</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" align="left">
+                    <label for="typesale">Type of sale :</label>
+                    <select class="text_label_for_modify_profile"  name="typesale" id="typesale">
+                        <option value="buyitnow">Buy It Now</option>
+                        <option value="bestoffer">Best Offer</option>
+                        <option value="auction">Auction</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" align="left">
+                    <label for="numberphotos">How many photos ? :</label>
+                    <input class="text_label_for_modify_profile"  type="number" id="numberphotos" id="numberphotos" min="1" max="3" value="1" onclick="visibility()">
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" align="left">
+                    <label id="l1" for="photo1">Import photo:</label>
+                    <input id="select_a_picture_file" class="text_label_for_modify_profile"  type="file" name="photo1"/>
+                </div>
+                <br>
+                <div class="form_part_of_profile_information" align="left">
+                    <label id="l2" for="photo2" hidden>Import photo:</label>
+                    <input class="text_label_for_modify_profile"  type="file" name="photo2" id="photo2" hidden/>
+                </div>
+                <br id="b2" hidden>
+                <div class="form_part_of_profile_information" align="left">
+                    <label id="l3" for="photo3" hidden>Import photo:</label>
+                    <input class="text_label_for_modify_profile"  type="file" name="photo3" id="photo3" hidden/>
+                </div>
+                <br id="b3" hidden>
+                <script>
+                    function visibility(){
+                        if(document.getElementById("numberphotos").value == 1){
+                        document.getElementById("l2").hidden = true;
+                        document.getElementById("photo2").hidden = true;
+                        document.getElementById("b2").hidden = true;
+                        document.getElementById("l3").hidden = true;
+                        document.getElementById("photo3").hidden = true;
+                        document.getElementById("b3").hidden = true;
+                        }
+                        if(document.getElementById("numberphotos").value == 2){
+                        document.getElementById("l2").hidden = false;
+                        document.getElementById("photo2").hidden = false;
+                        document.getElementById("b2").hidden = false;
+                        document.getElementById("l3").hidden = true;
+                        document.getElementById("photo3").hidden = true;
+                        document.getElementById("b3").hidden = true;
+                        }
+                        if(document.getElementById("numberphotos").value == 3){
+                        document.getElementById("l2").hidden = false;
+                        document.getElementById("photo2").hidden = false;
+                        document.getElementById("b2").hidden = false;
+                        document.getElementById("l3").hidden = false;
+                        document.getElementById("photo3").hidden = false;
+                        document.getElementById("b3").hidden = false;
+                        }
+                        
                     }
-                    if(document.getElementById("numberphotos").value == 2){
-                    document.getElementById("l2").hidden = false;
-                    document.getElementById("photo2").hidden = false;
-                    document.getElementById("b2").hidden = false;
-                    document.getElementById("l3").hidden = true;
-                    document.getElementById("photo3").hidden = true;
-                    document.getElementById("b3").hidden = true;
-                    }
-                    if(document.getElementById("numberphotos").value == 3){
-                    document.getElementById("l2").hidden = false;
-                    document.getElementById("photo2").hidden = false;
-                    document.getElementById("b2").hidden = false;
-                    document.getElementById("l3").hidden = false;
-                    document.getElementById("photo3").hidden = false;
-                    document.getElementById("b3").hidden = false;
-                    }
-                    
-                }
-            </script>
-            
-            <input type="submit" name="submititem" value="Add Item">
+                </script>
+                
+                <input class="button_validate_edit_profile" type="submit" name="submititem" value="Add Item">
+            </div>
         </form>
-        <a href="sellerProfile.php">Go back to my profile</a>
+        <a href="sellerProfile.php"><button class="button_go_back_to_my_profile">← Go back to my profile</button></a>
         <?php  if(isset($msg)) {
                     echo '<font color="red">'.$msg."</font>";
                 } ?>

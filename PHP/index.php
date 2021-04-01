@@ -69,35 +69,35 @@
             </div>
             <ul class="caroussel_items">
               <li class="carrousel_item">
-                      <a href=""><img src="../Images/abweel.jpg" class="carroussel_images"></a>
+                      <a href="../PHP/equipment.php"><img src="../Images/abweel.jpg" class="carroussel_images"></a>
                     <p class="text_caroussel_item"><strong>$5.99</strong></p>
                 </li>
                 <li class="carrousel_item">
-                    <a href=""><img src="../Images/short.jpg" class="carroussel_images"></a>
+                    <a href="../PHP/clothes.php"><img src="../Images/short.jpg" class="carroussel_images"></a>
                     <p  class="text_caroussel_item"><strong>$15.99</strong></p>
                 </li></a>
                <li class="carrousel_item">
-                   <a href=""> <img src="../Images/halteres1.jpg" class="carroussel_images"></a>
+                   <a href="../PHP/equipment.php"> <img src="../Images/halteres1.jpg" class="carroussel_images"></a>
                     <p  class="text_caroussel_item"><strong>$24.99</strong></p>
                 </li></a>
                <li class="carrousel_item">
-                    <a href=""><img src="../Images/electrostimulant.jpg" class="carroussel_images"></a>
+                    <a href="../PHP/equipment.php"><img src="../Images/electrostimulant.jpg" class="carroussel_images"></a>
                     <p  class="text_caroussel_item"><strong>$199.99</strong></p>
                 </li></a>
                <li class="carrousel_item">
-                    <a href=""><img src="../Images/legging.jpg" class="carroussel_images"></a>
+                    <a href="../PHP/clothes.php"><img src="../Images/legging.jpg" class="carroussel_images"></a>
                     <p  class="text_caroussel_item"><strong>$24.99</strong></p>
                 </li></a>
                <li class="carrousel_item">
-                   <a href=""><img src="../Images/halteres2.jpg" class="carroussel_images"></a>
+                   <a href="../PHP/equipment.php"><img src="../Images/halteres2.jpg" class="carroussel_images"></a>
                     <p  class="text_caroussel_item"><strong>$18.45</strong></p>
                 </li></a>
                 <li class="carrousel_item">
-                    <a href=""><img src="../Images/wey.jpg" class="carroussel_images"></a>
+                    <a href="../PHP/complements.php"><img src="../Images/wey.jpg" class="carroussel_images"></a>
                     <p  class="text_caroussel_item"><strong>$34.90</strong></p>
                 </li></a>
                 <li class="carrousel_item">
-                    <a href=""><img src="../Images/elastiques.jpg" class="carroussel_images"></a>
+                    <a href="../PHP/equipment.php"><img src="../Images/elastiques.jpg" class="carroussel_images"></a>
                     <p  class="text_caroussel_item"><strong>$7.49</strong></p>
                 </li></a>
                 

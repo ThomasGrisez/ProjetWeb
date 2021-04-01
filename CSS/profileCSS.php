@@ -98,9 +98,8 @@
 #price_item, #quantity_item, last_tr_of_table_item2{
 	text-align : center; 
 	font-weight : bold;  
-
-
 }
+
 #title_item{
 	font-weight : bold;
 	font-size : 19px; 

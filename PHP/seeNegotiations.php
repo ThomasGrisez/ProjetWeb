@@ -1,3 +1,4 @@
+<?php include '../CSS/modifyprofileCSS.php' ?>
 <?php include 'header.php'?>
 
 <?php
@@ -65,11 +66,11 @@ for($i=0;$i<$nbOffers;$i++){
 
 
 ?>
-
-<h2>List of your offers</h2>
+<div  align='center'>
+<h2 style="font-size : 35px;">List of your offers</h2>
 <?php
 if($nbOffers > 0){
-    echo "<form method='POST'><table border=1>";
+    echo "<div class='profile_information_change'><form method='POST'><table border=1 class='table_of_differnets_items'>";
     for($i=0;$i<$nbOffers;$i++){
         $id = $allItems[$i][0];
         $name = $allItems[$i][1];
@@ -78,15 +79,15 @@ if($nbOffers > 0){
         $price = $allItems[$i][3];
         $offeraccept = $id."accept";
         $counteroffer = $id."counter";
-        echo "<tr><td><img src=".$photo1." width=50></td><td><b>".$name."</b></td><td>Price Offer : ".$price."$</td><td>Id : ".$id."</td>";
-        echo "<td><input type='submit' value='Accept' name='$offeraccept'</td>";
-        echo "<td><input type='number' name='counter' min='1'><input type='submit' value='Counter Offer' name='$counteroffer'</td></tr>";
+        echo "<tr><td style='border : none; '><img src=".$photo1."  width='70' height='70'></td><td style='border : none; ' class='raw_table_items_list' id='title_item'>".$name."</td></tr><tr><td style='border : none;' class='raw_table_items_list' id='price_item'>Price Offer : </td><td style='color :#D86B27; font-weight : bold;' class='raw_table_items_list'>".$price."$</td></tr><tr><td style='border : none; padding-bottom : 10px;' class='raw_table_items_list'>Id : ".$id."</td>";
+        echo "<td class='raw_table_items_list' style='border : none; '><input type='submit' value='Accept' name='$offeraccept'</td>";
+        echo "<td class='raw_table_items_list' style='border : none; border-bottom : grey 1px solid;'><input type='number' name='counter' min='1'><input type='submit' value='Counter Offer' name='$counteroffer'</td></tr>";
     }
     echo "</table></form>";
-}else echo "No offers, <a href='addItem.php'>want to add one ?</a>";
+}else echo "<b>NO OFFERS!</b> <a href='addItem.php' style='text-decoration : none; color: #D86B27; font-style : italic; font-weight : bold;'>want to add one ?</a><br><br><br><a href='sellerProfile.php'><button class='button_go_back_to_my_profile'>← Go back to my profile</button></a></div>";
 ?>
 
-
+</div>
 
 
 <?php include 'footer.php'?>

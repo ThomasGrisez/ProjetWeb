@@ -88,7 +88,7 @@
     <div class="main_aspect_of_profile_bloc1">
     <?php
         if($nbItems>0){
-            echo "<h2 class='list_of_informations' style='font-size : 20px;'><em><u>Old orders :</u></em> </h2>";
+            echo "<h2 class='list_of_informations' style='font-size : 20px;'><em><u>Old orders :</u></em></h2>";
             echo "<div  class='one_table_of_items'><table  class='table_of_differnets_items' border=1>";
             for($j=0;$j<$nbItems;$j++){
                 $idItem = $allItems[$j][0];

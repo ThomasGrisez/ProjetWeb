@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fit.net | Shopping Cart</title>
 	<link rel="icon" type="image/png" href="../Images/favicon.png" />
+    <?php include '../CSS/cartCSS.php' ?>
 </head>
 <body>
     <?php include 'header.php'?>
@@ -58,41 +59,46 @@
 
         }
     ?>
-
-    <h2>Your Shopping Cart : <?= $nbItems ?> Product(s)</h2>
-    <?php
-        if($nbItems > 0){
-            $totalprice = 0;
-            echo "<form method='POST'>";
-            for($j=0;$j<$nbItems;$j++){
-    
-                $idItem = $allItems[$j][0];
-                $result3 = $mysqli->query("SELECT quantity FROM `buyitnow` WHERE `id_item`='$idItem' AND `status`='shoppingcart'");
-                while($row = $result3->fetch_assoc()){
-                    $quantitywanted = $row["quantity"];
+    <div>
+        <div align="center">
+            <h2 style="font-size : 35px;">Your Shopping Cart :<span style="color : #D86B27; weight : bold;"> <?= $nbItems ?> Product(s)</span></h2>
+        </div>
+        <div style='border-bottom : 1px rgba(0, 0, 0, 0.1) solid; '></div>
+        <div class='main_div_for_cart'>
+        <?php
+            if($nbItems > 0){
+                $totalprice = 0;
+                echo "<div class='div_of_div_of_div'><form method='POST'>";
+                for($j=0;$j<$nbItems;$j++){
+                    $idItem = $allItems[$j][0];
+                    $result3 = $mysqli->query("SELECT quantity FROM `buyitnow` WHERE `id_item`='$idItem' AND `status`='shoppingcart'");
+                    while($row = $result3->fetch_assoc()){
+                        $quantitywanted = $row["quantity"];
+                    }
+                    $pricetopay = $quantitywanted*$allItems[$j][3];
+                    $image = "../itemImages/".$allItems[$j][2];
+                    echo "<div class='one_item_in_the_cart'><div><input class='button_suppr_from_cart' type='submit' name='$idItem' value='-'></div>";
+                    echo "<div><img src='$image' width=150 height=150></div>";
+                    echo "<div class='caracteristic_item_list'><b>".$allItems[$j][1]."</b><br>";
+                    echo "<span style='font-size :16px;'><b><em>Quantity </em>: </b>".$quantitywanted."</span><br>";
+                    echo "<span style='font-size :15px;'><b>Price : </b><span style='color :#D86B27; font-weight : bold; '>".$pricetopay."$</span><br></span></div></div>";
+                    $totalprice+=$pricetopay;
                 }
-                $pricetopay = $quantitywanted*$allItems[$j][3];
-                $image = "../itemImages/".$allItems[$j][2];
-                echo "<b>Item : </b>".$allItems[$j][1]."<input type='submit' name='$idItem' value='Delete'><br>";
-                echo "<b>Quantity : </b>".$quantitywanted."<br>";
-                echo "<b>Price : </b>".$pricetopay."$<br>";
-                echo "<img src='$image' width=50>"."<br>";
-                echo "<hr>";
-                $totalprice+=$pricetopay;
+                echo "</div>";
+                echo "<div align='center' class='validate_my_cart_button_bloc'><span style='font-size : 25px;'><b>Total Price  : </b><span style='color : #D86B27; font-weight : bold;'>".$totalprice."$</span></span>";
+                $_SESSION['price'] = $totalprice;
+                echo "</form>";
+                ?>
+                <form style="padding-top : 20px; " method="POST"><input class="button_for_go_to_the_checkout" type="submit" value="Pay" name="payment"></form>
+                <img src="../Images/paiement_securises_paypal.png" width="300" height="auto">
+                </div>
+            </div>
+                <?php
+            }else{
+                echo "There is nothing in your shopping cart";
             }
-            echo "<b>Total Price  : </b>".$totalprice."$";
-            $_SESSION['price'] = $totalprice;
-            echo "</form>";
-            ?>
-            
-            <form method="POST"><input type="submit" value="Pay" name="payment"></form>
-            <?php
-        }else{
-            echo "There is nothing in your shopping cart";
-        }
-        
-    ?>
-
+        ?>
+    </div>
     <?php include 'footer.php'?>
 </body>
 </html>

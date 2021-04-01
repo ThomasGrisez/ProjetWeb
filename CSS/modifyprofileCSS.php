@@ -81,6 +81,49 @@
 	cursor: pointer;
 }
 
+#photo2{
+	font-size: 18px; ;
+    font-weight: bold;
+    color: #D86B27; 
+    background-color: white;
+}
+
+#photo2:hover{
+	cursor: pointer;
+}
+
+#photo3{
+	font-size: 18px; ;
+    font-weight: bold;
+    color: #D86B27; 
+    background-color: white;
+}
+
+#photo3:hover{
+	cursor: pointer;
+}
+
+.table_of_differnets_items{
+	 border : none; 
+}
+
+.raw_table_items_list{
+	border: none; 
+	overflow: hidden; 
+
+}
+
+#title_item{
+	font-weight : bold;
+	font-size : 19px; 
+}
+
+
+#price_item, #quantity_item, last_tr_of_table_item2{
+	text-align : center; 
+	font-weight : bold;  
+}
+
  </style>';
 
 ?>

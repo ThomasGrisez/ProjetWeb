@@ -46,7 +46,7 @@
 
     <header>
     	<ul id="selectionMode">
-    		<a href="" class="selectionType1"><li>Categories</li></a>
+    		<a href="../PHP/index.php" class="selectionType1"><li>Categories</li></a>
     		<a href="" class="selectionType1"><li>Buying</li></a>
     		<a href="<?= $linkSell?>" class="selectionType1"><li>Sell</li></a>
     	</ul>
