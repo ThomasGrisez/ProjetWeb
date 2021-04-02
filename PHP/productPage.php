@@ -14,6 +14,7 @@
 <?php
     
     $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
+    unset($msg);
 
     if(isset($_GET['idproduct'])){
         $id=htmlspecialchars($_GET['idproduct']);
@@ -39,9 +40,23 @@
         if(isset($_SESSION['status']) && $_SESSION['status']=="buyer" && isset($_POST['quantitychosen'])){ 
             $idbuyer = $_SESSION['id'];
             $quantitychosen = $_POST['quantitychosen'];
-            $mysqli->query("INSERT INTO `buyitnow`(`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`,`id_item`,`quantity`) VALUES(NULL,'$idseller','$idbuyer','$price','shoppingcart','$id','$quantitychosen')");
+
+            //Check if this item is already in the shopping cart
+            $querycheck = $mysqli->query("SELECT id_item,quantity FROM buyitnow WHERE id_buyer='$idbuyer' AND status='shoppingcart' AND id_item='$id'");
+            if($querycheck->num_rows == 1){
+                while($row = $querycheck->fetch_assoc()) {
+                    $iditem=$row['id_item'];
+                    $quantityInCart = $row['quantity'];
+                }
+                $newqt = $quantityInCart+$quantitychosen;
+                $mysqli->query("UPDATE buyitnow SET quantity='$newqt' WHERE id_item='$id' AND `status`='shoppingcart'");
+            }else{
+                $mysqli->query("INSERT INTO `buyitnow`(`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`,`id_item`,`quantity`) VALUES(NULL,'$idseller','$idbuyer','$price','shoppingcart','$id','$quantitychosen')");
+            }
+
             $msg = "<span style='color :  #219D57; font-weight : bold; font-style : italic;'>Added to your shopping cart</span>";
-            $quantity-=$quantitychosen;
+            $quantity -= $quantitychosen;
+            $mysqli->query("UPDATE items SET quantity='$quantity' WHERE id='$id'");
             
         }else{
             if(isset($_SESSION['status']) && $_SESSION['status']=="seller")
@@ -97,15 +112,14 @@
             }else{
                 $msg = "Please enter a price !";
             }
-        }
-    }else{
-        if(isset($_SESSION['status']) && $_SESSION['status']=="seller")
-            $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/sellerProfile.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to negotiate</span>";
-        else
-            $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/login.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to negotiate</span>";
+        }else{
+            if(isset($_SESSION['status']) && $_SESSION['status']=="seller")
+                $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/sellerProfile.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to negotiate</span>";
+            else
+                $msg = "<span style='color : #A20606;'>You need to be <em><a href='../PHP/login.php' style='text-decoration : none; color : #A20606; font-weight : bold;'>logged in as a buyer</a></em> to negotiate</span>";
 
         }
-
+    }
 
 ?>
 

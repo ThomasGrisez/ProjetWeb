@@ -44,7 +44,7 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
                         $newqt = $qtindb - $qttobuy;
                         $currentId = $allInfos[$j][0];
                         $idbiw = $allInfos[$j][2];
-                        $mysqli->query("UPDATE `items` SET `quantity`='$newqt' WHERE `id`='$currentId'");
+                        //$mysqli->query("UPDATE `items` SET `quantity`='$newqt' WHERE `id`='$currentId'");
                         $mysqli->query("UPDATE `buyitnow` SET `status`='payed' WHERE `id_item`='$currentId' AND `id_buyitnow`='$idbiw'");
                         echo "test3";
                     }

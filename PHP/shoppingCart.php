@@ -49,11 +49,16 @@
             header("Location: payment.php");
         }
 
-        // Delete something in your shooping cart
+        // Delete something in your shopping cart
         for($j=0;$j<$nbItems;$j++){
             $idItem = $allItems[$j][0];
+            $qtinCart = $allInfos[$j][6];
+            $qtinDB = $allItems[$j][5];
+            $newQT = $qtinCart+$qtinDB;
             if(isset($_POST[$idItem])){
                 $mysqli->query("DELETE FROM `buyitnow` WHERE `id_item`='$idItem' AND `status`='shoppingcart'");
+                //Update quantity of the item 
+                $queryupdate = $mysqli->query("UPDATE items SET quantity='$newQT' WHERE id='$idItem'");
                 header("Location: shoppingCart.php");
             }
 
