@@ -31,7 +31,7 @@
                 $actualDate = date_create($actualDate);
                 $dateauction = date_create($allauctions[$i][6]);
                 $diff = date_diff($actualDate, $dateauction);//Diff > 0 if auction not finished
-                if($diff->format('%R%a days')<0){
+                if($diff->format('%R%a days')<0 && $allauctions[$i][5]!="finished"){
                     //Update the status of the auction
                 $mysqli->query("UPDATE `auction` SET `status`='finished' WHERE `id_auction`='$currentId' ");
                 // Now we need to add the product to shopping cart of the winner  
