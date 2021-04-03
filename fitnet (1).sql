@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 31 mars 2021 à 17:10
+-- Généré le : sam. 03 avr. 2021 à 17:35
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -59,14 +59,14 @@ CREATE TABLE IF NOT EXISTS `auction` (
   `date` date NOT NULL,
   `status` text NOT NULL,
   PRIMARY KEY (`id_auction`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `auction`
 --
 
 INSERT INTO `auction` (`id_auction`, `id_buyer`, `id_seller`, `id_item`, `price`, `secondbestprice`, `date`, `status`) VALUES
-(10, 1, 2, 36, 21, 20, '2021-03-30', 'finished');
+(11, 1, 2, 37, 791, 790, '2021-04-01', 'finished');
 
 -- --------------------------------------------------------
 
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `buyer` (
 --
 
 INSERT INTO `buyer` (`id`, `last_name`, `first_name`, `address`, `email`, `password`) VALUES
-(1, 'grisez', 'thomas', 'bougival', 'thomas.grisez@gmail.com', 1234),
+(1, 'Grisez', 'Thomas', 'Bougival', 'thomas.grisez@gmail.com', 1234),
 (2, 'test', 'test', 'pari', 'a@a.com', 123);
 
 -- --------------------------------------------------------
@@ -134,17 +134,30 @@ CREATE TABLE IF NOT EXISTS `buyitnow` (
   `id_item` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id_buyitnow`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `buyitnow`
 --
 
 INSERT INTO `buyitnow` (`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`, `id_item`, `quantity`) VALUES
+(71, 2, 1, 30, 'payed', 10, 1),
+(69, 2, 1, 30, 'payed', 10, 1),
+(66, 2, 1, 30, 'payed', 10, 1),
 (35, 2, 1, 9, 'payed', 34, 1),
 (25, 2, 1, 50, 'payed', 7, 1),
 (21, 2, 1, 250, 'payed', 8, 1),
-(43, 2, 1, 21, 'payed', 36, 1);
+(70, 2, 1, 35, 'payed', 9, 1),
+(68, 2, 1, 50, 'payed', 7, 1),
+(64, 2, 1, 791, 'payed', 37, 1),
+(67, 2, 1, 250, 'payed', 8, 1),
+(72, 2, 1, 50, 'payed', 7, 3),
+(73, 2, 1, 250, 'payed', 8, 2),
+(74, 2, 1, 30, 'payed', 10, 2),
+(75, 2, 1, 250, 'payed', 8, 3),
+(76, 2, 1, 50, 'payed', 7, 1),
+(77, 2, 1, 30, 'payed', 10, 1),
+(78, 2, 1, 35, 'payed', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -167,20 +180,19 @@ CREATE TABLE IF NOT EXISTS `items` (
   `type_of_selling` text NOT NULL,
   `id_seller` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `items`
 --
 
 INSERT INTO `items` (`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`, `id_seller`) VALUES
-(9, 'Short', 'Short de sport, parfait pour la course Ã  pieds', 35, 'clothe', '2-Short-1.jpg', '', '', '', 10, 'buyitnow', 2),
-(8, 'Banc de musculation', 'Banc professionnel adaptÃ©e aux salles de sport ', 250, 'equipment', '2-Banc_de_musculation-1.jpg', '', '', '', 10, 'buyitnow', 2),
-(7, 'Halteres 10kg', 'Halteres de musculations', 50, 'equipment', '2-Halteres_10kg-1.jpg', '', '', '', 7, 'buyitnow', 2),
-(10, 'Mass Gainer', 'Optimum Nutrition, Top qualitÃ©', 30, 'complement', '2-Mass_Gainer-1.jpg', '', '', '', 10, 'buyitnow', 2),
+(9, 'Short', 'Short de sport, parfait pour la course Ã  pieds', 35, 'clothe', '2-Short-1.jpg', '', '', '', 8, 'buyitnow', 2),
+(8, 'Banc de musculation', 'Banc professionnel adaptÃ©e aux salles de sport ', 250, 'equipment', '2-Banc_de_musculation-1.jpg', '', '', '', 4, 'buyitnow', 2),
+(7, 'Halteres 10kg', 'Halteres de musculations', 50, 'equipment', '2-Halteres_10kg-1.jpg', '', '', '', 2, 'buyitnow', 2),
+(10, 'Mass Gainer', 'Optimum Nutrition, Top qualitÃ©', 30, 'complement', '2-Mass_Gainer-1.jpg', '', '', '', 4, 'buyitnow', 2),
 (11, 'ABwheel', 'excellent pour les abdos', 20, 'equipment', '2-ABwheel-1.jpg', '', '', '', 10, 'buyitnow', 2),
-(14, 'test', 'Halteres de musculations', 20, 'equipment', '2-test-1.jpg', '2-test-2.jpg', '2-test-3.jpg', '', 1, 'buyitnow', 2),
-(36, 'auctiontest', 'test debut', 21, 'clothe', '2-auctiontest-1.jpg', '', '', '', 0, 'auction', 2),
+(37, 'Multiplication', 'test mutli', 791, 'clothe', '2-Multiplication-1.png', '', '', '', 1, 'auction', 2),
 (34, 'bo', 'test', 9, 'equipment', '2-bo-1.png', '', '', '', 0, 'bestoffer', 2);
 
 -- --------------------------------------------------------
