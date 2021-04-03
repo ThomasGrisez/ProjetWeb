@@ -41,7 +41,7 @@
 			$linkSell = "login.php";
 		}
 			
-
+		$curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);  
     ?>
 
     <header>
@@ -58,12 +58,18 @@
     		</div>
     	</div>
 		<div>
+		<?php
+			if($curPageName != "payment.php" && $curPageName != "shoppingCart.php" && $curPageName != "adminProfile.php" && $curPageName != "buyerProfile.php" && $curPageName != "sellerProfile.php" && $curPageName != "editAdmin.php" && $curPageName != "editSeller.php" && $curPageName != "editBuyer.php" && $curPageName != "addItem.php" && $curPageName != "privacy_policy.php" && $curPageName != "refund_policy.php"){
+		?>
     		<ul id="categoryMode">
     		    <a href="../PHP/index.php" class="selectionType2"><li>Home Page</li></a>
     		    <a href="../PHP/equipment.php" class="selectionType2"><li>Equipments</li></a>
     		    <a href="../PHP/complements.php" class="selectionType2"><li>Complements</li></a>
     		    <a href="../PHP/clothes.php" class="selectionType2"><li>Clothes</li></a>
     		</ul>
+		<?php
+			}
+		?>
     	</div>
     </header>
 </body>

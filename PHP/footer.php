@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="../CSS/footer.css">
 </head>
 <body>
+
 <footer class="footer">
     	<table class="footer_table">
     		<tbody>
@@ -46,9 +47,17 @@
     				<td class="second_footerpart">
     					<h4 class="title_footer2">Subscribe to the newletter</h4>
                         <form method="post">
-                            <input type="text" name="email_marketing" id="textLabel_email_marketing" size="50">
+                            <input type="email" name="email_marketing" id="textLabel_email_marketing" size="50">
 							<input  id="button_email_marketing" type="submit" name="newsletter" value="Subscribe">
                         </form>
+						<?php
+							if(isset($_POST['newsletter']) && isset($_POST['email_marketing'])){
+								$email = $_POST['email_marketing'];
+								if(!empty($email)){
+									mail($email, "Subscription to the newsletter", "<h1>Hi ! You are now subscribed to the newsletter</h1>,<br> you will recieve mails with discounts and every news on the website !");
+								}else echo "Please enter your email address";
+							}
+						?>
     				</td>
     				<td class="third_footerpart">
     					<h5 class="title_footer3" >Help Center</h5>

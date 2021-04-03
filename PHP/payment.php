@@ -10,14 +10,12 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
                 if(strlen($_POST['cardcode']) == 3 && is_numeric($_POST['cardcode'])){  
                     $id_buyer = $_SESSION['id']; 
                     $mysqli->query("UPDATE `buyitnow` SET `status`='inpayment' WHERE `id_buyer`='$id_buyer' AND `status`='shoppingcart'");
-                    $_SESSION['price'] = 0;
                     //recherche dans buyitnow les id items et quantity 
                     $allInfos = array();
                     $result1 = $mysqli->query("SELECT id_item,quantity,id_buyitnow FROM buyitnow WHERE `status` = 'inpayment' AND id_buyer='$id_buyer'");
                     if($result1->num_rows != 0){
                         while($row = $result1->fetch_assoc()) {
                             $info=array($row["id_item"],$row["quantity"],$row["id_buyitnow"]);
-                            echo "test";
                             $allInfos[]=$info;
                         }
                     }
@@ -28,11 +26,10 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
                     $allItems = array();
                     for($i=0;$i<$nbItems;$i++){
                         $currentId = $allInfos[$i][0];
-                        $result2 = $mysqli->query("SELECT id,quantity FROM `items` WHERE `id`='$currentId'");
+                        $result2 = $mysqli->query("SELECT id,quantity,name,price FROM `items` WHERE `id`='$currentId'");
                         if($result2->num_rows != 0){
                             while($row = $result2->fetch_assoc()) {
-                                $item=array($row["id"],$row["quantity"]);
-                                echo "test2";
+                                $item=array($row["id"],$row["quantity"],$row["name"],$row['price']);
                             }
                         }
                         $allItems[]=$item;
@@ -44,12 +41,41 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
                         $qtindb = $allItems[$j][1];
                         $newqt = $qtindb - $qttobuy;
                         $currentId = $allInfos[$j][0];
-                        $idbiw = $allInfos[$j][2];
+                        $idbin = $allInfos[$j][2];
                         //$mysqli->query("UPDATE `items` SET `quantity`='$newqt' WHERE `id`='$currentId'");
-                        $mysqli->query("UPDATE `buyitnow` SET `status`='payed' WHERE `id_item`='$currentId' AND `id_buyitnow`='$idbiw'");
-                        echo "test3";
+                        $mysqli->query("UPDATE `buyitnow` SET `status`='payed' WHERE `id_item`='$currentId' AND `id_buyitnow`='$idbin'");
                     }
 
+                    // Mail
+                    $to = $_SESSION['email'];
+                    $subject = 'Confirmation of payment - FitNet';
+                    $from = 'fitnet@email.com';
+                    
+                    // To send HTML mail, the Content-type header must be set
+                    $headers  = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                    
+                    // Create email headers
+                    $headers .= 'From: '.$from."\r\n".
+                        'Reply-To: '.$from."\r\n" .
+                        'X-Mailer: PHP/' . phpversion();
+                    
+                    // Compose a simple HTML email message
+                    $message = '<html><body>';
+                    $message .= '<h1 style="color:#f40;">Thank you ! '.$_SESSION['fname'].' '.$_SESSION['lname'].'</h1>';
+                    $message .= '<h3>Here is a resume of your order :</h3>';
+                    for($i=0;$i<$nbItems;$i++){
+                        $nameitem = $allItems[$i][2];
+                        $message .="-<b>".$nameitem.", quantity purchased : ".$allInfos[$i][1].", price : ".($allItems[$i][3]*$allInfos[$i][1])."$</b><br>";
+                    }
+                    $message .= "<b>Total price : ".$_SESSION['price']."$</b><br>";
+                    $message .= "<b>You will be delivered at your address : ".$_SESSION['address']."</b><br>";
+                    $message .= '</body></html>';
+                    
+                    // Sending email
+                    mail($to, $subject, $message, $headers);
+                    
+                    $_SESSION['price'] = 0;
                     header("Location: buyerProfile.php");
 
 
