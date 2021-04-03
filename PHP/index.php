@@ -17,10 +17,10 @@
          <a href="#" class="control_next">></a>
          <a href="#" class="control_prev"><</a>
          <ul class="slider_ul">
-         <a href=""><li id="img1" class="slider_li"><img src="../Images/img1.jpg" alt="baniere1" style="width: 100%; height:  auto;"></li></a>
-         <a href=""><li id="img2" class="slider_li"><img src="../Images/img2.jpg" alt="baniere2" style="width: 100%; height:  auto;"></li></a>
-         <a href=""><li id="img3" class="slider_li"><img src="../Images/img3.jpg" alt="baniere3" style="width: 100%; height:  auto;"></li></a>
-         <a href=""><li id="img4" class="slider_li"><img src="../Images/img4.jpg" alt="baniere4" style="width: 100%; height:  auto;"></li></a>
+         <a href="#12345"><li id="img1" class="slider_li"><img src="../Images/img1.jpg" alt="baniere1" style="width: 100%; height:  auto;"></li></a>
+         <a href="../PHP/clothes.php"><li id="img2" class="slider_li"><img src="../Images/img2.jpg" alt="baniere2" style="width: 100%; height:  auto;"></li></a>
+         <a href="../PHP/complements.php"><li id="img3" class="slider_li"><img src="../Images/img3.jpg" alt="baniere3" style="width: 100%; height:  auto;"></li></a>
+         <a href="../PHP/equipment.php"><li id="img4" class="slider_li"><img src="../Images/img4.jpg" alt="baniere4" style="width: 100%; height:  auto;"></li></a>
          </ul>  
     </div>
     	
@@ -61,7 +61,7 @@
 
 
 
-        <section class="carroussel_fitness">
+        <section class="carroussel_fitness" id="12345">
             <div>
             <a href="../PHP/equipment.php" style="text-decoration-color: #D86B27; "><h3 style="font-size: 25px; color: #D86B27;">Workout essentials</h3></a>
             <p>The right equipment at the right price !</p>
