@@ -76,8 +76,9 @@
     
                         if(in_array($photoActualExt, $validextensions)) {
                             $photo2 = $_SESSION['id']."-".$namephoto."-2.".$photoActualExt;
-                            $result = move_uploaded_file($_FILES['photo2']['tmp_name'], $path);
-                            if($result) {
+                            $path2 = "../itemImages/".$photo2;
+                            $result2 = move_uploaded_file($_FILES['photo2']['tmp_name'], $path2);
+                            if($result2) {
                                 $mysqli->query("UPDATE items SET photo2='$photo2' WHERE photo1='$photo1'");
                             }else {
                             $msg = "Error while importing your second photo";
@@ -95,8 +96,9 @@
     
                         if(in_array($photoActualExt, $validextensions)) {
                             $photo3 = $_SESSION['id']."-".$namephoto."-3.".$photoActualExt;
-                            $result = move_uploaded_file($_FILES['photo3']['tmp_name'], $path);
-                            if($result) {
+                            $path3 = "../itemImages/".$photo3;
+                            $result3 = move_uploaded_file($_FILES['photo3']['tmp_name'], $path3);
+                            if($result3) {
                                 $mysqli->query("UPDATE items SET photo3='$photo3' WHERE photo1='$photo1'");
                             }else {
                             $msg = "Error while importing your second photo";
