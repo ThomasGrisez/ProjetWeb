@@ -47,7 +47,7 @@ for($i=0;$i<$nbOffers;$i++){
         }
         $mysqli->query("INSERT INTO `buyitnow`(`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`,`id_item`,`quantity`) VALUES(NULL,'$idseller','$id_buyer','$finalprice','shoppingcart','$id','1')");
 
-        header("Location: seeNegotiations.php");
+        echo "<meta http-equiv='refresh' content='0'>";
     }
 }
 
@@ -59,7 +59,7 @@ for($i=0;$i<$nbOffers;$i++){
         $priceoffer = $_POST['counter'];
         $mysqli->query("UPDATE bestoffer SET status='counteroffer',price='$priceoffer'  WHERE id_item='$id'");
         $mysqli->query("UPDATE items SET price='$priceoffer'  WHERE id='$id'");
-        header("Location: seeNegotiations.php");
+        echo "<meta http-equiv='refresh' content='0'>";
     }
 }
 

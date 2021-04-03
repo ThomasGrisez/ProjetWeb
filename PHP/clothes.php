@@ -61,6 +61,18 @@
                             }
                         }
                     }
+                }
+                elseif($row["type_of_selling"] == "bestoffer"){
+                    $iditembestoffer = $row["id"];
+                    $checkstatus2 = $mysqli->query("SELECT `status` FROM `bestoffer` WHERE `id_item`='$iditembestoffer' ");
+                    if($checkstatus2->num_rows > 0){
+                        while($row3 = $checkstatus2->fetch_assoc()){
+                            if($row3["status"] != "accepted"){
+                                $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
+                                $allProducts[]=$product;
+                            }
+                        }
+                    }
                 }else{
                     $product=array($row["id"],$row["name"],$row["photo1"],$row["price"],$row["description"],$row["quantity"],$row["type_of_selling"]);
                     $allProducts[]=$product;
