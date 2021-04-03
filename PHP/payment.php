@@ -1,4 +1,5 @@
 <?php include 'header.php'?>
+<link rel="stylesheet" type="text/css" href="../CSS/payement.css">
 <?php
     
 $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
@@ -66,39 +67,98 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
 
 
 
-<?php   
-echo "Total Price : ".$_SESSION['price']."$<br>";  
-echo "Your address : ".$_SESSION['address']."<br>"; 
-echo "You are : ".$_SESSION['lname']."&nbsp;".$_SESSION['fname']; 
-?>
+<div class="paiement_bloc">
+    <div>
 
-<form action="" method="POST">
-    <div class="paymentcard">
-        <p><b>Type of Payment Card</b></p>
-        <label for="paymentcard1">Visa</label>
-        <input type="radio" name="paymentcard" id="paymentcard1" value="visa" checked>
-        <label for="paymentcard2">MasterCard</label>
-        <input type="radio" name="paymentcard" id="paymentcard2" value="mastercard">
-        <label for="paymentcard3">American Express</label>
-        <input type="radio" name="paymentcard" id="paymentcard3" value="americanexpress">
-        <label for="paymentcard4">PayPal</label>
-        <input type="radio" name="paymentcard" id="paymentcard4" value="paypal">
+        <form action="" method="POST">
+            <div class="paymentcard">
+                <p><b>Payment</b><br><span style="font-size : 13px; ">All transactions are secure and encrypted.</span></p>
+                <div class="selector_of_way_to_pay">
+                    <div class="pay_with_a_card_bloc">
+                        <div class="title_bloc">
+                            <div>
+                                <input type="radio" class="radio_button_choice" name="paymentcard" id="paymentcard1" value="visa" checked onclick="afficher()">
+                                <label for="paymentcard1">Credit card</label>
+                            </div>
+                            <div style="padding-right: 10px;">
+                                <img src="../Images/choice_card.png" height="auto" width="200">
+                            </div>
+                        </div>
+                            <div class="cardinfo" id="cardinfo_for_pay">
+                                <div class="bloc_for_card1">
+                                    <label for="cardnumber"></label>
+                                    <input class="text_field_for_card1" type="text" name="cardnumber" id="cardnumber" placeholder="Card number"><br>
+                                </div>
+                                <div class="bloc_for_card1">
+                                    <label for="cardname"></label>
+                                    <input class="text_field_for_card1" type="text" name="cardname" id="cardname" placeholder="Name on the card"><br>
+                                </div>
+                                <div class="second_part_information_paiement">
+                                    <div class="bloc_for_card2">
+                                        <label for="carddate"></label>
+                                        <input class="text_field_for_card2" type="month" name="carddate" id="carddate"><br>
+                                    </div>
+                                    <div>
+                                        <label for="cardcode"></label>
+                                        <input class="text_field_for_card2" type="text" name="cardcode" id="cardcode" placeholder="Security Code">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="pay_with_paypal_bloc">
+                        <div class="title_bloc">
+                            <div>
+                                <input type="radio" class="radio_button_choice" name="paymentcard" id="paymentcard4" value="paypal" onclick="cacher()">
+                                <label for="paymentcard4">PayPal</label>
+                            </div>
+                            <div style="padding-right: 10px;">
+                                   <img src="../Images/choice_paypal.png" height="auto" width="50">
+                            </div>
+                        </div>
+                        <div class="paypalinfo" id="paypal_for_pay" hidden="hidden">
+                                <div class="bloc_for_card3">
+                                    <label for="cardnumber"></label>
+                                    <input class="text_field_for_card1" type="phone" name="cardnumber" id="phonenumber" placeholder="Phone number"><br>
+                                </div>        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bloc_button_pay">
+                <input type="submit" value="Confirm and pay" name="finalpayment" class="button_pay">
+            </div>
+        </form>
+        <div style="padding-top : 15px; ">
+            <?php if(isset($msg)) echo "<span style='color : red; font-weight : bold; font-style : italic;'>".$msg."</span>"; ?>
+        </div>
     </div>
-    <div class="cardinfo">
-        <label for="cardnumber"><b>Card number</b></label>
-        <input type="text" name="cardnumber" id="cardnumber" placeholder="0000 0000 0000 0000"><br>
-        <label for="cardname"><b>Name on the card</b></label>
-        <input type="text" name="cardname" id="cardname" placeholder="Name"><br>
-        <label for="carddate"><b>Expiration Date</b></label>
-        <input type="month" name="carddate" id="carddate"><br>
-        <label for="cardcode"><b>Security Code</b></label>
-        <input type="text" name="cardcode" id="cardcode">
+    <script>
+        $(function() {
+            $('.range').next().text('--'); // Valeur par défaut
+            $('.range').on('input', function() {
+            var $set = $(this).val();
+            $(this).next().text($set);
+            });
+        });     
+        function afficher(){
+            document.getElementById("cardinfo_for_pay").hidden = false;
+            document.getElementById("paypal_for_pay").hidden =true;
+        }
+        function cacher()
+        {
+            document.getElementById("paypal_for_pay").hidden =false;
+            document.getElementById("cardinfo_for_pay").hidden = true;
+        }
+       
+    </script>
+    <div class='summup_info_bloc'>
+        <?php   
+        echo "<table>";
+        echo "<tr><td style='padding-bottom: 10px; padding-top: 10px; border-bottom : solid 1px  rgba(0,0,0,0.3);'><span style='color : rgba(0,0,0,0.6) ;'>Contact :</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='text-transform : uppercase;'>".$_SESSION['lname']."</span>&nbsp;".$_SESSION['fname']."</td><td style='padding-left : 10px; '><a style='text-decoration : none; color : #D86B27;' href='../PHP/editBuyer.php'  target='_blank'>Modify</a></td></tr>";
+        echo "<tr><td style='padding-bottom: 10px; padding-top: 10px; border-bottom : solid 1px  rgba(0,0,0,0.3);'><span style='color : rgba(0,0,0,0.6);'>Address :</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['address']."</td><td style='padding-left : 10px; '><a style='text-decoration : none; color : #D86B27;' href='../PHP/editBuyer.php'  target='_blank'>Modify</a></td></tr>"; 
+        echo "<tr><td style='padding-bottom: 10px; padding-top: 10px;'><span style='color : rgba(0,0,0,0.6) ;'>Total Price : </span>".$_SESSION['price']."$</td><td style='padding-left : 10px; '><a style='text-decoration : none; color : #D86B27;' href='../PHP/shoppingCart.php' target='_blank'>Change</a></td></tr>";  
+        echo "</table>" 
+        ?>
     </div>
-    <input type="submit" value="Confirm and pay" name="finalpayment">
-</form>
-
-<?php if(isset($msg)) echo $msg;?>
-
-
-
+</div>
 <?php include 'footer.php'?>

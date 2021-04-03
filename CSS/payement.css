@@ -1,0 +1,121 @@
+.paiement_bloc{
+	display: flex; 
+	justify-content: space-around;
+	align-items: center; 
+	padding : 15px 10px 30px 10px;
+}
+
+.summup_info_bloc{
+	border : 1px solid rgba(0,0,0,0.4);
+	padding-left : 10px;
+	padding-right : 10px; 
+	border-radius: 5px; 
+}
+
+.selector_of_way_to_pay{
+	display: flex;
+	flex-direction: column;
+}
+
+.pay_with_a_card_bloc, .pay_with_paypal_bloc{
+	border : 1px solid rgba(0,0,0,0.4);
+	border-radius: 5px; 
+	padding-top : 10px; 
+	width: 445px;
+}
+
+
+.title_bloc{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size : 18px; 
+	padding-left: 5px; 
+	padding-bottom: 10px; 
+}
+
+.cardinfo, .paypalinfo{
+	padding: 10px; 
+	border-top: 1px solid rgba(0,0,0,0.4);
+	background-color: #F7F7F7 ;
+}
+
+.paypalinfo{
+	height : 150px;
+}
+
+.bloc_for_card3{
+	margin-top: 60px; 
+}
+
+.text_field_for_card1{
+	height: 30px; 
+	width: 415px; 
+}
+
+.bloc_for_card1, .bloc_for_card3{
+	padding-bottom: 10px; 
+}
+
+.text_field_for_card2{
+	height: 30px; 
+	width: 200px; 
+}
+
+.bloc_for_card2{
+	padding-right: 10px;
+}
+
+.second_part_information_paiement{
+	display : flex;
+}
+
+#carddate{
+	padding-bottom: 2px; 
+}
+
+
+/*Change the radio buttons style */
+.radio_button_choice:after{
+	width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid grey;
+}
+
+.radio_button_choice:checked:after{
+	width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    position: relative;
+    background-color: #D86B27;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid grey;
+}
+
+.bloc_button_pay{
+	padding-top: 20px; 
+}
+
+.button_pay{
+	padding: 10px 80px 10px 80px; 
+	font-family: lato; 
+	text-align: center;
+	border-radius: 4px; 
+	color : white;
+	border-color: #D86B27;
+	background-color: #D86B27; 
+}
+
+
+.button_pay:hover{
+	background-color: #B44500; 
+	cursor: pointer; 
+}
