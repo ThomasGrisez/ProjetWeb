@@ -79,9 +79,9 @@ if($nbOffers > 0){
         $price = $allItems[$i][3];
         $offeraccept = $id."accept";
         $counteroffer = $id."counter";
-        echo "<tr><td style='border : none; '><img src=".$photo1."  width='70' height='70'></td><td style='border : none; ' class='raw_table_items_list' id='title_item'>".$name."</td></tr><tr><td style='border : none;' class='raw_table_items_list' id='price_item'>Price Offer : </td><td style='color :#D86B27; font-weight : bold;' class='raw_table_items_list'>".$price."$</td></tr><tr><td style='border : none; padding-bottom : 10px;' class='raw_table_items_list'>Id : ".$id."</td>";
-        echo "<td class='raw_table_items_list' style='border : none; '><input type='submit' value='Accept' name='$offeraccept'</td>";
-        echo "<td class='raw_table_items_list' style='border : none; border-bottom : grey 1px solid;'><input type='number' name='counter' min='1'><input type='submit' value='Counter Offer' name='$counteroffer'</td></tr>";
+        echo "<tr><td style='border : none; '><img src=".$photo1."  width='70' height='70'></td><td style='border : none; ' class='raw_table_items_list' id='title_item'>".$name."</td></tr><tr><td style='border : none;' class='raw_table_items_list' id='price_item'>Price Offer : </td><td style='color :#D86B27; font-weight : bold;' class='raw_table_items_list'>".$price."$</td></tr><tr><td style='border : none; padding-bottom : 10px;' class='raw_table_items_list'>Id : ".$id."</td></tr>";
+        echo "<tr><td class='raw_table_items_list' style='border : none; '><input class='button_validate_offer' type='submit' value='Accept' name='$offeraccept'</td>";
+        echo "<td class='raw_table_items_list' style='border : none; border-bottom : grey 1px solid; padding-bottom : 5px;'><input type='number' name='counter' min='1'></td><td style='border : none; padding-left : 10px; '><input class='button_counter_offer' type='submit' value='Counter Offer' name='$counteroffer'</td></tr>";
     }
     echo "</table></form>";
 }else echo "<b>NO OFFERS!</b> <a href='addItem.php' style='text-decoration : none; color: #D86B27; font-style : italic; font-weight : bold;'>want to add one ?</a><br><br><br><a href='sellerProfile.php'><button class='button_go_back_to_my_profile'>← Go back to my profile</button></a></div>";

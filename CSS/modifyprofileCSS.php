@@ -40,6 +40,36 @@
 .button_delete_an_item_chinging_profile{
 	padding-top : 20px; 
 }
+.button_counter_offer{
+	 font-family: lato; 
+    text-align: center;
+    border-radius: 4px; 
+    color : #D86B27;
+    border-color: #D86B27;
+    background-color: white; 
+    padding : 5px; 
+}
+
+.button_counter_offer:hover{
+	background-color: #D86B27;
+	color : white; 
+    cursor: pointer;
+}
+
+.button_validate_offer{
+ 	font-family: lato; 
+    text-align: center;
+    border-radius: 4px; 
+    color : white;
+    border-color: #D86B27;
+    background-color: #D86B27; 
+    padding : 5px; 
+}
+
+.button_validate_offer:hover{
+	background-color: #B44500;
+    cursor: pointer;
+}
 
 .button_validate_delete_item_profile{
     font-family: lato; 
@@ -123,6 +153,16 @@
 	text-align : center; 
 	font-weight : bold;  
 }
+
+input[type=number]{
+        left: 10px;
+        top: 10px;
+        width: 50px;
+        height: 30px;
+        padding: 0px;
+        font-size: 14pt;
+        border: solid 0.5px #000;
+        z-index: 1;
 
  </style>';
 
