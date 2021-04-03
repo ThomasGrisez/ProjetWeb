@@ -9,7 +9,7 @@
 </head>
 	<body>
 	 	<?php include 'header.php'?>
-	 	<form class="contact_us_form">
+	 	<form class="contact_us_form" method="POST">
 
 	 		<div class="bloc_name_email">
 	 			<div class="bloc_text">
@@ -30,12 +30,40 @@
 	 			<input  class="last_part_text" type="text" name="message" required>
 	 		</div>
 	 		<input class="button_contac_us" type="submit" name="validate" value="SEND">
-
-
-
-
-
 	 	</form>
 
+		<?php
+
+		if(isset($_POST['validate'])){
+			if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'])){
+				$message = $_POST['message'];
+				$username = $_POST['name'];
+				$usermail = $_POST['email'];
+				if(!empty($_POST['phone'])){
+					$phone = $_POST['phone'];
+					$message .= "<br><br>Phone number : ".$phone;
+				}
+
+				// Mail
+				$to = "fitnet@email.com";
+				$subject = "Problem : ".$username;
+				$from = $usermail;
+
+				// To send HTML mail, the Content-type header must be set
+				$headers  = 'MIME-Version: 1.0' . "\r\n";
+				$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+				// Create email headers
+				$headers .= 'From: '.$from."\r\n".
+				'Reply-To: '.$from."\r\n" .
+				'X-Mailer: PHP/' . phpversion();
+
+				// Sending email
+				mail($to, $subject, $message, $headers);
+				header("Location: index.php");
+
+			}else echo "You must enter your name, email and message !";
+		}
+		?>
  		<?php include 'footer.php'?>
 	</body>
