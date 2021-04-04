@@ -5,9 +5,10 @@
 $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
     if(isset($_POST['finalpayment'])){
-        if(!empty($_POST['paymentcard']) && !empty($_POST['cardnumber']) && !empty($_POST['cardname']) && !empty($_POST['carddate']) && !empty($_POST['cardcode'])){
-            if(strlen($_POST['cardnumber']) == 16 && is_numeric($_POST['cardnumber'])){
-                if(strlen($_POST['cardcode']) == 3 && is_numeric($_POST['cardcode'])){  
+        //if payment != paypal and every infos are filled or if payment == paypal and phone is filled
+        if( (!empty($_POST['paymentcard']) && $_POST['paymentcard'] != "paypal" && !empty($_POST['cardnumber']) && !empty($_POST['cardname']) && !empty($_POST['carddate']) && !empty($_POST['cardcode'])) || ($_POST['paymentcard'] == "paypal" && !empty($_POST['phonenumber']))){
+            if( (strlen($_POST['cardnumber']) == 16 && is_numeric($_POST['cardnumber']) ) || ($_POST['paymentcard'] == "paypal" && !empty($_POST['phonenumber'])) ){
+                if((strlen($_POST['cardcode']) == 3 && is_numeric($_POST['cardcode']))    || ($_POST['paymentcard'] == "paypal" && !empty($_POST['phonenumber']))){  
                     $id_buyer = $_SESSION['id']; 
                     $mysqli->query("UPDATE `buyitnow` SET `status`='inpayment' WHERE `id_buyer`='$id_buyer' AND `status`='shoppingcart'");
                     //recherche dans buyitnow les id items et quantity 
@@ -144,7 +145,7 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
                         <div class="paypalinfo" id="paypal_for_pay" hidden="hidden">
                                 <div class="bloc_for_card3">
                                     <label for="cardnumber"></label>
-                                    <input class="text_field_for_card1" type="phone" name="cardnumber" id="phonenumber" placeholder="Phone number"><br>
+                                    <input class="text_field_for_card1" type="phone" name="phonenumber" id="phonenumber" placeholder="Phone number"><br>
                                 </div>        
                         </div>
                     </div>
