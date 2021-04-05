@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 03 avr. 2021 à 17:35
+-- Généré le : lun. 05 avr. 2021 à 16:19
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -59,14 +59,14 @@ CREATE TABLE IF NOT EXISTS `auction` (
   `date` date NOT NULL,
   `status` text NOT NULL,
   PRIMARY KEY (`id_auction`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `auction`
 --
 
 INSERT INTO `auction` (`id_auction`, `id_buyer`, `id_seller`, `id_item`, `price`, `secondbestprice`, `date`, `status`) VALUES
-(11, 1, 2, 37, 791, 790, '2021-04-01', 'finished');
+(12, -1, 2, 51, 15, 15, '2021-04-05', 'inprogress');
 
 -- --------------------------------------------------------
 
@@ -84,14 +84,14 @@ CREATE TABLE IF NOT EXISTS `bestoffer` (
   `num_of_negotiations` int(11) NOT NULL,
   `status` text NOT NULL,
   PRIMARY KEY (`id_bestoffer`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `bestoffer`
 --
 
 INSERT INTO `bestoffer` (`id_bestoffer`, `id_buyer`, `id_seller`, `id_item`, `price`, `num_of_negotiations`, `status`) VALUES
-(2, 1, 2, 34, 9, 5, 'accepted');
+(4, -1, 2, 45, 250, 0, 'inprogress');
 
 -- --------------------------------------------------------
 
@@ -108,15 +108,14 @@ CREATE TABLE IF NOT EXISTS `buyer` (
   `email` text NOT NULL,
   `password` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `buyer`
 --
 
 INSERT INTO `buyer` (`id`, `last_name`, `first_name`, `address`, `email`, `password`) VALUES
-(1, 'Grisez', 'Thomas', 'Bougival', 'thomas.grisez@gmail.com', 1234),
-(2, 'test', 'test', 'pari', 'a@a.com', 123);
+(1, 'Grisez', 'Thomas', 'Bougival', 'thomas.grisez@gmail.com', 1234);
 
 -- --------------------------------------------------------
 
@@ -134,30 +133,7 @@ CREATE TABLE IF NOT EXISTS `buyitnow` (
   `id_item` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id_buyitnow`)
-) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `buyitnow`
---
-
-INSERT INTO `buyitnow` (`id_buyitnow`, `id_seller`, `id_buyer`, `price`, `status`, `id_item`, `quantity`) VALUES
-(71, 2, 1, 30, 'payed', 10, 1),
-(69, 2, 1, 30, 'payed', 10, 1),
-(66, 2, 1, 30, 'payed', 10, 1),
-(35, 2, 1, 9, 'payed', 34, 1),
-(25, 2, 1, 50, 'payed', 7, 1),
-(21, 2, 1, 250, 'payed', 8, 1),
-(70, 2, 1, 35, 'payed', 9, 1),
-(68, 2, 1, 50, 'payed', 7, 1),
-(64, 2, 1, 791, 'payed', 37, 1),
-(67, 2, 1, 250, 'payed', 8, 1),
-(72, 2, 1, 50, 'payed', 7, 3),
-(73, 2, 1, 250, 'payed', 8, 2),
-(74, 2, 1, 30, 'payed', 10, 2),
-(75, 2, 1, 250, 'payed', 8, 3),
-(76, 2, 1, 50, 'payed', 7, 1),
-(77, 2, 1, 30, 'payed', 10, 1),
-(78, 2, 1, 35, 'payed', 9, 1);
+) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -180,20 +156,21 @@ CREATE TABLE IF NOT EXISTS `items` (
   `type_of_selling` text NOT NULL,
   `id_seller` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `items`
 --
 
 INSERT INTO `items` (`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`, `id_seller`) VALUES
-(9, 'Short', 'Short de sport, parfait pour la course Ã  pieds', 35, 'clothe', '2-Short-1.jpg', '', '', '', 8, 'buyitnow', 2),
-(8, 'Banc de musculation', 'Banc professionnel adaptÃ©e aux salles de sport ', 250, 'equipment', '2-Banc_de_musculation-1.jpg', '', '', '', 4, 'buyitnow', 2),
-(7, 'Halteres 10kg', 'Halteres de musculations', 50, 'equipment', '2-Halteres_10kg-1.jpg', '', '', '', 2, 'buyitnow', 2),
-(10, 'Mass Gainer', 'Optimum Nutrition, Top qualitÃ©', 30, 'complement', '2-Mass_Gainer-1.jpg', '', '', '', 4, 'buyitnow', 2),
-(11, 'ABwheel', 'excellent pour les abdos', 20, 'equipment', '2-ABwheel-1.jpg', '', '', '', 10, 'buyitnow', 2),
-(37, 'Multiplication', 'test mutli', 791, 'clothe', '2-Multiplication-1.png', '', '', '', 1, 'auction', 2),
-(34, 'bo', 'test', 9, 'equipment', '2-bo-1.png', '', '', '', 0, 'bestoffer', 2);
+(48, 'Light Cookie', 'Delicious high-protein cookie, ideal for a snack on the go', 15, 'complement', '2-Light_Cookie-1.jpg', '2-Light_Cookie-2.jpg', '2-Light_Cookie-3.jpg', '', 10, 'buyitnow', 2),
+(47, 'Weight Gainer', 'This super supplement contains 31g of protein, 50g of carbohydrates and a total of 388 calories per serving: the perfect combo to help you gain mass while promoting recovery after intense exercise.', 18, 'complement', '2-Weight_Gainer-1.jpg', '2-Weight_Gainer-2.jpg', '', '', 15, 'buyitnow', 2),
+(46, 'Hexagonal dumbbell 30 kg', 'Its hexagonal shape stops it from rolling on the ground (6 anti-roll sides). Its durable and resistant rubber coating protects from shocks and minimises noise. Ergonomic chrome-plated handle with non-slip area for a perfect grip. Ideal for private and professional use. Sold by unit.', 100, 'equipment', '2-Hexagonal_dumbbell_30_kg-1.jpg', '', '', '', 10, 'buyitnow', 2),
+(45, 'Training Bench', 'This professional bench boasts a refined backrest to respect the biomechanical movements of the body during basic weight training exercises with dumbbells or barbell. 2 integrated wheels for easy movement. 7 backret positions with inclination angles from 0 to 90Â°.  Assembly instructions and set of screws provided.', 250, 'equipment', '2-Training_Bench-1.jpg', '2-Training_Bench-2.jpg', '', '', 1, 'bestoffer', 2),
+(44, 'Half Rack', 'Cage designed for home training. Its small size will allow you to optimize the space for your home training area. Its solid design ensures stability and safety during training. The spotters can be adjusted to different heights for a complete workout. The bar supports can be set very high (ideal for squats).  Assembly instructions and screw set included.', 290, 'equipment', '2-Half_Rack-1.jpg', '2-Half_Rack-2.jpg', '2-Half_Rack-3.jpg', '', 1, 'buyitnow', 2),
+(49, 'Chalk Tank', 'In the Chalk Tank, thereâ€™s no rep too far and no set too sweaty. Weâ€™ve mixed performance technology with authentic bodybuilding silhouettes, to create a product for the new era of lifter. A airy fit and unrestrictive cut-off sleeves, along with breathable mesh and sweat-wicking capabilities to the front, ensure youâ€™ll always feel light and fresh, no matter how heavy the weight.', 25, 'clothe', '2-Chalk_Tank-1.jpg', '2-Chalk_Tank-2.jpg', '2-Chalk_Tank-3.jpg', '', 100, 'buyitnow', 2),
+(50, 'City Joggers', 'Move with ease anywhere you please in the CTY Joggers. A regular fit and double waistband keep you comfortable, whilst cuffed drawcord ankles add extra style points. Wear this staple piece on the go during your active rest days.', 40, 'clothe', '2-City_Joggers-1.jpg', '2-City_Joggers-2.jpg', '2-City_Joggers-3.jpg', '', 100, 'buyitnow', 2),
+(51, 'Heavy Resistance Band', 'The Heavy Reistance Band offers a challenging resistance without all the equipment, making it easy to take your leg training with you anywhere. Alternatively, up the ante by adding it into your next weight session.', 15, 'equipment', '2-HEAVY_RESISTANCE_BAND-1.jpg', '2-HEAVY_RESISTANCE_BAND-2.jpg', '', '', 1, 'auction', 2);
 
 -- --------------------------------------------------------
 
@@ -211,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `seller` (
   `photo` text NOT NULL,
   `favorite_background` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `seller`

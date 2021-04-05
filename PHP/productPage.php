@@ -129,7 +129,6 @@
      <tr>
          <td rowspan=<?php if($type != "buyitnow")echo 6; else echo 5;?> id="picture_item"><img src="../itemImages/<?= $photo1?>" width=400 height=400></td>
          <td class="raw_table_items_list"  id="title_of_an_item" id='prix_item'><b><?= $name ?></b></td>
-         
      </tr>
      <tr><td class="raw_table_items_list"  id="prix_of_an_item"><b>Price : </b><span style="color : #D86B27;font-weight : bold; ">$<?= $price ?></span></td></tr>
      <tr><td class="raw_table_items_list" id="type_item_an_item">Type : <em><?= $type ?></em></td></tr>
@@ -190,21 +189,22 @@
             echo $msg;
          }
         ?> 
-     </td></tr>
+     </td>
+     
 
-     <tr><td colspan="2" class="raw_table_items_list" id="description_of_an_item"><?= $description ?></td></tr>
      <tr>
          <?php
              if($photo2 != "" && $photo3 ==""){?>
-                 <td><img src="../itemImages/<?= $photo1?>" width=50><img src="../itemImages/<?= $photo2?>" width=50></td>
+                 <td><img src="../itemImages/<?= $photo1?>" width=80><img src="../itemImages/<?= $photo2?>" width=80></td><td colspan="2" class="raw_table_items_list" id="description_of_an_item"><?= $description ?></td>
              <?php
              }
              if($photo2 != "" && $photo3 != ""){?>
-                 <td><img src="../itemImages/<?= $photo1?>" width=50><img src="../itemImages/<?= $photo2?>" width=50><img src="../itemImages/<?= $photo3?>" width=50></td>
+                 <td><img src="../itemImages/<?= $photo1?>" width=80><img src="../itemImages/<?= $photo2?>" width=80><img src="../itemImages/<?= $photo3?>" width=80></td><td colspan="2" class="raw_table_items_list" id="description_of_an_item"><?= $description ?></td>
              <?php
              }  
          ?>
      </tr>
+     <tr></tr>
     </table>
 </div>
 
