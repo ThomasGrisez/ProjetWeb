@@ -17,6 +17,7 @@
     
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
+		// 
 		if(isset($_SESSION['photo'])){
 			$photo = "../profilepictures/".$_SESSION['photo'];
 		}else{

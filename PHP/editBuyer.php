@@ -15,21 +15,25 @@
     $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
     $idbuyer = $_SESSION['id'];
+    // last name
     if(isset($_POST['newlname']) && !empty($_POST['newlname']) && $_POST['newlname'] != $_SESSION['lname']){
         $newlname = htmlspecialchars($_POST['newlname']);
         $_SESSION['lname'] = $newlname;
         $mysqli->query("UPDATE buyer SET last_name='$newlname' WHERE id='$idbuyer'");
     }
+    // first name
     if(isset($_POST['newfname']) && !empty($_POST['newfname']) && $_POST['newfname'] != $_SESSION['fname']){
         $newfname = htmlspecialchars($_POST['newfname']);
         $_SESSION['fname'] = $newfname;
         $mysqli->query("UPDATE buyer SET first_name='$newfname' WHERE id='$idbuyer'");
     }
+    // address
     if(isset($_POST['newaddress']) && !empty($_POST['newaddress']) && $_POST['newaddress'] != $_SESSION['address']){
         $newaddress = htmlspecialchars($_POST['newaddress']);
         $_SESSION['address'] = $newaddress;
         $mysqli->query("UPDATE buyer SET address='$newaddress' WHERE id='$idbuyer'");
     }
+    // mail
     if(isset($_POST['newmail']) && !empty($_POST['newmail']) && $_POST['newmail'] != $_SESSION['email']){
         if(isset($_POST['newmail2']) && !empty($_POST['newmail2'])){
             if($_POST['newmail'] == $_POST['newmail2']){
@@ -54,6 +58,7 @@
             $msg = "Please confirm your new email !";
         }  
     }
+    // password
     if(isset($_POST['newpw']) && !empty($_POST['newpw']) && $_POST['newpw'] != $_SESSION['password']){
         if(isset($_POST['newpw2']) && !empty($_POST['newpw2'])){
             if($_POST['newpw'] == $_POST['newpw2']){

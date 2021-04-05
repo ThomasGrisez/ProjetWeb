@@ -26,6 +26,7 @@
 
         $nbAuctions = count($allauctions);
 
+        // Update auctions if they are finished
         for($i=0;$i<$nbAuctions;$i++){
             $currentId = $allauctions[$i][0];
             $actualDate = date("Y-m-d");

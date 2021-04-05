@@ -15,7 +15,7 @@
 
         $idbuyer = $_SESSION['id'];
 
-        //recherche dans buyitnow les items deja payé avec pour statut payed
+        //Array of every items the buyer has already payed
         $allInfos = array();
         $result1 = $mysqli->query("SELECT * FROM buyitnow WHERE status = 'payed' AND id_buyer='$idbuyer'");
         if($result1->num_rows != 0){
@@ -24,10 +24,9 @@
                 $allInfos[]=$info;
             }
         }
-        //La on un tableau de toutes les transactions deja payée
 
         $nbItems = count($allInfos);
-
+        // Array of all the informations on these items
         $allItems = array();
         for($i=0;$i<$nbItems;$i++){
             $currentId = $allInfos[$i][5];
@@ -40,8 +39,7 @@
             }
             $allItems[]=$item;
         }
-        //La je recupere le tableau avec les items et leurs infos
-        //Donc la je connais les infos des items deja achetés
+        
 
 
         $allauctions = array();
@@ -88,6 +86,7 @@
     <div class="main_aspect_of_profile_bloc1">
     <?php
         if($nbItems>0){
+            // Display of the things he buyed in the past
             echo "<h2 class='list_of_informations' style='font-size : 20px;'><em><u>Old orders :</u></em></h2>";
             echo "<div  class='one_table_of_items'><table  class='table_of_differnets_items' border=1>";
             for($j=0;$j<$nbItems;$j++){
@@ -102,6 +101,7 @@
             }
             echo "</table></div>";
         }
+        // Display of the auctions where the buyer has the highest bid so where he can win if no else bid higher
         if($nbBuyerAuction>0){
             echo "<h2 class='list_of_informations' style='font-size : 20px;'><em><u>Auction(s) where you have the highest bid :</u></em> </h2>";
             echo "<div  class='one_table_of_items'><table  class='table_of_differnets_items' border=1>";

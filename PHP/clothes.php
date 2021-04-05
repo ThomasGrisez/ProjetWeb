@@ -26,6 +26,7 @@
 
         $nbAuctions = count($allauctions);
 
+        //Check if auctions are finished or not
         for($i=0;$i<$nbAuctions;$i++){
             $currentId = $allauctions[$i][0];
             $actualDate = date("Y-m-d");
@@ -137,7 +138,7 @@
                    </table>
                    <script>
                        $(function() {
-                       $('.range').next().text('--'); // Valeur par défaut
+                       $('.range').next().text('--'); // Default value
                        $('.range').on('input', function() {
                            var $set = $(this).val();
                            $(this).next().text($set);

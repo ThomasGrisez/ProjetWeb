@@ -11,9 +11,10 @@
     <?php include 'header.php'?>
 
     <?php
-    
+        // connection database
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
+        // if submit form to add item
         if(isset($_POST['submititem'])){
             $name = htmlspecialchars($_POST['nameitem']);
             $namephoto = str_replace(" ", "_", $name);
@@ -25,7 +26,7 @@
             $type = htmlspecialchars($_POST['typesale']);
             unset($msg);
             
-
+            // Check if every inputs are filled
             if(!empty($name) && !empty($price) && !empty($quantity) && !empty($description) && !empty($category) && !empty($type)){
                 if(isset($_FILES['photo1']) && !empty($_FILES['photo1']['name'])){
 
@@ -40,7 +41,9 @@
                         $result = move_uploaded_file($_FILES['photo1']['tmp_name'], $path);
                         if($result) {
                             $idseller = $_SESSION['id'];
+                            //Insert new item in the database
                             $mysqli->query("INSERT INTO `items`(`id`, `name`, `description`, `price`, `category`, `photo1`, `photo2`, `photo3`, `video`, `quantity`, `type_of_selling`, `id_seller`) VALUES(NULL,'$name','$description','$price','$category','$photo1','','','','$quantity','$type', '$idseller')");
+                            // if auction, we had it to the auction databse too
                             if($type == "auction"){
                                 $date = date('Y-m-d');
 
@@ -52,6 +55,7 @@
                                 }
                                 $mysqli->query("INSERT INTO `auction`(`id_auction`,`id_buyer`,`id_seller`, `id_item`,`price`,`secondbestprice`,`date`,`status`) VALUES(NULL, '-1', '$idseller','$iditem','$price','$price','$date', 'inprogress') ");
                             }
+                            // if bestoffer, we had it to the bestoffer databse too
                             if($type=="bestoffer"){
                                 $queryItem = $mysqli->query("SELECT id FROM `items` WHERE id=(SELECT max(id) FROM `items`)");
                                 if ($queryItem->num_rows > 0) {
@@ -68,6 +72,7 @@
                         $msg = "Your photo format must be jpg, jpeg, gif or png";
                     }
 
+                    // if there is more than one photo we had the others
                     if(isset($_FILES['photo2']) && !empty($_FILES['photo2']['name'])) {
                     
                         $photoname = $_FILES['photo2']['name'];
@@ -177,6 +182,7 @@
                     <input class="text_label_for_modify_profile"  type="file" name="photo3" id="photo3" hidden/>
                 </div>
                 <br id="b3" hidden>
+<!-- Script to update the number of "add image" button -->
                 <script>
                     function visibility(){
                         if(document.getElementById("numberphotos").value == 1){

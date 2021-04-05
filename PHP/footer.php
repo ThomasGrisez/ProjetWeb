@@ -51,6 +51,7 @@
 							<input  id="button_email_marketing" type="submit" name="newsletter" value="Subscribe">
                         </form>
 						<?php
+						// mail newsletter
 							if(isset($_POST['newsletter']) && isset($_POST['email_marketing'])){
 								$email = $_POST['email_marketing'];
 								if(!empty($email)){

@@ -15,16 +15,19 @@
     $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
     $idseller = $_SESSION['id'];
+    // last name
     if(isset($_POST['newlname']) && !empty($_POST['newlname']) && $_POST['newlname'] != $_SESSION['lname']){
         $newlname = htmlspecialchars($_POST['newlname']);
         $_SESSION['lname'] = $newlname;
         $mysqli->query("UPDATE seller SET last_name='$newlname' WHERE id='$idseller'");
     }
+    // first name
     if(isset($_POST['newfname']) && !empty($_POST['newfname']) && $_POST['newfname'] != $_SESSION['fname']){
         $newfname = htmlspecialchars($_POST['newfname']);
         $_SESSION['fname'] = $newfname;
         $mysqli->query("UPDATE seller SET first_name='$newfname' WHERE id='$idseller'");
     }
+    // mail
     if(isset($_POST['newmail']) && !empty($_POST['newmail']) && $_POST['newmail'] != $_SESSION['email']){
         if(isset($_POST['newmail2']) && !empty($_POST['newmail2'])){
             if($_POST['newmail'] == $_POST['newmail2']){
@@ -49,6 +52,7 @@
             $msg = "Please confirm your new email !";
         }  
     }
+    // password
     if(isset($_POST['newpw']) && !empty($_POST['newpw']) && $_POST['newpw'] != $_SESSION['password']){
         if(isset($_POST['newpw2']) && !empty($_POST['newpw2'])){
             if($_POST['newpw'] == $_POST['newpw2']){
@@ -62,6 +66,7 @@
             $msg = "Please confirm your new password !";
         }  
     }
+    // photo
     if(isset($_FILES['photo']) && !empty($_FILES['photo']['name'])) {
         $photoname = $_FILES['photo']['name'];
         $photoExt = explode('.',$photoname);
@@ -87,6 +92,7 @@
             $msg = "Must be jpg, jpeg, gif or png";
         }
     }
+    // item to delete
     if(isset($_POST['itemtodelete'])){
         $id = htmlspecialchars($_POST['todelete']);
         $resultItemtoDelete = $mysqli->query("SELECT `photo1`,`photo2`,`photo3` FROM `items` WHERE `id` LIKE '$id'");
@@ -95,6 +101,7 @@
                 $product=array($row["photo1"],$row["photo2"],$row["photo3"]);
             }
         }
+        // delete the photos of the item
         if($product[0]!=""){
             $path = "../itemImages/".$product[0];
             unlink($path);
@@ -107,6 +114,7 @@
             $path = "../itemImages/".$product[2];
             unlink($path);
         }
+        // delete from database
         $mysqli->query("DELETE FROM items WHERE id='$id'");
     }
     

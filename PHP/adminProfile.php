@@ -12,7 +12,7 @@
     <?php
     
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
-
+        // every id from table seller
         $queryseller = $mysqli->query("SELECT id FROM seller");
         $idsellers = array();
         if($queryseller->num_rows > 0){
@@ -20,6 +20,7 @@
                 $idsellers[]=$row['id'];
             }
         }
+        // every id from table buyer
         $querybuyer = $mysqli->query("SELECT id FROM buyer");
         $idbuyers = array();
         if($querybuyer->num_rows > 0){
@@ -59,6 +60,7 @@
         <h3 style='font-size : 20px;'><u><em>Seller(s):</em></u></h3>
         <form method="POST">
         <?php 
+            // List of the seller
             $query = $mysqli->query("SELECT last_name, first_name, id FROM seller");
             if($query->num_rows > 0){
                 while($row = $query->fetch_assoc()){
@@ -73,6 +75,7 @@
         <h3 style='font-size : 20px;'><u><em>Buyer(s):</em></u></h3>
         <form method="POST">
         <?php 
+            // List of the buyer
             $query = $mysqli->query("SELECT last_name, first_name, id FROM buyer");
             if($query->num_rows > 0){
                 while($row = $query->fetch_assoc()){

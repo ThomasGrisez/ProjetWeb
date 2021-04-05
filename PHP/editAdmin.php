@@ -14,6 +14,7 @@
     $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
     $idadmin = $_SESSION['id'];
+    // Modification of email address
     if(isset($_POST['newmail']) && !empty($_POST['newmail']) && $_POST['newmail'] != $_SESSION['email']){
         if(isset($_POST['newmail2']) && !empty($_POST['newmail2'])){
             if($_POST['newmail'] == $_POST['newmail2']){
@@ -37,6 +38,7 @@
             $msg = "Please confirm your new email !";
         }  
     }
+    // Modification of the password
     if(isset($_POST['newpw']) && !empty($_POST['newpw']) && $_POST['newpw'] != $_SESSION['password']){
         if(isset($_POST['newpw2']) && !empty($_POST['newpw2'])){
             if($_POST['newpw'] == $_POST['newpw2']){
