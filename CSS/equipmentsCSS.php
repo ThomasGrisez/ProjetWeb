@@ -38,7 +38,7 @@
         }
 
         .raw_table_items_list{
-        	padding-left : 20px; 
+        padding-left : 20px; 
 		border: none; 
 		overflow: hidden; 
 		width: 100%; 
@@ -77,8 +77,9 @@
     	#description_item{
     	padding-top : 10px;
     	font-size : 15px; 
-    		display : flex; 
-    		align-items : flex-start;  
+    	display : flex; 
+    	align-items : flex-start;  
+
     	}
 
 

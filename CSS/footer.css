@@ -1,6 +1,6 @@
 /*CSS FOR FOOTER MENU */
 
-
+/*Generals parameters */
 .footer{
 	border-top: 1px #B7B7B7 solid; 
 	display: flex;
@@ -15,7 +15,7 @@
 .third_footerpart{
 	padding-right : 40px;
 }
-
+/*3 parts of footer menu */
 .title_footer1 ,.title_footer2, .title_footer3{
 	text-decoration : underline;
 	font-weight: bold;  
@@ -36,7 +36,7 @@
 .second_footerpart{
 	padding-left: 200px; 
 }
-
+/*All socials medias */
 .different_socialMedia{
 	padding-right: 20px; 
 	padding-bottom: 5px; 
@@ -47,6 +47,8 @@
 
 }
 
+
+/*Button*/
 #button_email_marketing{
 	padding: 10px 20px 10px 20px; 
 	font-family: lato; 

@@ -10,7 +10,7 @@ body{
     justify-content: center;
     margin: 5%;
 }
-
+/*Modifie l'input*/
 .content input{
     display: block;
     border-radius: 5px;
@@ -22,6 +22,7 @@ body{
     margin: 15px -10px;
 }
 
+/*Main CSS for login menu */
 .login{
     padding: 40px 30px 30px 30px;
     border-radius: 10px;
@@ -32,11 +33,13 @@ body{
     font-family: lato;
 }
 
+/*Links */
 .login a{
     text-decoration: none;
     color: white;
 }
 
+/*Buttons */
 #button_go_to_register{
     padding: 10px 20px 10px 20px; 
     font-family: lato; 
@@ -46,7 +49,7 @@ body{
     border-color: #D86B27;
     background-color: #D86B27; 
 }
-
+/*Log in button */
 #log_in_button{
     padding: 10px; 
     font-family: lato; 
@@ -68,6 +71,7 @@ body{
     cursor: pointer;
 }
 
+/*Button forget password */
 #button-fpw{
     
     font-family: lato; 
@@ -84,6 +88,7 @@ body{
     cursor: pointer;
 }
 
+/*Button register*/
 #login-title{
     display: flex;
     justify-content: center;

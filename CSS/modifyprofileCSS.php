@@ -1,5 +1,6 @@
 <?php echo'<style type="text/css">
 
+/*Change information main aspect*/
 .profile_information_change{
 	padding-top : 20px;	 
 	width : 30%;
@@ -21,6 +22,7 @@
 	display : flex; 
 }
 
+/*Button validate profile*/
 .button_validate_edit_profile{
 	padding: 10px; 
     font-family: lato; 
