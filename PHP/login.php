@@ -13,15 +13,18 @@
     <?php
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
+        //Login
         if(isset($_POST['formlogin'])){
             $mail = htmlspecialchars($_POST['email']);
             $pw = htmlspecialchars($_POST['password']);
 
+            // if mail and password are filled we check it's a buyer, seller or admin
             if(!empty($mail) && !empty($pw)){
                 $buyer = $mysqli->query("SELECT * FROM buyer WHERE email = '$mail' AND password='$pw'");
                 $seller = $mysqli->query("SELECT * FROM seller WHERE email = '$mail' AND password='$pw'");
                 $admin = $mysqli->query("SELECT * FROM administrator WHERE email = '$mail' AND password='$pw'");
 
+                // we create a Session with the informations
                 if($buyer->num_rows == 1){
                     $userinfos = $buyer->fetch_assoc();
                     $_SESSION['id'] = $userinfos['id'];

@@ -16,6 +16,7 @@
     $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
     unset($msg);
 
+    //Collect informations on the item 
     if(isset($_GET['idproduct'])){
         $id=htmlspecialchars($_GET['idproduct']);
         $result = $mysqli->query("SELECT * FROM items WHERE id='$id'");
@@ -107,7 +108,7 @@
                     $mysqli->query("UPDATE bestoffer SET price='$negotiation', id_buyer='$idbuyer',num_of_negotiations='$numbofnego',status='negotiationoffer'  WHERE id_item='$id'");
                     $mysqli->query("UPDATE items SET price='$negotiation' WHERE id='$id'");
 
-                    $msg = "You will be notified on your profile when the seller accept or refuse your offer";
+                    $msg = "You will see on your profile when the seller accept or refuse your offer";
                 }
             }else{
                 $msg = "Please enter a price !";
@@ -135,6 +136,7 @@
      <tr><td class="raw_table_items_list" id="quantity_of_an_item">Quantity : <?= $quantity ?></td></tr>
 
     <?php
+    //what to display depending on the type
         if($type == "auction"){
             $querydate = $mysqli->query("SELECT date FROM auction WHERE id_item='$id'");
             if($querydate->num_rows == 1){

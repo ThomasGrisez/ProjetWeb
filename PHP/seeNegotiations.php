@@ -69,6 +69,7 @@ for($i=0;$i<$nbOffers;$i++){
 <div  align='center'>
 <h2 style="font-size : 35px;">List of your offers</h2>
 <?php
+// dsiplay every offer he has on his items of type bestoffer
 if($nbOffers > 0){
     echo "<div class='profile_information_change'><form method='POST'><table border=1 class='table_of_differnets_items'>";
     for($i=0;$i<$nbOffers;$i++){

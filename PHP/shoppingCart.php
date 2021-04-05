@@ -16,7 +16,7 @@
 
         $idbuyer = $_SESSION['id'];
 
-        //recherche dans buyitnow les items pas encore payé avec pour statut shoppingcart
+        //Every items in the shopping cart of the buyer
         $allInfos = array();
         $result1 = $mysqli->query("SELECT * FROM buyitnow WHERE status = 'shoppingcart' AND id_buyer='$idbuyer'");
         if($result1->num_rows != 0){
@@ -25,10 +25,10 @@
                 $allInfos[]=$info;
             }
         }
-        //La on un tableau de toutes les transactions en cours, cad ce que le client a dans son panier
 
         $nbItems = count($allInfos);
 
+        //Infos on the items
         $allItems = array();
         for($i=0;$i<$nbItems;$i++){
             $currentId = $allInfos[$i][5];
@@ -41,8 +41,6 @@
             }
             $allItems[]=$item;
         }
-        //La je recupere le tableau avec les items et leurs infos
-        //Donc la je connais les infos du panier + les infos de chaque item de ce panier
 
         //When we press the pay Button
         if(isset($_POST['payment'])){

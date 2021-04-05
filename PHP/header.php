@@ -17,7 +17,7 @@
     
         $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect failed");
 
-		// 
+		// Display profile photo if someone is connected as a seller
 		if(isset($_SESSION['photo'])){
 			$photo = "../profilepictures/".$_SESSION['photo'];
 		}else{
@@ -26,6 +26,7 @@
 
 		$linkSell = "";
 		$linkCart = "";
+		// Links are different if you are connected or not
 		if(isset($_SESSION['status'])){
 			if($_SESSION['status']=="seller"){
 				$linkProfile = "sellerProfile.php";
@@ -41,7 +42,8 @@
 			$linkProfile = "login.php";
 			$linkSell = "login.php";
 		}
-			
+		
+		// we check the name of the current page to determine if we need hide or not the navigation menu
 		$curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);  
     ?>
 
@@ -60,6 +62,7 @@
     	</div>
 		<div>
 		<?php
+		// we display the navigation menu if it's not one of those pages
 			if($curPageName != "payment.php" && $curPageName != "shoppingCart.php" && $curPageName != "adminProfile.php" && $curPageName != "buyerProfile.php" && $curPageName != "sellerProfile.php" && $curPageName != "editAdmin.php" && $curPageName != "editSeller.php" && $curPageName != "editBuyer.php" && $curPageName != "addItem.php" && $curPageName != "privacy_policy.php" && $curPageName != "refund_policy.php"){
 		?>
     		<ul id="categoryMode">

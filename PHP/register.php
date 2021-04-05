@@ -23,10 +23,11 @@
             $pw2 = $_POST['password2'];
             $type = $_POST['type'];
             unset($msg);
-
+            
+            // check if everything is filled and correct
             if(!empty($_POST['fname']) &&  !empty($_POST['lname']) && !empty($_POST['email']) && !empty($_POST['email2']) && !empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['type'])){
                 if($mail == $mail2){
-                    if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
+                    if(filter_var($mail, FILTER_VALIDATE_EMAIL)){// check if this email address isn't already in the database
                         $result1 = $mysqli->query("SELECT * FROM buyer WHERE email = '$mail'");
                         $result2 = $mysqli->query("SELECT * FROM seller WHERE email = '$mail'");
                         $result3 = $mysqli->query("SELECT * FROM administrator WHERE email = '$mail'");

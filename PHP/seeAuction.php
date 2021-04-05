@@ -35,6 +35,7 @@ for($i=0;$i<$nbAuctions;$i++){
 <h2 style="font-size : 35px;">List of your auctions</h2>
 
 <?php
+//display the auctions of the seller and he current highest bid
 if($nbAuctions > 0){
     echo "<div class='profile_information_change'><table border=1 class='table_of_differnets_items'>";
     for($i=0;$i<$nbAuctions;$i++){

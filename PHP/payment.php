@@ -11,7 +11,7 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
                 if((strlen($_POST['cardcode']) == 3 && is_numeric($_POST['cardcode']))    || ($_POST['paymentcard'] == "paypal" && !empty($_POST['phonenumber']))){  
                     $id_buyer = $_SESSION['id']; 
                     $mysqli->query("UPDATE `buyitnow` SET `status`='inpayment' WHERE `id_buyer`='$id_buyer' AND `status`='shoppingcart'");
-                    //recherche dans buyitnow les id items et quantity 
+                    //research in buyitnow the  id items and quantity 
                     $allInfos = array();
                     $result1 = $mysqli->query("SELECT id_item,quantity,id_buyitnow FROM buyitnow WHERE `status` = 'inpayment' AND id_buyer='$id_buyer'");
                     if($result1->num_rows != 0){
@@ -20,7 +20,7 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
                             $allInfos[]=$info;
                         }
                     }
-                    //La on un tableau de tous les items et quantity que le buyer veut acheter
+                    //Here we have an array with the id and quantity of every items the bueyr wants to pay 
                 
                     $nbItems = count($allInfos);
                 
@@ -35,15 +35,14 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
                         }
                         $allItems[]=$item;
                     }
-                    //La je recupere le tableau avec les items et leurs infos
-                    //Mise à jour dans la bdd des quantités 
+                    //Here we have an array with the infos on these items
+                    //Update the quantities in the database 
                     for($j=0;$j<$nbItems;$j++){
                         $qttobuy= $allInfos[$j][1];
                         $qtindb = $allItems[$j][1];
                         $newqt = $qtindb - $qttobuy;
                         $currentId = $allInfos[$j][0];
                         $idbin = $allInfos[$j][2];
-                        //$mysqli->query("UPDATE `items` SET `quantity`='$newqt' WHERE `id`='$currentId'");
                         $mysqli->query("UPDATE `buyitnow` SET `status`='payed' WHERE `id_item`='$currentId' AND `id_buyitnow`='$idbin'");
                     }
 
@@ -161,7 +160,7 @@ $mysqli = new mysqli('127.0.0.1','root', '', 'fitnet', NULL) or die("Connect fai
     </div>
     <script>
         $(function() {
-            $('.range').next().text('--'); // Valeur par défaut
+            $('.range').next().text('--'); // default value
             $('.range').on('input', function() {
             var $set = $(this).val();
             $(this).next().text($set);

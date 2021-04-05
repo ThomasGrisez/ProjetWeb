@@ -43,6 +43,7 @@
 
         <div class="main_aspect_of_profile_bloc">
         <?php
+        // dsiplay every items the seller is selling
             if($result->num_rows > 0){
                 echo "<h3 class='list_of_informations' style='font-size : 20px;'><em><u>List of your items :</u></em></h3>";
                 echo "<div  class='one_table_of_items'>";
